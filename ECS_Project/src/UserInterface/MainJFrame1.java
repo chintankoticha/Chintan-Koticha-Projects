@@ -4,13 +4,7 @@
  */
 package UserInterface;
 
-
-
 import Business.DB4OUtil.DB4OUtil;
-
-
-
-
 import business.EcoSystem;
 import business.enterprise.Enterprise;
 import business.network.Network;
@@ -24,7 +18,7 @@ import javax.swing.JPanel;
  *
  * @author Administrator
  */
-public class MainJFrame extends javax.swing.JFrame {
+public class MainJFrame1 extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
@@ -32,7 +26,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
-    public MainJFrame() {
+    public MainJFrame1() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
     }
@@ -133,61 +127,48 @@ public class MainJFrame extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
-        
-        UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
-        Enterprise inEnterprise=null;
-        Organization inOrganization=null;
-        
-        if(userAccount==null)
-        {
-            for(Network network:system.getNetworkList())
-            {
-                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
-                {
-                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    if(userAccount==null)
-                    {
-                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
-                        {
-                            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
-                            
-                            if(userAccount!=null)
-                            {
-                                inEnterprise=enterprise;
-                                inOrganization=organization;
+
+        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+
+        Enterprise inEnterprise = null;
+        Organization inOrganization = null;
+
+        if (userAccount == null) {
+            for (Network network : system.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    if (userAccount == null) {
+                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
+                            if (userAccount != null) {
+                                inEnterprise = enterprise;
+                                inOrganization = organization;
                                 break;
                             }
                         }
-                    }
-                    else
-                    {
-                        inEnterprise=enterprise;
+                    } else {
+                        inEnterprise = enterprise;
                         break;
                     }
-                    if(inOrganization!=null)
-                    {
-                        break;
+                    if(inOrganization != null){
+                      break;
                     }
                 }
-                if(inEnterprise!=null)
-                {
+                if(inEnterprise!=null){
                     break;
                 }
             }
         }
-
-        if(userAccount==null)
-        {
-            JOptionPane.showMessageDialog(null,"invalid credentials");
+        if(userAccount == null){
+            JOptionPane.showMessageDialog(this, "Invalid credentials");
             return;
-        }else
-        {
-            CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+        }else{
+            CardLayout layout = (CardLayout) container.getLayout();
+            container.add("WorkArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
             layout.next(container);
-        
         }
-         loginJButton.setEnabled(false);
+
+        loginJButton.setEnabled(false);
         logoutJButton.setEnabled(true);
         userNameJTextField.setEnabled(false);
         passwordField.setEnabled(false);
@@ -227,13 +208,13 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -241,7 +222,7 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                new MainJFrame1().setVisible(true);
             }
         });
     }

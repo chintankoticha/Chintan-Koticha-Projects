@@ -22,7 +22,7 @@ public class EcoSystem extends Organization {
     
     private EcoSystem(){
         super(null);
-        networkList = new ArrayList<Network>();
+        networkList = new ArrayList();
     }
 
     public ArrayList<Network> getNetworkList() {

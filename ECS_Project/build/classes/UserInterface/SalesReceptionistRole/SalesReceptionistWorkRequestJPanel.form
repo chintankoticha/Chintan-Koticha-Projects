@@ -31,11 +31,11 @@
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="requestTestJButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="messageJTextField" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                  <Component id="valueLabel" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                  <Component id="requestTestJButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="messageJTextField" min="-2" pref="89" max="-2" attributes="0"/>
+                  <Component id="valueLabel" min="-2" pref="130" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="335" max="32767" attributes="0"/>
+              <EmptySpace pref="541" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,10 +43,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="enterpriseLabel" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="enterpriseLabel" min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="valueLabel" min="-2" max="-2" attributes="0"/>
@@ -67,7 +67,7 @@
                   <Component id="backJButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="requestTestJButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="288" max="32767" attributes="0"/>
+              <EmptySpace pref="329" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,20 +93,20 @@
     </Component>
     <Component class="javax.swing.JTextField" name="messageJTextField">
     </Component>
-    <Component class="javax.swing.JButton" name="backJButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;&lt;Back"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backJButtonActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="requestTestJButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Request Test"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestTestJButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="backJButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;&lt;Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backJButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
