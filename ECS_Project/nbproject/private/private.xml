@@ -2,17 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/role/SystemAdminRole.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/organization/AdminOrganization.java</file>
+            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/role/CustomerRole.java</file>
             <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/role/AdminRole.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/SalesReceptionistRole/SalesReceptionistWorkAreaJPanel.java</file>
             <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/CustomerRole/CustomerOrderSchedulingJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/organization/ControlManagerOrganization.java</file>
+            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/workqueue/WorkRequest.java</file>
+            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/organization/OrganizationDirectory.java</file>
+            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/SystemAdminWorkArea/ManageEnterpriseAdminJPanel.java</file>
         </group>
-=======
-        <group/>
->>>>>>> c536a000f295698808af47497d1e1ba81a4e1bd0
     </open-files>
 </project-private>

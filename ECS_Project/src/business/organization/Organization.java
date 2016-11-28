@@ -34,7 +34,9 @@ public abstract class Organization {
         Customer("Customer"),
         InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
-        ServiceReceptionist("Service Receptionist");
+        //ServicePersonOrganization("Service Person Organization"),
+        ServiceReceptionist("Service Receptionist"),
+        ServicePerson("Service Person");
         
         private String value;
         private Type(String value) {

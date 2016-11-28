@@ -10,28 +10,42 @@ package business.consumer;
  * @author Chintan
  */
 public class Appliance {
-    private String automobileId;
-    private String automobileName;
+    private String applianceId;
+    private String applianceName;
     private SensorDirectory sensorDirectory;
+    
+    public enum Type{
+        Automobile("Automobile Appliance"), Refrigerator("Refrigerator Appliance"), AC("Ac Appliance");
+        private String value;
+        private Type(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
 
-    public Appliance(){
+
+    public Appliance(String name){
+        this.applianceName=name;
         sensorDirectory = new SensorDirectory();
     }
 
-    public String getAutomobileId() {
-        return automobileId;
+    
+    public String getApplianceId() {
+        return applianceId;
     }
 
-    public void setAutomobileId(String automobileId) {
-        this.automobileId = automobileId;
+    public void setApplianceId(String applianceId) {
+        this.applianceId = applianceId;
     }
 
-    public String getAutomobileName() {
-        return automobileName;
+    public String getApplianceName() {
+        return applianceName;
     }
 
-    public void setAutomobileName(String automobileName) {
-        this.automobileName = automobileName;
+    public void setApplianceName(String applianceName) {
+        this.applianceName = applianceName;
     }
 
     public SensorDirectory getSensorDirectory() {

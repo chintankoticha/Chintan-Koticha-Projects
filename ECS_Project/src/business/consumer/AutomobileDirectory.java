@@ -12,17 +12,17 @@ import java.util.ArrayList;
  * @author Chintan
  */
 public class AutomobileDirectory {
-    private ArrayList<Automobile> automobileList;
+    private ArrayList<AutomobileAppliance> automobileList;
 
     public AutomobileDirectory() {
         automobileList =  new ArrayList<>();
     }
 
-    public void setAutomobileList(ArrayList<Automobile> automobileList) {
+    public void setAutomobileList(ArrayList<AutomobileAppliance> automobileList) {
         this.automobileList = automobileList;
     }
 
-    public ArrayList<Automobile> getAutomobileList() {
+    public ArrayList<AutomobileAppliance> getAutomobileList() {
         return automobileList;
     }    
 }
