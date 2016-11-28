@@ -7,7 +7,7 @@ package business.workqueue;
 
 /**
  *
- * @author chand
+ * @author Siddhant
  */
 public class SalesPersonWorkRequest extends WorkRequest{
     
