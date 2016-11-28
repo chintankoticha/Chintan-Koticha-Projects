@@ -8,6 +8,7 @@ package business.organization;
 import business.role.AccountantRole;
 import business.role.Role;
 import business.role.SalesPersonRole;
+import business.role.ServicePersonRole;
 import java.util.ArrayList;
 
 /**
@@ -17,13 +18,13 @@ import java.util.ArrayList;
 public class ServicePersonOrganization extends Organization{
     
     public ServicePersonOrganization() {
-        super(Organization.Type.SalesPerson.getValue());
+        super(Organization.Type.ServicePersonOrganization.getValue());
     }
     
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new SalesPersonRole());
+        roles.add(new ServicePersonRole());
         return roles;
     }
     

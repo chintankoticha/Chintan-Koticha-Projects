@@ -18,9 +18,45 @@ public class Product {
     private String productFeature;
     private String benefits;
     private int productId;
+    private ServiceInventory serviceInventory;
 
     public Product() {
     productId=count++;
+    serviceInventory=new ServiceInventory();
+    }
+
+    public ServiceInventory getServiceInventory() {
+        return serviceInventory;
+    }
+
+    public void setServiceInventory(ServiceInventory serviceInventory) {
+        this.serviceInventory = serviceInventory;
+    }
+
+    
+   
+
+    
+     public enum Type{
+        Admin("Admin"),
+        Accountant("Accountant"),
+        ControlManager("Control Manager"),
+        InventoryManager("Inventory Manager"),
+        SalesPerson("Sales Person"),
+        Customer("Customer"),
+        InsuranceManager("Insurance Manager"),
+        SalesReceptionist("Sales Receptionist"),
+        SalesPersonOrganization("sales Person Organization"),
+        ServicePersonOrganization("Service Person Organization"),
+        ServiceReceptionist("Service Receptionist");
+        
+        private String value;
+        private Type(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
     }
 
     
@@ -78,6 +114,11 @@ public class Product {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+    @Override
+    public String toString()
+    {
+        return this.productName;
     }
 
 }

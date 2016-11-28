@@ -25,6 +25,8 @@ public abstract class Role {
         Customer("Customer"),
         InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
+        ServicePerson("Service Person"),
+        MarketAdmin("Market Admin"),
         ServiceReceptionist("Service Receptionist");
         
         

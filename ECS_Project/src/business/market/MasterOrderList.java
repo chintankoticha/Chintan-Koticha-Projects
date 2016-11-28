@@ -14,19 +14,30 @@ import java.util.List;
  */
 public class MasterOrderList {
    
-    List<Order> orderList;
+    List<Order> orderListByServicePerson;
+    List<Order> orderListByInventoryPerson;
 
     public MasterOrderList() {
-    orderList=new ArrayList<Order>();
+    orderListByServicePerson=new ArrayList<Order>();
+    orderListByInventoryPerson=new ArrayList<>();
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Order> getOrderListByServicePerson() {
+        return orderListByServicePerson;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setOrderListByServicePerson(List<Order> orderListByServicePerson) {
+        this.orderListByServicePerson = orderListByServicePerson;
     }
+
+    public List<Order> getOrderListByInventoryPerson() {
+        return orderListByInventoryPerson;
+    }
+
+    public void setOrderListByInventoryPerson(List<Order> orderListByInventoryPerson) {
+        this.orderListByInventoryPerson = orderListByInventoryPerson;
+    }
+
     
     
     
