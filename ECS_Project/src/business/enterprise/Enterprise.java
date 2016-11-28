@@ -35,7 +35,8 @@ public abstract class Enterprise extends Organization{
     public enum EnterpriseType {
 
         Government("Government"),
-        Market("Market");
+        Market("Market"),
+        Retailer("Retailer");
         
         private String value;
         
