@@ -31,12 +31,12 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerOrderSchedulingJPanel
      */
-    public CustomerOrderSchedulingJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise, EcoSystem system) {
+    public CustomerOrderSchedulingJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.system = system;
         this.enterprise =enterprise;
         this.userAccount = account; 
+        this.system = system;
         populateTree();
         
         Calendar calendar = scheduleDate.getMonthView().getCalendar();

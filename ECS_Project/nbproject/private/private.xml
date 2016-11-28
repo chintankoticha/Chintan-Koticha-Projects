@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/business/role/AccountantRole.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/UserInterface/CustomerRole/CustomerWorkAreaJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/UserInterface/ControlManagerRole/ControlManagerWorkAreaJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/UserInterface/InsuranceManagerRole/InsuranceManagerWorkAreaJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/business/role/InsuranceManagerRole.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/business/role/Role.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/business/organization/AccountantOrganization.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/business/organization/Organization.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/business/role/SalesPersonRole.java</file>
-            <file>file:/E:/Fall%202016/AED/Final%20Project/aed_fall_2016_project_payal_dodeja_001224158/ECS_Project/src/business/organization/SalesPersonOrganization.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

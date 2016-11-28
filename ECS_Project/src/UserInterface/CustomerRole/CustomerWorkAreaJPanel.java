@@ -20,13 +20,18 @@ import javax.swing.JPanel;
 public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
+    Enterprise enterprise;
+    UserAccount userAccount;
     /**
      * Creates new form CustomerWorkAreaJPanel
      */
-    public CustomerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, CustomerOrganization customerOrganization, Enterprise enterprise) {
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, 
+            CustomerOrganization customerOrganization, Enterprise enterprise,EcoSystem system) {
          initComponents();
          this.userProcessContainer = userProcessContainer;
+         this.userAccount = account;
          this.system = system;
+         this.enterprise = enterprise;
     }
 
     /**
@@ -67,10 +72,10 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-     /*   CustomerOrderSchedulingJPanel customerOrderSchedulingJPanel = new CustomerOrderSchedulingJPanel(userProcessContainer, system);
+        CustomerOrderSchedulingJPanel customerOrderSchedulingJPanel = new CustomerOrderSchedulingJPanel(userProcessContainer,userAccount,enterprise,system);
         userProcessContainer.add("customerOrderSchedulingJPanel", customerOrderSchedulingJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);*/
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

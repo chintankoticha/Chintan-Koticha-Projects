@@ -7,7 +7,7 @@ package business.employee;
 
 /**
  *
- * @author Chintan
+ * @author Siddhant
  */
 public class Employee {
     private String firstName;

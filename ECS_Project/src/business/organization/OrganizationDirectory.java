@@ -5,6 +5,7 @@
  */
 package business.organization;
 
+import business.organization.Organization.Type;
 import java.util.ArrayList;
 
 /**
@@ -22,17 +23,33 @@ public class OrganizationDirectory {
     public ArrayList<Organization> getOrganizationList() {
         return organizationList;
     }
-    /*
+    
     public Organization createOrganization(Type type){
         Organization organization = null;
-        if (type.getValue().equals(Type.Doctor.getValue())){
-            organization = new DoctorOrganization();
+        if (type.getValue().equals(Type.Accountant.getValue())){
+            organization = new AccountantOrganization();
             organizationList.add(organization);
         }
-        else if (type.getValue().equals(Type.Lab.getValue())){
-            organization = new LabOrganization();
+        else if (type.getValue().equals(Type.Customer.getValue())){
+            organization = new CustomerOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.ControlManager.getValue())){
+            organization = new ControlManagerOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.SalesPerson.getValue())){
+            organization = new SalesPersonOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.SalesReceptionist.getValue())){
+            organization = new SalesReceptionistOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.ServiceReceptionist.getValue())){
+            organization = new ServiceReceptionistOrganization();
             organizationList.add(organization);
         }
         return organization;
-    }*/ 
+    }
 }

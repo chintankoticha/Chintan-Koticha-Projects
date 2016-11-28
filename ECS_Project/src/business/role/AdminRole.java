@@ -5,7 +5,7 @@
  */
 package business.role;
 
-import UserInterface.AdminRole.AdminWorkAreaJPanel;
+import UserInterface.AdminRole.MarketAdminWorkAreaJPanel;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
 import business.organization.Organization;
@@ -20,7 +20,7 @@ public class AdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
+        return new MarketAdminWorkAreaJPanel(userProcessContainer, enterprise);
     }
     
 }
