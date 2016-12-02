@@ -6,6 +6,7 @@
 package business.workqueue;
 
 import business.useraccount.UserAccount;
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -20,6 +21,19 @@ public class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    
+     private String requestTime;
+
+    public String getRequestTime() {
+        return requestTime;
+    }
+
+    public void setRequestTime(String requestTime) {
+        this.requestTime = requestTime;
+    }
+
+    
+    
     
     public WorkRequest(){
         requestDate = new Date();

@@ -12,6 +12,7 @@ import business.organization.Organization;
 import business.organization.SalesReceptionistOrganization;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -170,8 +171,8 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String date = scheduleDate.getDate().toString();
-        String time = timeCmbBox.getSelectedItem().toString();
+        Date date = scheduleDate.getDate();
+       String time =  timeCmbBox.getSelectedItem().toString();
         
         WorkRequest request = new WorkRequest();
         //request.setMessage(message);

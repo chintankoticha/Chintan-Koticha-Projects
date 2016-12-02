@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UseInterface.ServicePersonRole;
+package UserInterface.ServicePersonRole;
 
 import UserInterface.SalesPersonRole.*;
 import business.EcoSystem;
 import business.market.Product;
 import business.market.ProductCategory;
-import business.organization.SalesPersonOrganization;
+import business.market.ServiceInventory;
+import business.market.SupplierDirectory;
+
 import business.organization.ServicePersonOrganization;
+import business.organization.SalesPersonOrganization;
 import business.useraccount.UserAccount;
 import business.workqueue.SalesPersonWorkRequest;
 import business.workqueue.WorkRequest;
@@ -30,7 +33,9 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
+    
     private ServicePersonOrganization servicePersonOrganization;
+    
     private ProductCategory productCategory;
     
     
@@ -41,8 +46,8 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount=account;
         this.business=system;
         this.servicePersonOrganization=servicePersonOrganization;
-        productCategory= new ProductCategory();
-        populateProductTable();
+        productCategory=new ProductCategory();
+        populateComboBox();
     }
 
     /**
@@ -59,8 +64,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        productJTable = new javax.swing.JTable();
+        productsComboBox = new javax.swing.JComboBox();
 
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -108,39 +112,22 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        productJTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Product Name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(productJTable);
+        productsComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---products---" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(processJButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(assignJButton)
+                        .addComponent(assignJButton)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(productsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(processJButton))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(refreshJButton))))
                 .addGap(229, 229, 229))
         );
@@ -148,16 +135,16 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(refreshJButton)
-                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(refreshJButton)
+                    .addComponent(productsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(processJButton)
+                .addGap(57, 57, 57)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignJButton)
-                    .addComponent(processJButton))
-                .addGap(62, 62, 62)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(assignJButton)
+                .addContainerGap(372, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -165,6 +152,47 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
+    
+    public void populateComboBox()
+    {
+        productsComboBox.removeAllItems();
+        //for(Product product:productCategory.getProductList())
+           Product product = new Product();
+        
+            product=productCategory.addProduct();
+            product.setProductName("air filter");
+            product.getServiceInventory().setCount(10);
+            productsComboBox.addItem(product);
+            Product product1 = new Product();
+            product1=productCategory.addProduct();
+            product1.getServiceInventory().setCount(10);          
+            product1.setProductName("turbo charger");
+            productsComboBox.addItem(product1);
+            Product product3 = new Product();
+            product3=productCategory.addProduct();
+            product3.getServiceInventory().setCount(10);
+            
+            product3.setProductName("diesel/petrol filer");
+           productsComboBox.addItem(product3);
+            Product product5 = new Product();
+            product5=productCategory.addProduct();
+            product5.getServiceInventory().setCount(10);
+            product5.setProductName("inter-cooler");
+            productsComboBox.addItem(product5);
+           
+            Product product7 = new Product();
+            product7=productCategory.addProduct();
+            product7.setProductName("worn injectors");
+            product7.getServiceInventory().setCount(10);
+            productsComboBox.addItem(product7);
+            
+            Product product8 = new Product();
+            product8=productCategory.addProduct();
+            product8.setProductName("EGR valves");
+            product8.getServiceInventory().setCount(10);
+            productsComboBox.addItem(product8);
+        
+    }
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
         
@@ -181,39 +209,44 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         }
     }
     
-    public void populateProductTable(){
-       DefaultTableModel model = (DefaultTableModel) productJTable.getModel();
-
-       model.setRowCount(0);
-       for (Product product : productCategory.getProductList()) {
-           product=productCategory.addProduct();
-           product.setProductName("air filter");
-           
-           product=productCategory.addProduct();
-           product.setProductName("turbo charger");
-           product=productCategory.addProduct();
-           product.setProductName("diesel/petrol filer");
-           product=productCategory.addProduct();
-           product.setProductName("inter-cooler");
-           product=productCategory.addProduct();
-           product.setProductName("worn injectors");
-           product=productCategory.addProduct();
-           product.setProductName("EGR valves");
-           
-           Object[] row = new Object[2];
-                   row[0] = product;
-                   model.addRow(row);
-           
-//           for (ServiceInventory inventory : product.getServiceInventoryList().getInventoryList()) {
-//               if (inventory.getInventoryID() > 0) {
-//                 
+//    public void populateProductTable(){
+//        DefaultTableModel model = (DefaultTableModel) productTable.getModel();
 //
-//               }
+//        model.setRowCount(0);
+//        for (Product product : productCategory.getProductList()) {
+//            product=productCategory.addProduct();
+//            product.setProductName("air filter");
+//            
+//            product=productCategory.addProduct();
+//            product.setProductName("turbo charger");
+//            product=productCategory.addProduct();
+//            product.setProductName("diesel/petrol filer");
+//            product=productCategory.addProduct();
+//            product.setProductName("inter-cooler");
+//            product=productCategory.addProduct();
+//            product.setProductName("worn injectors");
+//            product=productCategory.addProduct();
+//            product.setProductName("EGR valves");
+//            
+//            Object[] row = new Object[2];
+//                    row[0] = product;
+//                    model.addRow(row);
+//            
+//            for (ServiceInventory inventory : product.getServiceInventoryList().getInventoryList()) {
+//                if (inventory.getInventoryID() > 0) {
+//                   
 //
-//           }
-       }
-       
-   }
+//                }
+//
+//            }
+//        }
+//        
+//    }
+    
+    
+    
+    
+    
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
 
         int selectedRow = workRequestJTable.getSelectedRow();
@@ -252,9 +285,8 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton processJButton;
-    private javax.swing.JTable productJTable;
+    private javax.swing.JComboBox productsComboBox;
     private javax.swing.JButton refreshJButton;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

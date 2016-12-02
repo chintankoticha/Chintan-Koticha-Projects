@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ServicePersonOrganization extends Organization{
     
     public ServicePersonOrganization() {
-        super(Organization.Type.ServicePerson.getValue());
+        super(Organization.Type.ServicePersonOrganization.getValue());
     }
     
     @Override

@@ -25,8 +25,10 @@ public abstract class Role {
         Customer("Customer"),
         InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
-        ServiceReceptionist("Service Receptionist"),
-        ServicePerson("Service Person");
+        ServicePerson("Service Person"),
+        MarketAdmin("Market Admin"),
+        ServiceReceptionist("Service Receptionist");
+        
         
         private String value;
         private RoleType(String value){
