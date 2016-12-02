@@ -127,11 +127,32 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 private void populateComboBox(){
-    if(request.getEnterpriseName().equals("r")){
+    if(request.getEnterpriseName().equals("HONDA")){
         carSelectedCmbBox.addItem("Honda Civic");
         carSelectedCmbBox.addItem("Honda Captur");
         carSelectedCmbBox.addItem("Honda CRV");
         carSelectedCmbBox.addItem("Honda HRV");
+    }
+    else if(request.getEnterpriseName().equals("BMW"))
+    {carSelectedCmbBox.addItem("BMW i3");
+        carSelectedCmbBox.addItem("BMW S1 drive");
+        carSelectedCmbBox.addItem("BMW M4 COUPE");
+        carSelectedCmbBox.addItem("BMW M2 COUPE");
+        
+    }
+    else if(request.getEnterpriseName().equals("RENAULT"))
+    {carSelectedCmbBox.addItem("Renault Captur");
+        carSelectedCmbBox.addItem("Renault Clio");
+        carSelectedCmbBox.addItem("Renault Megane");
+        carSelectedCmbBox.addItem("BMW M2 COUPE");
+        
+    }
+    else if(request.getEnterpriseName().equals("TOYOTA"))
+    {carSelectedCmbBox.addItem("TOYOTA PRIUS");
+        carSelectedCmbBox.addItem("TOYOTA VERSO");
+        carSelectedCmbBox.addItem("TOYOTA LAND CRUISER");
+        carSelectedCmbBox.addItem("BMW M2 COUPE");
+        
     }
 }
 

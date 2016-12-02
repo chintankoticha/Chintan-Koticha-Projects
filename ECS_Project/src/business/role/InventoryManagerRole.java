@@ -5,11 +5,12 @@
  */
 package business.role;
 
-import UserInterface.InevntoryManagerRole.InventoryManagerWorkAreaJPanel;
-import UserInterface.InsuranceManagerRole.InsuranceManagerWorkAreaJPanel;
+import UserInterface.InventoryManagerRole.InventoryManagerWorkAreaJPanel;
+
 import business.EcoSystem;
 import business.enterprise.Enterprise;
-import business.organization.InsuranceManagerOrganization;
+
+import business.organization.InventoryManagerOrganization;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ public class InventoryManagerRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new InventoryManagerWorkAreaJPanel(userProcessContainer, account, (InsuranceManagerOrganization)organization, enterprise);
+        return new InventoryManagerWorkAreaJPanel(userProcessContainer, account, (InventoryManagerOrganization)organization, enterprise,business);
     }
     
 }

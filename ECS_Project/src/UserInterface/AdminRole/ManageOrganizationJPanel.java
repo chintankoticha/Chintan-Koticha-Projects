@@ -57,6 +57,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                     organizationJComboBox.addItem(type);
                 }
             }
+             for (Type type : Organization.Type.values()) {
+                if (type.getValue().equals(Type.InventoryManager.getValue())) {
+                    organizationJComboBox.addItem(type);
+                }
+            }
         }
         if (enterprise.getEnterpriseType().getValue().equals("Retailer")) {
             for (Type type : Organization.Type.values()) {

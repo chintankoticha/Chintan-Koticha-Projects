@@ -35,9 +35,11 @@ public abstract class Organization {
         ControlManager("Control Manager"),
         SalesPerson("Sales Person"),
         Customer("Customer"),
+        InventoryManager("Inventory Manager"),
         ServicePerson("service Person"),
         InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
+        ServicePersonOrganization("Service Person Organization"),
         ServiceReceptionist("Service Receptionist");
         
         private String value;

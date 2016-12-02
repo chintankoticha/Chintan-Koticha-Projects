@@ -46,6 +46,14 @@ public class OrganizationDirectory {
             organization = new SalesReceptionistOrganization();
             organizationList.add(organization);
         }
+        else if (type.getValue().equals(Type.InventoryManager.getValue())){
+            organization = new InventoryManagerOrganization();
+            organizationList.add(organization);
+        }
+         else if (type.getValue().equals(Type.ServicePersonOrganization.getValue())){
+            organization = new ServicePersonOrganization();
+            organizationList.add(organization);
+        }
         else if (type.getValue().equals(Type.ServiceReceptionist.getValue())){
             organization = new ServiceReceptionistOrganization();
             organizationList.add(organization);
