@@ -20,7 +20,4 @@ public class SalesPersonWorkRequest extends WorkRequest{
     public void setRequestResult(String requestResult) {
         this.requestResult = requestResult;
     }
-    
-    
-    
 }

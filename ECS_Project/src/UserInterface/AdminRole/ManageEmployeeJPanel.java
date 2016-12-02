@@ -8,6 +8,7 @@ import business.employee.Employee;
 import business.organization.Organization;
 import business.organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -81,6 +82,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lastNameTextField = new javax.swing.JTextField();
+        createCustomerBtn = new javax.swing.JButton();
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,10 +142,22 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel2.setText("Name");
 
         organizationEmpJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationEmpJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationEmpJComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Organization");
 
         jLabel4.setText("Last Name");
+
+        createCustomerBtn.setText("Create Customer");
+        createCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createCustomerBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,6 +167,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 .addGap(66, 66, 66)
                 .addComponent(backJButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createCustomerBtn)
+                .addGap(60, 60, 60)
                 .addComponent(addJButton)
                 .addGap(175, 175, 175))
             .addGroup(layout.createSequentialGroup()
@@ -202,24 +218,22 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addJButton)
-                            .addComponent(backJButton)))
+                            .addComponent(backJButton)
+                            .addComponent(createCustomerBtn)))
                     .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String firstName = nameJTextField.getText();
         String lastName = lastNameTextField.getText();
         
         organization.getEmployeeDirectory().createEmployee(firstName,lastName);
-        
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
@@ -232,9 +246,28 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
+    private void createCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerBtnActionPerformed
+        // TODO add your handling code here:
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+        if(!organization.getName().equals("Customer")){
+            JOptionPane.showMessageDialog(this, "Customers can be added only under customer organization!!");
+        }
+        else{
+         String firstName = nameJTextField.getText();
+         String lastName = lastNameTextField.getText();
+        
+         //organization.getCustomerDirectory().createCustomer(firstName,lastName);
+        }
+    }//GEN-LAST:event_createCustomerBtnActionPerformed
+
+    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton createCustomerBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

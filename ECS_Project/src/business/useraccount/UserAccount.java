@@ -7,6 +7,7 @@ package business.useraccount;
 
 import business.employee.Employee;
 import business.role.Role;
+import business.consumer.Customer;
 import business.salesperson.SalesPerson;
 import business.workqueue.WorkQueue;
 
@@ -18,6 +19,7 @@ public class UserAccount {
     
     private String username;
     private String password;
+    private Customer customer;
     private Employee employee;
     private SalesPerson salesPerson;
     private Role role;
@@ -45,6 +47,14 @@ public class UserAccount {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public void setPassword(String password) {

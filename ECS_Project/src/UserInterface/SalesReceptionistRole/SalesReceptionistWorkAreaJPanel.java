@@ -5,13 +5,15 @@
  */
 package UserInterface.SalesReceptionistRole;
 
+import business.EcoSystem;
+import business.consumer.Customer;
 import business.enterprise.Enterprise;
-import business.organization.SalesPersonOrganization;
+import business.network.Network;
 import business.organization.SalesReceptionistOrganization;
 import business.useraccount.UserAccount;
-import business.workqueue.SalesPersonWorkRequest;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,40 +24,42 @@ import javax.swing.table.DefaultTableModel;
 public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
-    private SalesReceptionistOrganization organization;
+    private SalesReceptionistOrganization salesReceptionistorganization;
     private Enterprise enterprise;
     private UserAccount userAccount;
-
+    private EcoSystem system;
     /**
      * Creates new form SalesReceptionistWorkAreaJPanel
      */
-    public SalesReceptionistWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, SalesReceptionistOrganization organization, Enterprise enterprise) {
+    public SalesReceptionistWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, SalesReceptionistOrganization organization, Enterprise enterprise,EcoSystem system){
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
-        this.organization = organization;
+        this.system = system;
+        this.salesReceptionistorganization = (SalesReceptionistOrganization)organization;
         valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
     
     public void populateRequestTable(){
-        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+ 
+        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[6];
-           
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
-            String result = ((SalesPersonWorkRequest) request).getRequestResult();
-            row[3] = result == null ? "Waiting" : result;
-            
+        
+        for(WorkRequest request : salesReceptionistorganization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[7];
+            row[0] = request.getSender().getCustomer().getFirstName();
+            row[1] = request.getScheduleDate();
+            row[2] = request.getScheduleTime();
+            row[3] = request.getMessage();
+            row[4] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getFirstName();
+            row[5] = request.getStatus();
+            row[6] = "pending";
             model.addRow(row);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,6 +76,7 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
         refreshTestJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -80,14 +85,14 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Time", "Message", "Receiver", "Status", "Result"
+                "Name", "Date", "Time", "Message", "Receiver", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                true, true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,9 +104,6 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-        }
 
         requestTestJButton.setText("Request");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -128,46 +130,64 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(requestTestJButton)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(183, 183, 183)
-                        .addComponent(refreshTestJButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(297, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74)
+                                .addComponent(refreshTestJButton))
+                            .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(requestTestJButton))
+                .addContainerGap(334, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(refreshTestJButton)
-                        .addGap(31, 31, 31)))
+                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(refreshTestJButton)
+                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(requestTestJButton)
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+       int selectedRow = workRequestJTable.getSelectedRow();
 
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(this,"Select a row first!!");
+            return;
+        }
+        String customerName;
+        Customer customer = new Customer();
+        customerName = workRequestJTable.getValueAt(selectedRow, 0).toString();
+        for(Network network:system.getNetworkList()){
+            for(Customer customer1:network.getCustomerDirectory().getCustomerDirectory()){
+                if(customer1.getFirstName().equals(customerName)){
+                    customer=customer1;
+                }
+            }
+        }
+        //WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        //Sale request = (SalesPersonWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
+        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SalesReceptionistWorkRequestJPanel", new SalesReceptionistWorkRequestJPanel(userProcessContainer, userAccount, enterprise));
+        userProcessContainer.add("SalesReceptionistWorkRequestJPanel", new SalesReceptionistWorkRequestJPanel(userProcessContainer, userAccount, enterprise,customer));
         layout.next(userProcessContainer);
-
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
@@ -181,6 +201,7 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;

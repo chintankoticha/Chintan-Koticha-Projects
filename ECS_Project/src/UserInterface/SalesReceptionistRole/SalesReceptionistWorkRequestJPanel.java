@@ -5,6 +5,7 @@
  */
 package UserInterface.SalesReceptionistRole;
 
+import business.consumer.Customer;
 import business.enterprise.Enterprise;
 import business.organization.Organization;
 import business.organization.SalesPersonOrganization;
@@ -27,12 +28,14 @@ public class SalesReceptionistWorkRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private UserAccount userAccount;
-
-    public SalesReceptionistWorkRequestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
+    private Customer customer;
+    
+    public SalesReceptionistWorkRequestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise,Customer customer) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
+        this.customer=customer;
         valueLabel.setText(enterprise.getName());
     }
 
@@ -126,7 +129,9 @@ public class SalesReceptionistWorkRequestJPanel extends javax.swing.JPanel {
         SalesPersonWorkRequest request = new SalesPersonWorkRequest();
         request.setMessage(message);
         request.setSender(userAccount);
+        request.setCustomer(customer);
         request.setStatus("Sent");
+        request.setEnterpriseName(valueLabel.getText());
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -139,7 +144,6 @@ public class SalesReceptionistWorkRequestJPanel extends javax.swing.JPanel {
             org.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
-
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

@@ -5,26 +5,23 @@
  */
 package business.organization;
 
-import business.role.AccountantRole;
 import business.role.Role;
-import business.role.SalesPersonRole;
+import business.role.ServicePersonRole;
 import java.util.ArrayList;
 
 /**
  *
- * @author Siddhant
+ * @author Chintan
  */
 public class ServicePersonOrganization extends Organization{
-    
     public ServicePersonOrganization() {
-        super(Organization.Type.SalesPerson.getValue());
+        super(Organization.Type.ServicePerson.getValue());
     }
     
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new SalesPersonRole());
+        roles.add(new ServicePersonRole());
         return roles;
     }
-    
 }

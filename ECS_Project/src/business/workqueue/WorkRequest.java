@@ -5,8 +5,10 @@
  */
 package business.workqueue;
 
+import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
 import java.util.Date;
+import business.consumer.Customer;
 
 /**
  *
@@ -15,9 +17,13 @@ import java.util.Date;
 public class WorkRequest {
     
     private String message;
+    private Customer customer;
+    private String enterpriseName;
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
+    private String scheduleDate;
+    private String ScheduleTime;
     private Date requestDate;
     private Date resolveDate;
     
@@ -25,6 +31,38 @@ public class WorkRequest {
         requestDate = new Date();
     }
 
+    public String getScheduleDate() {
+        return scheduleDate;
+    }
+
+    public String getEnterpriseName() {
+        return enterpriseName;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setEnterpriseName(String enterpriseName) {
+        this.enterpriseName = enterpriseName;
+    }
+    
+    public void setScheduleDate(String scheduleDate) {
+        this.scheduleDate = scheduleDate;
+    }
+
+    public String getScheduleTime() {
+        return ScheduleTime;
+    }
+
+    public void setScheduleTime(String ScheduleTime) {
+        this.ScheduleTime = ScheduleTime;
+    }
+    
     public String getMessage() {
         return message;
     }
@@ -71,5 +109,10 @@ public class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+    
+    @Override
+    public String toString(){
+        return message;
     }
 }

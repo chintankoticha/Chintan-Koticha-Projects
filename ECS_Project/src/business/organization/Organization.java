@@ -5,6 +5,7 @@
  */
 package business.organization;
 
+import business.consumer.CustomerDirectory;
 import business.employee.EmployeeDirectory;
 import business.role.Role;
 import business.salesperson.SalesPersonDirectory;
@@ -20,6 +21,7 @@ public abstract class Organization {
     
     private String name;
     private WorkQueue workQueue;
+    private CustomerDirectory customerDirectory;
     private SalesPersonDirectory salesPersonDirectory;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
@@ -28,10 +30,12 @@ public abstract class Organization {
     
     public enum Type{
         Admin("Admin"),
+        MarketAdmin("Market Admin"),
         Accountant("Accountant"),
         ControlManager("Control Manager"),
         SalesPerson("Sales Person"),
         Customer("Customer"),
+        ServicePerson("service Person"),
         InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
         ServiceReceptionist("Service Receptionist");
@@ -49,6 +53,7 @@ public abstract class Organization {
         this.name = name;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
+        customerDirectory = new CustomerDirectory();
         salesPersonDirectory = new SalesPersonDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
@@ -75,6 +80,14 @@ public abstract class Organization {
 
     public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
         this.employeeDirectory = employeeDirectory;
+    }
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+
+    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
+        this.customerDirectory = customerDirectory;
     }
 
     public SalesPersonDirectory getSalesPersonDirectory() {

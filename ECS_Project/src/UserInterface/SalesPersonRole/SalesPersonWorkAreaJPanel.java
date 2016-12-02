@@ -6,11 +6,14 @@
 package UserInterface.SalesPersonRole;
 
 import business.EcoSystem;
+import business.consumer.Customer;
+import business.enterprise.Enterprise;
 import business.organization.SalesPersonOrganization;
 import business.useraccount.UserAccount;
 import business.workqueue.SalesPersonWorkRequest;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,15 +30,16 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private SalesPersonOrganization salesPersonOrganization;
+    private Enterprise enterprise1;
+    //private Customer customer;
     
-    
-   
     public SalesPersonWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesPersonOrganization salesPersonOrganization, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.userAccount=account;
         this.business=system;
         this.salesPersonOrganization=salesPersonOrganization;
+        populateTable();
     }
 
     /**
@@ -104,29 +108,28 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(184, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(assignJButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(processJButton))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(refreshJButton)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshJButton))
                 .addGap(229, 229, 229))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(65, 65, 65)
                 .addComponent(refreshJButton)
-                .addGap(33, 33, 33)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignJButton)
                     .addComponent(processJButton))
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addGap(325, 325, 325))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,8 +164,8 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
         request.setReceiver(userAccount);
         request.setStatus("Pending");
+        request.setCustomer(request.getCustomer());
         populateTable();
-
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -170,18 +173,26 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0){
+            JOptionPane.showMessageDialog(this,"Select a row first!!");
             return;
         }
+        
+        SalesPersonWorkRequest request = (SalesPersonWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
-        SalesPersonWorkRequest request = (SalesPersonWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
+        /*for (Network network : business.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (enterprise.equals(request.getEnterpriseName())) {
+                    enterprise1 = enterprise;
+                    break;
+                }
+            }
+        }*/
         request.setStatus("Processing");
-
+        request.setCustomer(request.getCustomer());
         SalesPersonProcessWorkRequestJPanel processWorkRequestJPanel = new SalesPersonProcessWorkRequestJPanel(userProcessContainer, request);
         userProcessContainer.add("SalesPersonProcessWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-
     }//GEN-LAST:event_processJButtonActionPerformed
 
 

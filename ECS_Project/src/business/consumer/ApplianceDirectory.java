@@ -24,5 +24,10 @@ public class ApplianceDirectory {
 
     public void setApplianceDirectory(ArrayList<Appliance> applianceDirectory) {
         this.applianceDirectory = applianceDirectory;
-    }  
+    }
+    
+    public Appliance add(Appliance appliance){
+        applianceDirectory.add(appliance);
+        return appliance;
+    }
 }

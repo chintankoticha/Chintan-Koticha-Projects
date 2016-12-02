@@ -5,6 +5,7 @@
  */
 package business.network;
 
+import business.consumer.CustomerDirectory;
 import business.enterprise.EnterpriseDirectory;
 
 /**
@@ -14,12 +15,18 @@ import business.enterprise.EnterpriseDirectory;
 public class Network {
     
     private String name;
+    private CustomerDirectory customerDirectory;
     private EnterpriseDirectory enterpriseDirectory;
 
     public Network(){
         enterpriseDirectory = new EnterpriseDirectory();
+        customerDirectory = new CustomerDirectory();
     }
-    
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+
     public String getName() {
         return name;
     }
