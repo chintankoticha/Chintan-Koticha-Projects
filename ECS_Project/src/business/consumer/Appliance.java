@@ -10,29 +10,30 @@ package business.consumer;
  * @author Chintan
  */
 public class Appliance {
-    private String automobileId;
-    private String automobileName;
+    private String applianceId;
+    private String applianceName;
+    private int hfcEmission;
     private SensorDirectory sensorDirectory;
 
     public Appliance(){
         sensorDirectory = new SensorDirectory();
     }
 
-    public String getAutomobileId() {
-        return automobileId;
+    public String getApplianceId() {
+        return applianceId;
     }
 
-    public void setAutomobileId(String automobileId) {
-        this.automobileId = automobileId;
+    public void setApplianceId(String applianceId) {
+        this.applianceId = applianceId;
     }
 
-    public String getAutomobileName() {
-        return automobileName;
+    public String getApplianceName() {
+        return applianceName;
     }
 
-    public void setAutomobileName(String automobileName) {
-        this.automobileName = automobileName;
-    }
+    public void setApplianceName(String applianceName) {
+        this.applianceName = applianceName;
+    }    
 
     public SensorDirectory getSensorDirectory() {
         return sensorDirectory;
@@ -41,4 +42,23 @@ public class Appliance {
     public void setSensorDirectory(SensorDirectory sensorDirectory) {
         this.sensorDirectory = sensorDirectory;
     }   
+    
+    @Override
+    public String toString()
+    {
+        return applianceName; 
+    }
+    
+    public int hfcEmission(String appliName)
+    {
+        if(appliName.equalsIgnoreCase("LG"))
+        {
+            hfcEmission=20;
+        }
+        else if(appliName.equalsIgnoreCase("SAMSUNG"))
+        {
+            hfcEmission=15;
+        }
+        return hfcEmission;
+    }
 }

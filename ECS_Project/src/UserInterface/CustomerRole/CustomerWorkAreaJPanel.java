@@ -144,29 +144,28 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(btnBookAppointmentWithRetailer)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                        .addComponent(btnBookAppointmentForServicing)
-                        .addGap(297, 297, 297))
+                            .addGap(18, 18, 18)
+                            .addComponent(btnBookAppointmentForServicing))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(StartThreadJBtn)
-                .addGap(110, 110, 110)
-                .addComponent(stopThreadJBtn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(StartThreadJBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(stopThreadJBtn)))
+                .addGap(162, 162, 162))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {StartThreadJBtn, stopThreadJBtn});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBookAppointmentWithRetailer)
                     .addComponent(btnBookAppointmentForServicing))
@@ -174,11 +173,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StartThreadJBtn)
                     .addComponent(stopThreadJBtn))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addGap(257, 257, 257))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,6 +251,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
          sensorData = new Thread() {
 
             int averageSpeed=0;
+            int averageEmission=0;
             int speedStatus[] = new int[20];
             int tempSpeed = 0;
             int countForAverage=0;
@@ -269,6 +269,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                        // if(currentStatus){
                        // for (;;) {
                             //long tstart = System.currentTimeMillis();
+                            Random random=new Random();
+                            int randNumber=random.nextInt();
                             
                             int randomIndexArray = new Random().nextInt(speedStatus.length);
                             
@@ -312,6 +314,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     threadStopDistance=threadStopAverageSpeed*threadStopTime;
                     threadStopNormalEmission=auto.co2Emission(auto.getAutomobileName());
                     threadStopNormalEmission=(threadStopNormalEmission*threadStopDistance)/1000;
+                    //threadStopCurrentEmission=new Random().nextInt(25);
+                    threadStopCurrentEmission=randInt(20, 85);
+                    
                   
                       
                    // DefaultTableModel model = (DefaultTableModel) sensorJTable.getModel();
@@ -322,11 +327,19 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         row[2]=threadStopDistance;
         row[3]=threadStopTime;
         row[4]=threadStopNormalEmission;
+        row[5]=threadStopCurrentEmission;
         model.addRow(row);
         
                 } 
             };
         sensorData.start();
+    }
+    
+    public static int randInt(int min,int max)
+    {
+        Random random1=new Random();
+        int randomNumber1=random1.nextInt((max-min)+1)+min;
+        return randomNumber1;
     }
     private void stopThreadJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopThreadJBtnActionPerformed
           // TODO add your handling code here:

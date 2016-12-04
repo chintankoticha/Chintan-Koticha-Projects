@@ -43,7 +43,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
         submitJButton = new javax.swing.JButton();
-        carSelectedCmbBox = new javax.swing.JComboBox<>();
+        selectedModelCmbBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("Result");
@@ -81,9 +81,9 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(carSelectedCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectedModelCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(resultJTextField))))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(163, 163, 163))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2});
@@ -97,13 +97,13 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carSelectedCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectedModelCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitJButton)
                     .addComponent(backJButton))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(153, 153, 153))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,25 +122,45 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
         Automobile automobile = new Automobile();
-        automobile.setAutomobileName(carSelectedCmbBox.getSelectedItem().toString());
+        automobile.setAutomobileName(selectedModelCmbBox.getSelectedItem().toString());
         request.getCustomer().getAutomobileDirectory().add(automobile);
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 private void populateComboBox(){
-    if(request.getEnterpriseName().equals("r")){
-        carSelectedCmbBox.addItem("Honda Civic");
-        carSelectedCmbBox.addItem("Honda Captur");
-        carSelectedCmbBox.addItem("Honda CRV");
-        carSelectedCmbBox.addItem("Honda HRV");
+    if(request.getEnterpriseName().equalsIgnoreCase("r")){
+        selectedModelCmbBox.addItem("Honda Civic");
+        selectedModelCmbBox.addItem("Honda Captur");
+        selectedModelCmbBox.addItem("Honda CRV");
+        selectedModelCmbBox.addItem("Honda HRV");
+    }
+    
+    if(request.getEnterpriseName().equalsIgnoreCase("LG")){
+        selectedModelCmbBox.addItem("LG LSA5PW3A L-Pearl AC");
+        selectedModelCmbBox.addItem("LG LSA3NP5A L-Nova AC");
+        selectedModelCmbBox.addItem("LG LSA5NP3A1 L-Nova AC");
+        selectedModelCmbBox.addItem("LG BSA18IBE Inverter AC");
+        selectedModelCmbBox.addItem("LG GL-I292RPZL Refrigerator");
+        selectedModelCmbBox.addItem("LG GC-J237JSNV Refrigerator");
+        selectedModelCmbBox.addItem("LG GL-D221AMLL.DMLZEBN Refrigerator");
+    }
+    
+    if(request.getEnterpriseName().equalsIgnoreCase("SAMSUNG")){
+        selectedModelCmbBox.addItem("Samsung AR12JC2HATP AC");
+        selectedModelCmbBox.addItem("Samsung AR18HC5TFUR AC");
+        selectedModelCmbBox.addItem("Samsung AR18JC3USUQ AC");
+        selectedModelCmbBox.addItem("Samsung AR12JV5NBWK AC");
+        selectedModelCmbBox.addItem("Samsung RR19J21C3RJ Refrigerator");
+        selectedModelCmbBox.addItem("Samsung RT34K3753S9/HL Refrigerator");
+        selectedModelCmbBox.addItem("Samsung RS21HSTPN Refrigerator");
     }
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
-    private javax.swing.JComboBox<String> carSelectedCmbBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField resultJTextField;
+    private javax.swing.JComboBox<String> selectedModelCmbBox;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
 }
