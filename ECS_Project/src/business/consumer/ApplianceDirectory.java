@@ -30,4 +30,8 @@ public class ApplianceDirectory {
         applianceDirectory.add(appliance);
         return appliance;
     }
+    
+    public void removeAppliance(Appliance appliance){
+        applianceDirectory.remove(appliance);
+    }
 }

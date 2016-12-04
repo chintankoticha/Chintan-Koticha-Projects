@@ -5,10 +5,12 @@
  */
 package UserInterface.SalesPersonRole;
 
+import business.consumer.Appliance;
 import business.consumer.Automobile;
 import business.workqueue.SalesPersonWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -22,11 +24,17 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     SalesPersonWorkRequest request;
-    
-   public SalesPersonProcessWorkRequestJPanel(JPanel userProcessContainer, SalesPersonWorkRequest request) {
+
+    public SalesPersonProcessWorkRequestJPanel(JPanel userProcessContainer, SalesPersonWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        selectedModelCmbBox.setVisible(false);
+        selectedACCmbBox.setVisible(false);
+        selectedACLbl.setVisible(false);
+        selectedModelLbl.setVisible(false);
+        selectedRefLbl.setVisible(false);
+        selectedRefrigeratorCmbBox.setVisible(false);
         populateComboBox();
     }
 
@@ -44,7 +52,11 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         submitJButton = new javax.swing.JButton();
         selectedModelCmbBox = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        selectedModelLbl = new javax.swing.JLabel();
+        selectedACLbl = new javax.swing.JLabel();
+        selectedACCmbBox = new javax.swing.JComboBox<>();
+        selectedRefLbl = new javax.swing.JLabel();
+        selectedRefrigeratorCmbBox = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Result");
 
@@ -62,7 +74,11 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("Selected Model:");
+        selectedModelLbl.setText("Selected Model:");
+
+        selectedACLbl.setText("Selected AC:");
+
+        selectedRefLbl.setText("Selected Refrigerator:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,23 +86,27 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backJButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(submitJButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(selectedModelLbl)
+                            .addComponent(selectedACLbl)
+                            .addComponent(selectedRefLbl))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectedModelCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(resultJTextField))))
-                .addGap(163, 163, 163))
+                            .addComponent(selectedRefrigeratorCmbBox, 0, 137, Short.MAX_VALUE)
+                            .addComponent(selectedACCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selectedModelCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(resultJTextField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backJButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(submitJButton)))
+                .addGap(228, 228, 228))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, selectedACLbl, selectedModelLbl, selectedRefLbl});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,12 +118,20 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectedModelCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(selectedModelLbl))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectedACLbl)
+                    .addComponent(selectedACCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectedRefLbl)
+                    .addComponent(selectedRefrigeratorCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitJButton)
-                    .addComponent(backJButton))
-                .addGap(153, 153, 153))
+                    .addComponent(backJButton)
+                    .addComponent(submitJButton))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,46 +149,94 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
-        Automobile automobile = new Automobile();
-        automobile.setAutomobileName(selectedModelCmbBox.getSelectedItem().toString());
-        request.getCustomer().getAutomobileDirectory().add(automobile);
+
+        if (request.getEnterpriseName().equalsIgnoreCase("r")
+                || request.getEnterpriseName().equalsIgnoreCase("r")
+                || request.getEnterpriseName().equalsIgnoreCase("r")
+                || request.getEnterpriseName().equalsIgnoreCase("r")) {
+            if (selectedModelCmbBox.getSelectedItem().toString().equals("---")) {
+                JOptionPane.showMessageDialog(this, "Customer did not buy anything!!");
+            } else {
+                Automobile automobile = new Automobile();
+                automobile.setAutomobileName(selectedModelCmbBox.getSelectedItem().toString());
+                request.getCustomer().getAutomobileDirectory().add(automobile);
+            }
+        }
+        
+        if (request.getEnterpriseName().equalsIgnoreCase("LG")
+                || request.getEnterpriseName().equalsIgnoreCase("SAMSUNG")) {
+            if (!selectedACCmbBox.getSelectedItem().toString().equals("---")) {
+                Appliance appliance = new Appliance();
+                appliance.setApplianceName(selectedACCmbBox.getSelectedItem().toString());
+                request.getCustomer().getApplianceDirectory().add(appliance);
+            } 
+            if (!selectedRefrigeratorCmbBox.getSelectedItem().toString().equals("---")) {
+                Appliance appliance = new Appliance();
+                appliance.setApplianceName(selectedRefrigeratorCmbBox.getSelectedItem().toString());
+                request.getCustomer().getApplianceDirectory().add(appliance);
+            } 
+            if (selectedACCmbBox.getSelectedItem().toString().equals("---")
+                    && selectedRefrigeratorCmbBox.getSelectedItem().toString().equals("---")) {
+                JOptionPane.showMessageDialog(this, "Customer did not buy anything!!");
+                //return;
+            }
+        }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
-private void populateComboBox(){
-    if(request.getEnterpriseName().equalsIgnoreCase("r")){
-        selectedModelCmbBox.addItem("Honda Civic");
-        selectedModelCmbBox.addItem("Honda Captur");
-        selectedModelCmbBox.addItem("Honda CRV");
-        selectedModelCmbBox.addItem("Honda HRV");
+    private void populateComboBox() {
+        if (request.getEnterpriseName().equalsIgnoreCase("r")) {
+            selectedModelLbl.setVisible(true);
+            selectedModelCmbBox.setVisible(true);
+            selectedModelCmbBox.addItem("---");
+            selectedModelCmbBox.addItem("Honda Civic");
+            selectedModelCmbBox.addItem("Honda Captur");
+            selectedModelCmbBox.addItem("Honda CRV");
+            selectedModelCmbBox.addItem("Honda HRV");
+        }
+
+        if (request.getEnterpriseName().equalsIgnoreCase("LG")) {
+            selectedACCmbBox.setVisible(true);
+            selectedACLbl.setVisible(true);
+            selectedRefLbl.setVisible(true);
+            selectedRefrigeratorCmbBox.setVisible(true);
+            selectedACCmbBox.addItem("---");
+            selectedACCmbBox.addItem("LG LSA5PW3A L-Pearl AC");
+            selectedACCmbBox.addItem("LG LSA3NP5A L-Nova AC");
+            selectedACCmbBox.addItem("LG LSA5NP3A1 L-Nova AC");
+            selectedACCmbBox.addItem("LG BSA18IBE Inverter AC");
+            selectedRefrigeratorCmbBox.addItem("---");
+            selectedRefrigeratorCmbBox.addItem("LG GL-I292RPZL Refrigerator");
+            selectedRefrigeratorCmbBox.addItem("LG GC-J237JSNV Refrigerator");
+            selectedRefrigeratorCmbBox.addItem("LG GL-D221AMLL.DMLZEBN Refrigerator");
+        }
+
+        if (request.getEnterpriseName().equalsIgnoreCase("SAMSUNG")) {
+            selectedACCmbBox.setVisible(true);
+            selectedACLbl.setVisible(true);
+            selectedRefLbl.setVisible(true);
+            selectedRefrigeratorCmbBox.setVisible(true);
+            selectedACCmbBox.addItem("---");
+            selectedACCmbBox.addItem("Samsung AR12JC2HATP AC");
+            selectedACCmbBox.addItem("Samsung AR18HC5TFUR AC");
+            selectedACCmbBox.addItem("Samsung AR18JC3USUQ AC");
+            selectedACCmbBox.addItem("Samsung AR12JV5NBWK AC");
+            selectedRefrigeratorCmbBox.addItem("---");
+            selectedRefrigeratorCmbBox.addItem("Samsung RR19J21C3RJ Refrigerator");
+            selectedRefrigeratorCmbBox.addItem("Samsung RT34K3753S9/HL Refrigerator");
+            selectedRefrigeratorCmbBox.addItem("Samsung RS21HSTPN Refrigerator");
+        }
     }
-    
-    if(request.getEnterpriseName().equalsIgnoreCase("LG")){
-        selectedModelCmbBox.addItem("LG LSA5PW3A L-Pearl AC");
-        selectedModelCmbBox.addItem("LG LSA3NP5A L-Nova AC");
-        selectedModelCmbBox.addItem("LG LSA5NP3A1 L-Nova AC");
-        selectedModelCmbBox.addItem("LG BSA18IBE Inverter AC");
-        selectedModelCmbBox.addItem("LG GL-I292RPZL Refrigerator");
-        selectedModelCmbBox.addItem("LG GC-J237JSNV Refrigerator");
-        selectedModelCmbBox.addItem("LG GL-D221AMLL.DMLZEBN Refrigerator");
-    }
-    
-    if(request.getEnterpriseName().equalsIgnoreCase("SAMSUNG")){
-        selectedModelCmbBox.addItem("Samsung AR12JC2HATP AC");
-        selectedModelCmbBox.addItem("Samsung AR18HC5TFUR AC");
-        selectedModelCmbBox.addItem("Samsung AR18JC3USUQ AC");
-        selectedModelCmbBox.addItem("Samsung AR12JV5NBWK AC");
-        selectedModelCmbBox.addItem("Samsung RR19J21C3RJ Refrigerator");
-        selectedModelCmbBox.addItem("Samsung RT34K3753S9/HL Refrigerator");
-        selectedModelCmbBox.addItem("Samsung RS21HSTPN Refrigerator");
-    }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField resultJTextField;
+    private javax.swing.JComboBox<String> selectedACCmbBox;
+    private javax.swing.JLabel selectedACLbl;
     private javax.swing.JComboBox<String> selectedModelCmbBox;
+    private javax.swing.JLabel selectedModelLbl;
+    private javax.swing.JLabel selectedRefLbl;
+    private javax.swing.JComboBox<String> selectedRefrigeratorCmbBox;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,11 +6,11 @@
 package UserInterface.CustomerRole;
 
 import business.EcoSystem;
+import business.consumer.Appliance;
 import business.consumer.Automobile;
 import business.enterprise.Enterprise;
 import business.organization.CustomerOrganization;
 import business.useraccount.UserAccount;
-import com.sun.glass.ui.SystemClipboard;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,8 +35,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private int nocValue;
     private int pmValue;
     Thread sensorData;
-    
+
     String threadStopName;
+    public int stillInUse=0;
     int threadStopAverageSpeed;
     int threadStopTime;
     int threadStopDistance;
@@ -53,8 +54,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         this.enterprise = enterprise;
-        populateItemOwnedTable();
-        // populateAppointmentScheduleTable();
+        populateAutomobilesOwnedTable();
+        populateApplianceOwnedTable();
     }
 
     /**
@@ -74,6 +75,14 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         sensorJTable = new javax.swing.JTable();
         StartThreadJBtn = new javax.swing.JButton();
         stopThreadJBtn = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        appJTable = new javax.swing.JTable();
+        autoRemoveBtn = new javax.swing.JButton();
+        removeDeviceBtn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        applianceSensorJTable = new javax.swing.JTable();
+        StartThreadJBtn1 = new javax.swing.JButton();
+        stopThreadJBtn1 = new javax.swing.JButton();
 
         btnBookAppointmentWithRetailer.setText("Book Appointment with Retailer");
         btnBookAppointmentWithRetailer.addActionListener(new java.awt.event.ActionListener() {
@@ -124,18 +133,86 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(sensorJTable);
+        if (sensorJTable.getColumnModel().getColumnCount() > 0) {
+            sensorJTable.getColumnModel().getColumn(1).setHeaderValue("Speed");
+            sensorJTable.getColumnModel().getColumn(2).setHeaderValue("Distance");
+        }
 
-        StartThreadJBtn.setText("Start");
+        StartThreadJBtn.setText("Start Automobile");
         StartThreadJBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StartThreadJBtnActionPerformed(evt);
             }
         });
 
-        stopThreadJBtn.setText("Stop");
+        stopThreadJBtn.setText("Stop Automobile");
         stopThreadJBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopThreadJBtnActionPerformed(evt);
+            }
+        });
+
+        appJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(appJTable);
+
+        autoRemoveBtn.setText("REMOVE AUTOMOBILE FROM LIST");
+        autoRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoRemoveBtnActionPerformed(evt);
+            }
+        });
+
+        removeDeviceBtn.setText("REMOVE DEVICE FROM LIST");
+        removeDeviceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeDeviceBtnActionPerformed(evt);
+            }
+        });
+
+        applianceSensorJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Time", "Temperature", "Normal Emission g/km", "Current Emission"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(applianceSensorJTable);
+
+        StartThreadJBtn1.setText("Start Appliance");
+        StartThreadJBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StartThreadJBtn1ActionPerformed(evt);
+            }
+        });
+
+        stopThreadJBtn1.setText("Stop Appliance");
+        stopThreadJBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopThreadJBtn1ActionPerformed(evt);
             }
         });
 
@@ -146,19 +223,33 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(StartThreadJBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(stopThreadJBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(btnBookAppointmentWithRetailer)
                             .addGap(18, 18, 18)
                             .addComponent(btnBookAppointmentForServicing))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(StartThreadJBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(StartThreadJBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(stopThreadJBtn)))
+                        .addComponent(stopThreadJBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(autoRemoveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(removeDeviceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addGap(162, 162, 162))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {autoRemoveBtn, btnBookAppointmentForServicing, btnBookAppointmentWithRetailer, removeDeviceBtn});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {StartThreadJBtn, stopThreadJBtn});
 
@@ -170,25 +261,48 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnBookAppointmentWithRetailer)
                     .addComponent(btnBookAppointmentForServicing))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(autoRemoveBtn)
+                    .addComponent(removeDeviceBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StartThreadJBtn)
                     .addComponent(stopThreadJBtn))
-                .addGap(257, 257, 257))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StartThreadJBtn1)
+                    .addComponent(stopThreadJBtn1))
+                .addGap(62, 62, 62))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane3});
+
     }// </editor-fold>//GEN-END:initComponents
 
-    public void populateItemOwnedTable() {
+    public void populateApplianceOwnedTable() {
+        DefaultTableModel dtm = (DefaultTableModel) appJTable.getModel();
+        dtm.setRowCount(0);
+        for (Appliance appliance : userAccount.getCustomer().getApplianceDirectory().getApplianceDirectory()) {
+            Object[] row = new Object[4];
+            row[0] = appliance;
+            dtm.addRow(row);
+        }
+    }    
+    
+    public void populateAutomobilesOwnedTable() {
         DefaultTableModel dtm = (DefaultTableModel) autoJTable.getModel();
-
         dtm.setRowCount(0);
         for (Automobile automobile : userAccount.getCustomer().getAutomobileDirectory().getAutomobileList()) {
             Object[] row = new Object[4];
             row[0] = automobile;
-
             dtm.addRow(row);
         }
     }
@@ -210,14 +324,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBookAppointmentForServicingActionPerformed
 
     private void StartThreadJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartThreadJBtnActionPerformed
-
-        currentStatus=true;
+        currentStatus = true;
         startThread();
     }//GEN-LAST:event_StartThreadJBtnActionPerformed
 
-    
-    public void startThread()
-    {
+    public void startThread() {
         DefaultTableModel dtm = (DefaultTableModel) autoJTable.getModel();
         int rowSelected = autoJTable.getSelectedRow();
 
@@ -244,42 +355,44 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         defaultCO2 = auto.co2Emission(auto.getAutomobileName());
         defaultNOx = auto.noxEmission(auto.getAutomobileName());
         defaultPMs = auto.pmEmission(auto.getAutomobileName());
-        
-        DefaultTableModel model = (DefaultTableModel) sensorJTable.getModel();
-        
-        //START OF THREAD
-         sensorData = new Thread() {
 
-            int averageSpeed=0;
-            int averageEmission=0;
+        DefaultTableModel model = (DefaultTableModel) sensorJTable.getModel();
+
+        //START OF THREAD
+        sensorData = new Thread() {
+
+            int averageSpeed = 0;
+            int averageEmission = 0;
             int speedStatus[] = new int[20];
             int tempSpeed = 0;
-            int countForAverage=0;
+            int countForAverage = 0;
             int timeElapsed = 0;
+
             public void run() {
-        
-                    Object[] row = new Object[6];
-                    model.addRow(row);
-                    while (currentStatus) {
+
+                Object[] row = new Object[6];
+                model.addRow(row);
+                while (currentStatus) {
                     
-                        for (int i = 0; i < 20; i++) {
-                            tempSpeed = i * 5;
-                            speedStatus[i] = tempSpeed;
-                        }
-                       // if(currentStatus){
-                       // for (;;) {
-                            //long tstart = System.currentTimeMillis();
-                            Random random=new Random();
-                            int randNumber=random.nextInt();
-                            
-                            int randomIndexArray = new Random().nextInt(speedStatus.length);
-                            
-                            model.setValueAt(auto.getAutomobileName(), 0, 0);
-                            averageSpeed =averageSpeed + speedStatus[randomIndexArray];
-                            countForAverage++;
-                            model.setValueAt(speedStatus[randomIndexArray],0,1);
-                            model.setValueAt(timeElapsed, 0, 3);
-                            /*String name = "";
+                    stillInUse=1;
+                    for (int i = 0; i < 20; i++) {
+                        tempSpeed = i * 5;
+                        speedStatus[i] = tempSpeed;
+                    }
+                    // if(currentStatus){
+                    // for (;;) {
+                    //long tstart = System.currentTimeMillis();
+                    Random random = new Random();
+                    int randNumber = random.nextInt();
+
+                    int randomIndexArray = new Random().nextInt(speedStatus.length);
+
+                    model.setValueAt(auto.getAutomobileName(), 0, 0);
+                    averageSpeed = averageSpeed + speedStatus[randomIndexArray];
+                    countForAverage++;
+                    model.setValueAt(speedStatus[randomIndexArray], 0, 1);
+                    model.setValueAt(timeElapsed, 0, 3);
+                    /*String name = "";
                              //Sensor sensor1 = new Sensor();
                              for (Sensor sensor : auto.getSensorDirectory().getSensorDirectory()) {
                              name = sensor.getSensorName();
@@ -289,84 +402,117 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                              row[0] = name;
 
                              dtm.addRow(row);*/
-                        
-                            try {
-                            Thread.sleep(1000);
-                            timeElapsed++;
-                            
-                       /*     long tend = System.currentTimeMillis();
+
+                    try {
+                        Thread.sleep(1000);
+                        timeElapsed++;
+
+                        /*     long tend = System.currentTimeMillis();
                             long tElapsed = tend-tstart;
                             double time = tElapsed/1000.0;
                             model.setValueAt(time/1000.0, 0, 3);*/
-                            
-                        }catch (InterruptedException e) {
-                System.out.println("STOP BUTTON PRESSED");
-                }  
-                   // currentStatus=false;
-                    
-                                //}
-                        
+                    } catch (InterruptedException e) {
+                        System.out.println("STOP BUTTON PRESSED");
                     }
-                        averageSpeed = averageSpeed/countForAverage;
-                    threadStopName=auto.getAutomobileName();
-                    threadStopAverageSpeed = averageSpeed;
-                    threadStopTime=timeElapsed;
-                    threadStopDistance=threadStopAverageSpeed*threadStopTime;
-                    threadStopNormalEmission=auto.co2Emission(auto.getAutomobileName());
-                    threadStopNormalEmission=(threadStopNormalEmission*threadStopDistance)/1000;
-                    //threadStopCurrentEmission=new Random().nextInt(25);
-                    threadStopCurrentEmission=randInt(20, 85);
-                    
-                  
-                      
-                   // DefaultTableModel model = (DefaultTableModel) sensorJTable.getModel();
-        model.setRowCount(0);
-        //Object[] row = new Object[6];
-        row[0]=threadStopName;
-        row[1]=threadStopAverageSpeed;
-        row[2]=threadStopDistance;
-        row[3]=threadStopTime;
-        row[4]=threadStopNormalEmission;
-        row[5]=threadStopCurrentEmission;
-        model.addRow(row);
-        
-                } 
-            };
+                }
+                averageSpeed = averageSpeed / countForAverage;
+                threadStopName = auto.getAutomobileName();
+                threadStopAverageSpeed = averageSpeed;
+                threadStopTime = timeElapsed;
+                threadStopDistance = threadStopAverageSpeed * threadStopTime;
+                threadStopNormalEmission = auto.co2Emission(auto.getAutomobileName());
+                threadStopNormalEmission = (threadStopNormalEmission * threadStopDistance) / 1000;
+                stillInUse = 0;
+                //LOGIC FOR CURRENT EMISSION TO BE IMPLEMENTED HERE
+                threadStopCurrentEmission = randInt(20, 85);
+
+                //FINAL DATA TO BE SHOWN HERE
+                model.setRowCount(0);
+                row[0] = threadStopName;
+                row[1] = threadStopAverageSpeed;
+                row[2] = threadStopDistance;
+                row[3] = threadStopTime;
+                row[4] = threadStopNormalEmission;
+                row[5] = threadStopCurrentEmission;
+                model.addRow(row);
+            }
+        };
         sensorData.start();
     }
-    
-    public static int randInt(int min,int max)
-    {
-        Random random1=new Random();
-        int randomNumber1=random1.nextInt((max-min)+1)+min;
+
+    public static int randInt(int min, int max) {
+        Random random1 = new Random();
+        int randomNumber1 = random1.nextInt((max - min) + 1) + min;
         return randomNumber1;
     }
     private void stopThreadJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopThreadJBtnActionPerformed
-          // TODO add your handling code here:
-        currentStatus=false;
-    //   sensorData.stop();
-      // sensorData.interrupt();
-        
-        
-        //JOptionPane.showMessageDialog(null, "value false hui");
-      //  stopThread();
+        // TODO add your handling code here:
+        currentStatus = false;
+        // sensorData.stop();
+        // sensorData.interrupt();
+        // JOptionPane.showMessageDialog(null, "value false hui");
+        // stopThread();
     }//GEN-LAST:event_stopThreadJBtnActionPerformed
 
-    public void stopThread(){
+    private void autoRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoRemoveBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = autoJTable.getSelectedRow();
+        
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(this, "Please select a row first!!!");
+            return;
+        }
+        
+        if (stillInUse == 1) {
+            JOptionPane.showMessageDialog(this, "Cannot delete while its still in use!!");
+            return;
+        } else {
+            Automobile automobile = (Automobile) autoJTable.getValueAt(selectedRow, 0);
+            userAccount.getCustomer().getAutomobileDirectory().removeAutomobile(automobile);
+            populateAutomobilesOwnedTable();
+        }
+    }//GEN-LAST:event_autoRemoveBtnActionPerformed
+
+    private void StartThreadJBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartThreadJBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StartThreadJBtn1ActionPerformed
+
+    private void stopThreadJBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopThreadJBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stopThreadJBtn1ActionPerformed
+
+    private void removeDeviceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDeviceBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = appJTable.getSelectedRow();
+        
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(this, "Please select a row first!!!");
+            return;
+        }
+        
+        if (stillInUse == 1) {
+            JOptionPane.showMessageDialog(this, "Cannot delete while its still in use!!");
+            return;
+        } else {
+            Appliance appliance = (Appliance) appJTable.getValueAt(selectedRow, 0);
+            userAccount.getCustomer().getApplianceDirectory().removeAppliance(appliance);
+            populateAutomobilesOwnedTable();
+        }
+    }//GEN-LAST:event_removeDeviceBtnActionPerformed
+
+    public void stopThread() {
         currentStatus = false;
-                //startThread(currentStatus);
+        //startThread(currentStatus);
         stopThreadJBtn.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentStatus = false;
-                //startThread();
-               // JOptionPane.showMessageDialog(null, "value false hui");
-                
+                // JOptionPane.showMessageDialog(null, "value false hui");
             }
         });
     }
-    
+
     public ArrayList<Integer> selectedCO2Value(String autoName) {
         ArrayList<Integer> co2Emmision = new ArrayList();
         if (autoName.equals("BMW i3")) {
@@ -381,111 +527,63 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 co2Emmision.add(i);
                 //  j++;
             }
-//            int j=100;
-//            int co2Emmision[]=new int[16];
-//            for(int i=0;i<16;i++){
-//                co2Emmision[i]=j;
-//                j++;
-//            }
         } else if (autoName.equals("BMW M4 COUPE")) {
-
             for (int i = 185; i < 201; i++) {
                 co2Emmision.add(i);
             }
-            //  j++;
-//            }
-//            int j=185;
-//            int co2Emmision[]=new int[16];
-//            for(int i=0;i<16;i++){
-//                co2Emmision[i]=j;
-//                j++;
-//            }
         } else if (autoName.equals("BMW M2 COUPE")) {
-
             for (int i = 170; i < 191; i++) {
                 co2Emmision.add(i);
                 //  j++;
             }
-//                 }
-//             int j=170;
-//            int co2Emmision[]=new int[21];
-//            for(int i=0;i<21;i++){
-//                co2Emmision[i]=j;
-//                j++;
-//            }
         } else if (autoName.equals("HONDA CIVIC")) {
-
             for (int i = 85; i < 101; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("HONDA CRV")) {
             for (int i = 105; i < 121; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equalsIgnoreCase("HONDA HRV")) {
             for (int i = 95; i < 111; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("HONDA JAZZ")) {
             for (int i = 95; i < 111; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("RENAULT CAPTUR")) {
             for (int i = 90; i < 101; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("RENAULT CLIO")) {
             for (int i = 70; i < 86; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("RENAULT MEGANE")) {
             for (int i = 85; i < 101; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("RENAULT GRAND SCENIC")) {
             for (int i = 84; i < 96; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("TOYOTA PRIUS")) {
             for (int i = 65; i < 76; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("TOYOTA LAND CRUISER")) {
             for (int i = 180; i < 196; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("TOYOTA VERSO")) {
             for (int i = 110; i < 126; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         } else if (autoName.equals("TOYOTA CAMRY")) {
             for (int i = 70; i < 85; i++) {
                 co2Emmision.add(i);
-                //  j++;
             }
-
         }
         return co2Emmision;
     }
@@ -493,134 +591,104 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     public ArrayList<Integer> selectedNOxValue(String autoName) {
         ArrayList<Integer> NOxEmmision = new ArrayList();
         if (autoName.equals("BMW i3")) {
-            //int j=4;
-            //int co2Emmision[]=new int[17];
             for (int i = 0; i < 2; i++) {
                 NOxEmmision.add(i);
-                //  j++;
             }
         } else if (autoName.equals("BMW X1")) {
             for (int i = 25; i < 40; i++) {
                 NOxEmmision.add(i);
-                //  j++;
             }
-//            int j=100;
-//            int co2Emmision[]=new int[16];
-//            for(int i=0;i<16;i++){
-//                co2Emmision[i]=j;
-//                j++;
-//            }
         } else if (autoName.equals("BMW M4 COUPE")) {
-
             for (int i = 25; i < 40; i++) {
                 NOxEmmision.add(i);
             }
-            //  j++;
-//            }
-//            int j=185;
-//            int co2Emmision[]=new int[16];
-//            for(int i=0;i<16;i++){
-//                co2Emmision[i]=j;
-//                j++;
-//            }
         } else if (autoName.equals("BMW M2 COUPE")) {
 
             for (int i = 7; i < 18; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-//                 }
-//             int j=170;
-//            int co2Emmision[]=new int[21];
-//            for(int i=0;i<21;i++){
-//                co2Emmision[i]=j;
-//                j++;
-//            }
         } else if (autoName.equals("HONDA CIVIC")) {
 
             for (int i = 42; i < 53; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("HONDA CRV")) {
             for (int i = 57; i < 68; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("HONDA HRV")) {
             for (int i = 62; i < 72; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("HONDA JAZZ")) {
             for (int i = 1; i < 4; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("RENAULT CAPTUR")) {
             for (int i = 25; i < 35; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("RENAULT CLIO")) {
             for (int i = 25; i < 35; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("RENAULT MEGANE")) {
             for (int i = 25; i < 38; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("RENAULT GRAND SCENIC")) {
             for (int i = 45; i < 55; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("TOYOTA PRIUS")) {
             for (int i = 10; i < 20; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("TOYOTA LAND CRUISER")) {
             for (int i = 32; i < 45; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("TOYOTA VERSO")) {
             for (int i = 16; i < 28; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         } else if (autoName.equals("TOYOTA CAMRY")) {
             for (int i = 1; i < 8; i++) {
                 NOxEmmision.add(i);
                 //  j++;
             }
-
         }
         return NOxEmmision;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton StartThreadJBtn;
+    private javax.swing.JButton StartThreadJBtn1;
+    private javax.swing.JTable appJTable;
+    private javax.swing.JTable applianceSensorJTable;
     private javax.swing.JTable autoJTable;
+    private javax.swing.JButton autoRemoveBtn;
     private javax.swing.JButton btnBookAppointmentForServicing;
     private javax.swing.JButton btnBookAppointmentWithRetailer;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JButton removeDeviceBtn;
     private javax.swing.JTable sensorJTable;
     private javax.swing.JButton stopThreadJBtn;
+    private javax.swing.JButton stopThreadJBtn1;
     // End of variables declaration//GEN-END:variables
 }
