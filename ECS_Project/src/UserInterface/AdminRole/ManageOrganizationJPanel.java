@@ -56,6 +56,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 if (type.getValue().equals(Type.MarketAdmin.getValue())) {
                     organizationJComboBox.addItem(type);
                 }
+                if (type.getValue().equals(Type.InventoryManager.getValue())) {
+                    organizationJComboBox.addItem(type);
+                }
             }
         }
         if (enterprise.getEnterpriseType().getValue().equals("Retailer")) {
@@ -66,7 +69,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 if (type.getValue().equals(Type.SalesReceptionist.getValue())) {
                     organizationJComboBox.addItem(type);
                 }
-                if (type.getValue().equals(Type.ServicePerson.getValue())) {
+                if (type.getValue().equals(Type.ServicePersonOrganization.getValue())) {
                     organizationJComboBox.addItem(type);
                 }
                 if (type.getValue().equals(Type.ServiceReceptionist.getValue())) {
