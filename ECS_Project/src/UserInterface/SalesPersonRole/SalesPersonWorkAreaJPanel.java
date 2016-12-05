@@ -33,11 +33,12 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise1;
     //private Customer customer;
     
-    public SalesPersonWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesPersonOrganization salesPersonOrganization, EcoSystem system) {
+    public SalesPersonWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesPersonOrganization salesPersonOrganization,Enterprise enterprise1, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.userAccount=account;
         this.business=system;
+        enterprise1=enterprise1;
         this.salesPersonOrganization=salesPersonOrganization;
         populateTable();
     }

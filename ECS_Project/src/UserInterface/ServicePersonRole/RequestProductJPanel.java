@@ -98,7 +98,7 @@ public class RequestProductJPanel extends javax.swing.JPanel {
             if(flag==0){
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 
-                if (enterprise.getName().equals("product")) {
+                if (enterprise.getName().equalsIgnoreCase("mar")) {
                 for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                     if (organization instanceof InventoryManagerOrganization) {
                         flag=1;
