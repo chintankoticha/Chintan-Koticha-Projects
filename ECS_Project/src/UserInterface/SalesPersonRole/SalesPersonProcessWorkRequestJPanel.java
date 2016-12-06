@@ -136,7 +136,6 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
@@ -159,6 +158,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             } else {
                 Automobile automobile = new Automobile();
                 automobile.setAutomobileName(selectedModelCmbBox.getSelectedItem().toString());
+                automobile.setBattery(100);
                 request.getCustomer().getAutomobileDirectory().add(automobile);
             }
         }
