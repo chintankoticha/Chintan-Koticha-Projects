@@ -21,26 +21,23 @@ public abstract class Organization {
     
     private String name;
     private WorkQueue workQueue;
+    private CustomerDirectory customerDirectory;
     private SalesPersonDirectory salesPersonDirectory;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
-    private CustomerDirectory customerDirectory;
     
     public enum Type{
         Admin("Admin"),
+        MarketAdmin("Market Admin"),
         Accountant("Accountant"),
         ControlManager("Control Manager"),
-        InventoryManager("Inventory Manager"),
         SalesPerson("Sales Person"),
         Customer("Customer"),
-        MarketAdmin("market admin"),
+        ServicePerson("service Person"),
         InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
-        SalesPersonOrganization("sales Person Organization"),
-        ServicePersonOrganization("Service Person Organization"),
-        
         ServiceReceptionist("Service Receptionist");
         
         private String value;
@@ -52,19 +49,11 @@ public abstract class Organization {
         }
     }
 
-    public CustomerDirectory getCustomerDirectory() {
-        return customerDirectory;
-    }
-
-    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
-        this.customerDirectory = customerDirectory;
-    }
-
-    
     public Organization(String name) {
         this.name = name;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
+        customerDirectory = new CustomerDirectory();
         salesPersonDirectory = new SalesPersonDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
@@ -91,6 +80,14 @@ public abstract class Organization {
 
     public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
         this.employeeDirectory = employeeDirectory;
+    }
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+
+    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
+        this.customerDirectory = customerDirectory;
     }
 
     public SalesPersonDirectory getSalesPersonDirectory() {

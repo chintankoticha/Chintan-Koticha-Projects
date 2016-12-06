@@ -50,20 +50,8 @@ public class OrganizationDirectory {
             organization = new ServiceReceptionistOrganization();
             organizationList.add(organization);
         }
-        else if (type.getValue().equals(Type.InventoryManager.getValue())){
-            organization = new InventoryManagerOrganization();
-            organizationList.add(organization);
-        }
-        else if (type.getValue().equals(Type.SalesPersonOrganization.getValue())){
-            organization = new SalesPersonOrganization();
-            organizationList.add(organization);
-        }
-         else if (type.getValue().equals(Type.ServicePersonOrganization.getValue())){
+        else if (type.getValue().equals(Type.ServicePerson.getValue())){
             organization = new ServicePersonOrganization();
-            organizationList.add(organization);
-        }
-        else if (type.getValue().equals(Type.MarketAdmin.getValue())){
-            organization = new MarketAdminOrganization();
             organizationList.add(organization);
         }
         return organization;

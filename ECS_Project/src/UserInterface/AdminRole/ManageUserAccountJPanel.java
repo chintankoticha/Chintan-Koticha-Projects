@@ -47,9 +47,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     public void populateEmployeeComboBox(Organization organization){
         employeeJComboBox.removeAllItems();
         
-//        for(Customer customer:organization.getCustomerDirectory().getCustomerDirectory()){
-//            customerJComboBox.addItem(customer);
-//        }
+        for(Customer customer:organization.getCustomerDirectory().getCustomerDirectory()){
+            customerJComboBox.addItem(customer);
+        }
         
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
             employeeJComboBox.addItem(employee);
