@@ -51,7 +51,7 @@ public class ServiceReceptionistWorkAreaJPanel extends javax.swing.JPanel {
         
         for(WorkRequest request : serviceReceptionistOrganization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[7];
-            row[0] = request.getSender().getCustomer().getFirstName();
+            row[0] = request.getSender().getEmployee().getFirstName();
             row[1] = request.getScheduleDate();
             row[2] = request.getScheduleTime();
             row[3] = request.getMessage();

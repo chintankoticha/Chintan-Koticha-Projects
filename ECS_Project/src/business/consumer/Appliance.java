@@ -51,11 +51,11 @@ public class Appliance {
     
     public int hfcEmission(String appliName)
     {
-        if(appliName.equalsIgnoreCase("LG"))
+        if(appliName.substring(0,2).equalsIgnoreCase("LG"))
         {
             hfcEmission=20;
         }
-        else if(appliName.equalsIgnoreCase("SAMSUNG"))
+        else if(appliName.substring(0, 6).equalsIgnoreCase("SAMSUNG"))
         {
             hfcEmission=15;
         }

@@ -54,6 +54,10 @@ public class OrganizationDirectory {
             organization = new ServicePersonOrganization();
             organizationList.add(organization);
         }
+         else if (type.getValue().equals(Type.InventoryManager.getValue())){
+            organization = new InventoryManagerOrganization();
+            organizationList.add(organization);
+        }
         return organization;
     }
 }

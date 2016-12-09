@@ -6,6 +6,7 @@
 package business.organization;
 
 import business.role.InsuranceManagerRole;
+import business.role.InventoryManagerRole;
 import business.role.Role;
 import java.util.ArrayList;
 
@@ -16,13 +17,13 @@ import java.util.ArrayList;
 public class InventoryManagerOrganization extends Organization {
     
     public InventoryManagerOrganization() {
-        super(Organization.Type.InsuranceManager.getValue());
+        super(Organization.Type.InventoryManager.getValue());
     }
     
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new InsuranceManagerRole());
+        roles.add(new InventoryManagerRole());
         return roles;
     }
     

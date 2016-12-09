@@ -36,6 +36,7 @@ public abstract class Organization {
         SalesPerson("Sales Person"),
         Customer("Customer"),
         ServicePerson("service Person"),
+        InventoryManager("Inventory Manager"),
         InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
         ServiceReceptionist("Service Receptionist");

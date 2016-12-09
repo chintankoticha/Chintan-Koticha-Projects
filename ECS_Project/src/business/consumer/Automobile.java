@@ -15,6 +15,7 @@ public class Automobile {
     private int co2Emission;
     private int noxEmission;
     private int pmEmission;
+    private int battery;
     
     private SensorDirectory sensorDirectory;
 
@@ -36,6 +37,14 @@ public class Automobile {
 
     public void setAutomobileName(String automobileName) {
         this.automobileName = automobileName;
+    }
+
+    public int getBattery() {
+        return battery;
+    }
+
+    public void setBattery(int battery) {
+        this.battery = battery;
     }
 
     public SensorDirectory getSensorDirectory() {
@@ -69,11 +78,11 @@ public class Automobile {
         {
             co2Emission=185;
         }
-         else if(autoName.equals("HONDA CIVIC"))
+         else if(autoName.equalsIgnoreCase("HONDA CIVIC"))
         {
             co2Emission=94;
         }
-         else if(autoName.equals("HONDA CRV"))
+         else if(autoName.equalsIgnoreCase("HONDA CRV"))
         {
             co2Emission=115;
         }
@@ -81,7 +90,7 @@ public class Automobile {
         {
             co2Emission=104;
         }
-         else if(autoName.equals("HONDA JAZZ"))
+         else if(autoName.equalsIgnoreCase("HONDA JAZZ"))
         {
             co2Emission=106;
         }
