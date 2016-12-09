@@ -5,6 +5,7 @@
  */
 package business.enterprise;
 
+import business.market.ProductCategory;
 import business.organization.Organization;
 import business.organization.OrganizationDirectory;
 
@@ -15,6 +16,7 @@ import business.organization.OrganizationDirectory;
 public abstract class Enterprise extends Organization{
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
+    private ProductCategory productCatalog;
 
     public EnterpriseType getEnterpriseType() {
         return enterpriseType;
@@ -31,6 +33,15 @@ public abstract class Enterprise extends Organization{
     public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
         this.organizationDirectory = organizationDirectory;
     }
+
+    public ProductCategory getProductCatalog() {
+        return productCatalog;
+    }
+
+    public void setProductCatalog(ProductCategory productCatalog) {
+        this.productCatalog = productCatalog;
+    }
+    
 
     public enum EnterpriseType {
 
@@ -62,5 +73,6 @@ public abstract class Enterprise extends Organization{
         super(name);
         this.enterpriseType = type;
         organizationDirectory = new OrganizationDirectory();
+        productCatalog = new ProductCategory();
     }   
 }

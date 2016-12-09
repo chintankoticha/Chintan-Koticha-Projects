@@ -5,6 +5,8 @@
 package UserInterface.InventoryManagerRole;
 
 
+import business.enterprise.Enterprise;
+import business.market.Product;
 import business.workqueue.ServicePersonProductRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -18,14 +20,23 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     ServicePersonProductRequest request;
+    private Enterprise enterprise;
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-    public ProcessWorkRequestJPanel(JPanel userProcessContainer, ServicePersonProductRequest request) {
+     public ProcessWorkRequestJPanel(JPanel userProcessContainer,Enterprise enterprise, ServicePersonProductRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        this.enterprise = enterprise; 
+        
+        productToBeSentCmbBox.addItem("---");
+        
+        for(Product product : enterprise.getProductCatalog().getProductList()){
+            productToBeSentCmbBox.addItem(product);
+        }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,6 +51,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         resultJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
+        productToBeSentCmbBox = new javax.swing.JComboBox();
 
         submitJButton.setText("Submit Result");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +69,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        productToBeSentCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,13 +82,15 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                         .addComponent(submitJButton)
-                        .addGap(63, 63, 63))))
+                        .addGap(63, 63, 63))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(productToBeSentCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +103,9 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitJButton)
                     .addComponent(backJButton))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(productToBeSentCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,6 +128,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox productToBeSentCmbBox;
     private javax.swing.JTextField resultJTextField;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
