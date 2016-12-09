@@ -6,6 +6,7 @@ package UserInterface.SystemAdminWorkArea;
 
 import business.EcoSystem;
 import business.enterprise.Enterprise;
+import business.market.Product;
 import business.network.Network;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -190,6 +191,42 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
         }
+        if (enterpriseTypeJComboBox.getSelectedItem().toString().equalsIgnoreCase("Retailer")) {
+            String name = nameJTextField.getText();
+            Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+           
+            //Product product = new Product();
+            Product product = enterprise.getProductCatalog().addProduct();
+            product.setProductName("air filter");
+            product.getServiceInventory().setCount(0);
+                    
+            Product product1 = enterprise.getProductCatalog().addProduct();
+            product1.setProductName("turbo charger");
+            product1.getServiceInventory().setCount(50);
+            
+            Product product2 = enterprise.getProductCatalog().addProduct();
+            product2.setProductName("diesel/petrol filter");
+            product2.getServiceInventory().setCount(50);
+            
+            Product product3 = enterprise.getProductCatalog().addProduct();
+            product3.setProductName("worn injectors");
+            product3.getServiceInventory().setCount(50);
+            
+            Product product4 = enterprise.getProductCatalog().addProduct();
+            product4.setProductName("EGR valves");
+            product4.getServiceInventory().setCount(50);
+            
+            Product product5 = enterprise.getProductCatalog().addProduct();
+            product5.setProductName("inter-cooler");
+            product5.getServiceInventory().setCount(50);
+            
+            Product product6 = enterprise.getProductCatalog().addProduct();
+            product6.setProductName("unknown");
+            product6.getServiceInventory().setCount(0);
+            
+            populateTable();
+        }
+        
 
         String name = nameJTextField.getText();
 

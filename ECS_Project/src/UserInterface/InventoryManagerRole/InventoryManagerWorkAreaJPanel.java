@@ -7,10 +7,13 @@ package UserInterface.InventoryManagerRole;
 
 import UserInterface.InsuranceManagerRole.*;
 import business.EcoSystem;
+import business.employee.Employee;
 import business.enterprise.Enterprise;
+import business.network.Network;
 import business.organization.ControlManagerOrganization;
 import business.organization.InsuranceManagerOrganization;
 import business.organization.InventoryManagerOrganization;
+import business.organization.Organization;
 import business.useraccount.UserAccount;
 import business.workqueue.ServicePersonProductRequest;
 import business.workqueue.WorkRequest;
@@ -27,6 +30,7 @@ public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private Enterprise enterprise;
+    private Enterprise ent;
     private InventoryManagerOrganization inventoryManagerOrganization;
 
     /**
@@ -205,11 +209,29 @@ public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
 
+        
         ServicePersonProductRequest request = (ServicePersonProductRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
+        Employee employee=request.getSender().getEmployee();
+        
+        for(Network network:business.getNetworkList())
+        {
+            for( Enterprise enterp:network.getEnterpriseDirectory().getEnterpriseList())
+            {
+                for(Organization org:enterp.getOrganizationDirectory().getOrganizationList())
+                {
+                    for(Employee emp:org.getEmployeeDirectory().getEmployeeList())
+                    {
+                        if(employee.equals(emp))
+                        {
+                            ent=enterp;
+                        }
+                    }
+                }
+            }
+        }
         request.setStatus("Processing");
 
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request);
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,ent, request);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

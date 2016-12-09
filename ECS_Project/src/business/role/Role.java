@@ -24,6 +24,8 @@ public abstract class Role {
         ControlManager("Control Manager"),
         Customer("Customer"),
         InsuranceManager("Insurance Manager"),
+        InvenoryManager("Inventory Manager"),
+        ServicePerson("Service Person"),
         SalesReceptionist("Sales Receptionist"),
         ServiceReceptionist("Service Receptionist");
         
