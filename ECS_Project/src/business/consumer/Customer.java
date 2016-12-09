@@ -5,8 +5,6 @@
  */
 package business.consumer;
 
-import business.employee.Employee;
-
 /**
  *
  * @author Chintan
@@ -19,14 +17,24 @@ public class Customer{
     private String currentAreaCode;
     private ApplianceDirectory applianceDirectory;
     private AutomobileDirectory automobileDirectory;
+    private SensorDirectory sensorDirectory;
     
     public Customer(){
         applianceDirectory = new ApplianceDirectory();
         automobileDirectory = new AutomobileDirectory();
+        sensorDirectory = new SensorDirectory();
     }
 
     public String getCustomerId() {
         return customerId;
+    }
+
+    public SensorDirectory getSensorDirectory() {
+        return sensorDirectory;
+    }
+
+    public void setSensorDirectory(SensorDirectory sensorDirectory) {
+        this.sensorDirectory = sensorDirectory;
     }
 
     public String getFirstName() {

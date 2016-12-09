@@ -21,7 +21,7 @@ public class ControlManagerRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-       return new ControlManagerWorkAreaJPanel(userProcessContainer, account, (ControlManagerOrganization)organization, enterprise); 
+       return new ControlManagerWorkAreaJPanel(userProcessContainer, account, (ControlManagerOrganization)organization, enterprise,business); 
     }
     
 }

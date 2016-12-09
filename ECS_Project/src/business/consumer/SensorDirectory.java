@@ -15,7 +15,7 @@ public class SensorDirectory {
     private ArrayList<Sensor> sensorDirectory;
     
     public SensorDirectory(){
-        sensorDirectory = new ArrayList<>();
+        sensorDirectory = new ArrayList();
     }
 
     public ArrayList<Sensor> getSensorDirectory() {
@@ -25,6 +25,7 @@ public class SensorDirectory {
     public void setSensorDirectory(ArrayList<Sensor> sensorDirectory) {
         this.sensorDirectory = sensorDirectory;
     }
+    
     public Sensor addSensor(Sensor sensor)
     {
         sensorDirectory.add(sensor);
