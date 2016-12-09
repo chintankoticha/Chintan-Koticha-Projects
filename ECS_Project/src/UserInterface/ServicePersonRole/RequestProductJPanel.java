@@ -125,7 +125,7 @@ public class RequestProductJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ServicePersonWorkAreaJPanel dwjp = (ServicePersonWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
+        dwjp.populateTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
         

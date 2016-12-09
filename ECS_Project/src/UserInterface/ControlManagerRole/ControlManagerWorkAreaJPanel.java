@@ -5,8 +5,13 @@
  */
 package UserInterface.ControlManagerRole;
 
+import business.EcoSystem;
+import business.consumer.Customer;
+import business.consumer.Sensor;
 import business.enterprise.Enterprise;
+import business.network.Network;
 import business.organization.ControlManagerOrganization;
+import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -15,12 +20,21 @@ import javax.swing.JPanel;
  * @author Siddhant
  */
 public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
-
+    JPanel userProcessContainer;
+    UserAccount account;
+    Organization organization;
+    Enterprise enterprise;
+    EcoSystem system;
     /**
      * Creates new form ControlManagerWorkAreaJPanel
      */
-    public ControlManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, ControlManagerOrganization controlManagerOrganization, Enterprise enterprise) {
+    public ControlManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, ControlManagerOrganization controlManagerOrganization, Enterprise enterprise,EcoSystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.organization = (ControlManagerOrganization)controlManagerOrganization;
+        this.enterprise=enterprise;
+        this.system = business;
     }
 
     /**
@@ -32,19 +46,58 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        taxButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        taxButton.setText("TAX INCUR TO CUSTOMERS");
+        taxButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taxButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Check customer data");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(taxButton)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(taxButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(353, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void taxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taxButtonActionPerformed
+        // TODO add your handling code here:
+        for (Network network : system.getNetworkList()) {
+            for (Customer customer : network.getCustomerDirectory().getCustomerDirectory()) {
+                if (customer.getFirstName().equalsIgnoreCase("Ayushi")) {
+                    for (Sensor sensor : customer.getSensorDirectory().getSensorDirectory()) {
+                        if (sensor.getCurrentEmissionCO2() > 25) {
+                            System.out.println(sensor.getCurrentEmissionCO2());
+                        }
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_taxButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton taxButton;
     // End of variables declaration//GEN-END:variables
 }

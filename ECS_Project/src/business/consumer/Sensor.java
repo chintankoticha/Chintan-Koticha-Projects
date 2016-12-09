@@ -5,48 +5,29 @@
  */
 package business.consumer;
 
+import java.util.Date;
+
 /**
  *
  * @author Chintan
  */
 public class Sensor {
-    private String sensorId;
-    private String sensorName;
-    private String sensorFittedTo;
-    private Double sensorCurrentReadingOutput;
+    private Date date;
+    private int currentEmissionCO2;
 
-    public String getSensorId() {
-        return sensorId;
+    public Date getDate() {
+        return date;
     }
 
-    public void setSensorId(String sensorId) {
-        this.sensorId = sensorId;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getSensorName() {
-        return sensorName;
+    public int getCurrentEmissionCO2() {
+        return currentEmissionCO2;
     }
 
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
-    }
-
-    public String getSensorFittedTo() {
-        return sensorFittedTo;
-    }
-
-    public void setSensorFittedTo(String sensorFittedTo) {
-        this.sensorFittedTo = sensorFittedTo;
-    }
-
-    public Double getSensorCurrentReadingOutput() {
-        return sensorCurrentReadingOutput;
-    }
-
-    public void setSensorCurrentReadingOutput(Double sensorCurrentReadingOutput) {
-        this.sensorCurrentReadingOutput = sensorCurrentReadingOutput;
-    }
-    
-    
-    
+    public void setCurrentEmissionCO2(int currentEmissionCO2) {
+        this.currentEmissionCO2 = currentEmissionCO2;
+    }    
 }
