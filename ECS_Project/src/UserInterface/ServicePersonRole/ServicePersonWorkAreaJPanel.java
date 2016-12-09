@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Siddhant
  */
 public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
-    
+
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
@@ -35,110 +35,102 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ServicePersonWorkAreaJPanel
      */
-   
-
-    public ServicePersonWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, ServicePersonOrganization servicePersonOrganization,Enterprise enterprise,EcoSystem system) {
+    public ServicePersonWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, ServicePersonOrganization servicePersonOrganization, Enterprise enterprise, EcoSystem system) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.userAccount=account;
-        this.business=system;
-        this.enterprise=enterprise;
-        this.servicePersonOrganization=servicePersonOrganization;
-        productCategory=new ProductCategory();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.business = system;
+        this.enterprise = enterprise;
+        this.servicePersonOrganization = servicePersonOrganization;
+        productCategory = new ProductCategory();
         populateTable();
         populateComboBox();
         populateRequestTable();
     }
-    
-    public void populateComboBox()
-    {
+
+    public void populateComboBox() {
         productsComboBox.removeAllItems();
         //for(Product product:productCategory.getProductList())
            /*Product product = new Product();
         
-            product=productCategory.addProduct();
-            product.setProductName("air filter");
-            product.getServiceInventory().setCount(11);
-            productsComboBox.addItem(product);
-            Product product1 = new Product();
-            product1=productCategory.addProduct();
-            product1.getServiceInventory().setCount(10);          
-            product1.setProductName("turbo charger");
-            productsComboBox.addItem(product1);
-            Product product3 = new Product();
-            product3=productCategory.addProduct();
-            product3.getServiceInventory().setCount(10);
+         product=productCategory.addProduct();
+         product.setProductName("air filter");
+         product.getServiceInventory().setCount(11);
+         productsComboBox.addItem(product);
+         Product product1 = new Product();
+         product1=productCategory.addProduct();
+         product1.getServiceInventory().setCount(10);          
+         product1.setProductName("turbo charger");
+         productsComboBox.addItem(product1);
+         Product product3 = new Product();
+         product3=productCategory.addProduct();
+         product3.getServiceInventory().setCount(10);
             
-            product3.setProductName("diesel/petrol filer");
-           productsComboBox.addItem(product3);
-            Product product5 = new Product();
-            product5=productCategory.addProduct();
-            product5.getServiceInventory().setCount(10);
-            product5.setProductName("inter-cooler");
-            productsComboBox.addItem(product5);
+         product3.setProductName("diesel/petrol filer");
+         productsComboBox.addItem(product3);
+         Product product5 = new Product();
+         product5=productCategory.addProduct();
+         product5.getServiceInventory().setCount(10);
+         product5.setProductName("inter-cooler");
+         productsComboBox.addItem(product5);
            
-            Product product7 = new Product();
-            product7=productCategory.addProduct();
-            product7.setProductName("worn injectors");
-            product7.getServiceInventory().setCount(10);
-            productsComboBox.addItem(product7);
+         Product product7 = new Product();
+         product7=productCategory.addProduct();
+         product7.setProductName("worn injectors");
+         product7.getServiceInventory().setCount(10);
+         productsComboBox.addItem(product7);
             
-            Product product8 = new Product();
-            product8=productCategory.addProduct();
-            product8.setProductName("EGR valves");
-            product8.getServiceInventory().setCount(10);
-            productsComboBox.addItem(product8);
-            *//*
-           if(productsComboBox.getSelectedIndex()==1)
-            {
-                int number=product.getServiceInventory().getCount();
-    countTxtField.setText(String.valueOf(number));
-            }*/
-       productsComboBox.addItem("---");
-        for(Product product:enterprise.getProductCatalog().getProductList()){
+         Product product8 = new Product();
+         product8=productCategory.addProduct();
+         product8.setProductName("EGR valves");
+         product8.getServiceInventory().setCount(10);
+         productsComboBox.addItem(product8);
+         *//*
+         if(productsComboBox.getSelectedIndex()==1)
+         {
+         int number=product.getServiceInventory().getCount();
+         countTxtField.setText(String.valueOf(number));
+         }*/
+
+        productsComboBox.addItem("---");
+        for (Product product : enterprise.getProductCatalog().getProductList()) {
             productsComboBox.addItem(product);
-            
-            
+
         }
     }
-    
-    
-    public void populateRequestTable(){
-        
-        
+
+    public void populateRequestTable() {
+
         DefaultTableModel model = (DefaultTableModel) workRequestJTable2.getModel();
-        
+
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
             String result = ((ServicePersonProductRequest) request).getRequestResult();
             row[3] = result == null ? "Waiting" : result;
-            
+
             model.addRow(row);
         }
     }
 
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
-    
-     public void populateTable(){
-        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
-        
         model.setRowCount(0);
-        
-        for(WorkRequest request : servicePersonOrganization.getWorkQueue().getWorkRequestList()){
+
+        for (WorkRequest request : servicePersonOrganization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getFirstName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getFirstName();
             row[3] = request.getStatus();
-            
+
             model.addRow(row);
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,7 +146,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
-        productsComboBox = new javax.swing.JComboBox();
+        productsComboBox = new javax.swing.JComboBox<Object>();
         jScrollPane3 = new javax.swing.JScrollPane();
         workRequestJTable2 = new javax.swing.JTable();
         requestTestJButton = new javax.swing.JButton();
@@ -301,11 +293,11 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
 
         int selectedRow = workRequestJTable.getSelectedRow();
 
-        if (selectedRow < 0){
+        if (selectedRow < 0) {
             return;
         }
 
-        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        WorkRequest request = (WorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
         request.setReceiver(userAccount);
         request.setStatus("Pending");
         request.setCustomer(request.getCustomer());
@@ -316,8 +308,8 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
 
         int selectedRow = workRequestJTable.getSelectedRow();
 
-        if (selectedRow < 0 && productsComboBox.getSelectedIndex()<0){
-            JOptionPane.showMessageDialog(this,"Select a row first!!");
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Select a row first!!");
             return;
         }
 //        else if (productsComboBox.getSelectedIndex()<0)
@@ -326,75 +318,76 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
 //            return;
 //            
 //        }
-        
-        if(productsComboBox.getSelectedItem().equals("---"))
-        {
-            JOptionPane.showMessageDialog(null,"please select a product first!!!");
-        }
-         Product product=new Product();
-        product=(Product) productsComboBox.getSelectedItem();
-        int count=product.getServiceInventory().getCount();
-        if(product.getServiceInventory().getCount()>55)
-        {
-        ServicePersonWorkRequest request = (ServicePersonWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
-        /*for (Network network : business.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                if (enterprise.equals(request.getEnterpriseName())) {
-                    enterprise1 = enterprise;
-                    break;
-                }
+        if (!productsComboBox.getSelectedItem().equals("---")) {
+            // JOptionPane.showMessageDialog(null,"please select a product first!!!");
+
+            Product product = new Product();
+            try {
+
+                product = (Product) productsComboBox.getSelectedItem();
+            } catch (Exception e) {
+
             }
-        }*/
-        request.setStatus("Processing");
-        request.setCustomer(request.getCustomer());
-        count--;
-        System.out.println(count);
+              int count = product.getServiceInventory().getCount();
+            if (product.getServiceInventory().getCount() > 45) {
+                ServicePersonWorkRequest request = (ServicePersonWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
-        ServicePersonProcessWorkRequestJPanel processWorkRequestJPanel = new ServicePersonProcessWorkRequestJPanel(userProcessContainer, request);
-        userProcessContainer.add("ServicePersonProcessWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+                /*for (Network network : business.getNetworkList()) {
+                 for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                 if (enterprise.equals(request.getEnterpriseName())) {
+                 enterprise1 = enterprise;
+                 break;
+                 }
+                 }
+                 }*/
+                request.setStatus("Processing");
+                request.setCustomer(request.getCustomer());
+                count--;
+                System.out.println(count);
+                product.getServiceInventory().setCount(count);
+
+                ServicePersonProcessWorkRequestJPanel processWorkRequestJPanel = new ServicePersonProcessWorkRequestJPanel(userProcessContainer, request);
+                userProcessContainer.add("ServicePersonProcessWorkRequestJPanel", processWorkRequestJPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                userProcessContainer.add("RequestLabTestJPanel", new RequestProductJPanel(userProcessContainer, userAccount, enterprise, business));
+                layout.next(userProcessContainer);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a product first!!!");
     }//GEN-LAST:event_processJButtonActionPerformed
-    else
-    {
-      CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                userProcessContainer.add("RequestLabTestJPanel", new RequestProductJPanel(userProcessContainer, userAccount, enterprise,business));
-                layout.next(userProcessContainer);  
+
     }
-    }
-    
+
     private void productsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_productsComboBoxActionPerformed
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        if(productsComboBox.getSelectedItem().equals("---"))
-        {
-            JOptionPane.showMessageDialog(null,"please select a product first!!!");
+        if (productsComboBox.getSelectedItem().equals("---")) {
+            JOptionPane.showMessageDialog(null, "please select a product first!!!");
         }
-        Product product=new Product();
-        product=(Product) productsComboBox.getSelectedItem();
-        int count=product.getServiceInventory().getCount();
+        Product product = new Product();
+        product = (Product) productsComboBox.getSelectedItem();
+        int count = product.getServiceInventory().getCount();
         //for(Product p:enterprise.getProductCatalog().getProductList())
-        
 
-            if(product.getServiceInventory().getCount()>0)
-            {
-                JOptionPane.showMessageDialog(this,"lets code");
-                System.out.println(product.getServiceInventory().getCount());
-                System.out.println(product.getProductName());
-                count--;
-                System.out.println(count);
+        if (product.getServiceInventory().getCount() > 0) {
+            JOptionPane.showMessageDialog(this, "lets code");
+            System.out.println(product.getServiceInventory().getCount());
+            System.out.println(product.getProductName());
+            count--;
+            System.out.println(count);
 
-            }
+        } else {
 
-            else{
-
-                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                userProcessContainer.add("RequestLabTestJPanel", new RequestProductJPanel(userProcessContainer, userAccount, enterprise,business));
-                layout.next(userProcessContainer);
-            }
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add("RequestLabTestJPanel", new RequestProductJPanel(userProcessContainer, userAccount, enterprise, business));
+            layout.next(userProcessContainer);
+        }
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
 
@@ -403,7 +396,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton processJButton;
-    private javax.swing.JComboBox productsComboBox;
+    private javax.swing.JComboBox<Object> productsComboBox;
     private javax.swing.JButton refreshJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JTable workRequestJTable;

@@ -5,6 +5,8 @@
  */
 package business.consumer;
 
+import business.employee.Employee;
+
 /**
  *
  * @author Chintan
@@ -17,7 +19,6 @@ public class Customer{
     private String currentAreaCode;
     private ApplianceDirectory applianceDirectory;
     private AutomobileDirectory automobileDirectory;
-    private ServiceDirectory serviceDirectory;
     
     public Customer(){
         applianceDirectory = new ApplianceDirectory();
@@ -78,13 +79,5 @@ public class Customer{
 
     public void setAutomobileDirectory(AutomobileDirectory automobileDirectory) {
         this.automobileDirectory = automobileDirectory;
-    }   
-
-    public ServiceDirectory getServiceDirectory() {
-        return serviceDirectory;
-    }
-
-    public void setServiceDirectory(ServiceDirectory serviceDirectory) {
-        this.serviceDirectory = serviceDirectory;
-    }  
+    }    
 }

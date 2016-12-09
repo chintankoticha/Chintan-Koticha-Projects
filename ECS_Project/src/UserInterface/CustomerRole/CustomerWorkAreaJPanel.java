@@ -67,8 +67,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         this.enterprise = enterprise;
-        //populateAutomobilesOwnedTable();
-        //populateApplianceOwnedTable();
+        populateAutomobilesOwnedTable();
+        populateApplianceOwnedTable();
     }
 
     /**
