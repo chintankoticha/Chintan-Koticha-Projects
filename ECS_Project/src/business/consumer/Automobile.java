@@ -62,19 +62,19 @@ public class Automobile {
     
     public int co2Emission(String autoName)   
     {
-        if(autoName.equals("BMW i3"))
+        if(autoName.equalsIgnoreCase("BMW i3"))
         {
             co2Emission=13;        
         }
-        else if(autoName.equals("BMW X1"))
+        else if(autoName.equalsIgnoreCase("BMW X1"))
         {
             co2Emission=109;
         }
-         else if(autoName.equals("BMW M4 COUPE"))
+         else if(autoName.equalsIgnoreCase("BMW M4 COUPE"))
         {
             co2Emission=194;
         }
-         else if(autoName.equals("BMW M2 COUPE"))
+         else if(autoName.equalsIgnoreCase("BMW M2 COUPE"))
         {
             co2Emission=185;
         }
@@ -90,31 +90,31 @@ public class Automobile {
         {
             co2Emission=104;
         }
-         else if(autoName.equalsIgnoreCase("HONDA JAZZ"))
+         else if(autoName.equalsIgnoreCase("HONDA CAPTUR"))
         {
             co2Emission=106;
         }
-         else if(autoName.equals("RENAULT CAPTUR"))
+         else if(autoName.equalsIgnoreCase("RENAULT CAPTUR"))
         {
             co2Emission=98;
         }
-         else if(autoName.equals("RENAULT CLIO"))
+         else if(autoName.equalsIgnoreCase("RENAULT CLIO"))
         {
             co2Emission=82;
         }
-         else if(autoName.equals("RENAULT MEGANE"))
+         else if(autoName.equalsIgnoreCase("RENAULT MEGANE"))
         {
             co2Emission=96;
         }
-         else if(autoName.equals("RENAULT GRAND SCENIC"))
+         else if(autoName.equalsIgnoreCase("RENAULT GRAND SCENIC"))
         {
             co2Emission=92;
         }
-         else if(autoName.equals("TOYOTA PRIUS"))
+         else if(autoName.equalsIgnoreCase("TOYOTA PRIUS"))
         {
             co2Emission=72;
         }
-         else if(autoName.equals("TOYOTA LAND CRUISER"))
+         else if(autoName.equalsIgnoreCase("TOYOTA LAND CRUISER"))
         {
             co2Emission=190;
         }
@@ -163,7 +163,7 @@ public class Automobile {
         {
             noxEmission=69;
         }
-         else if(autoName.equals("HONDA JAZZ"))
+         else if(autoName.equalsIgnoreCase("HONDA CAPTUR"))
         {
             noxEmission=3;
         }

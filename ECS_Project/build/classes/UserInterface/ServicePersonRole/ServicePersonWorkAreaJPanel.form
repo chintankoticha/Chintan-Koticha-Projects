@@ -18,6 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+<<<<<<< HEAD
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="requestTestJButton" min="-2" pref="119" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -35,6 +36,33 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
+=======
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="assignJButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="processJButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="375" max="-2" attributes="0"/>
+                          <Component id="refreshJButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="requestTestJButton" min="-2" pref="119" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="productsComboBox" min="-2" pref="133" max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" min="-2" pref="382" max="-2" attributes="0"/>
+              </Group>
+>>>>>>> 0863574948d80b984f690631b98dd44ec598d323
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,9 +78,15 @@
                   <Component id="assignJButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="processJButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+<<<<<<< HEAD
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="productsComboBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+=======
+              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+              <Component id="productsComboBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+>>>>>>> 0863574948d80b984f690631b98dd44ec598d323
               <Component id="jScrollPane3" min="-2" pref="97" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="requestTestJButton" min="-2" max="-2" attributes="0"/>

@@ -8,6 +8,7 @@ package UserInterface.SalesPersonRole;
 import business.EcoSystem;
 import business.consumer.Customer;
 import business.enterprise.Enterprise;
+import business.network.Network;
 import business.organization.SalesPersonOrganization;
 import business.useraccount.UserAccount;
 import business.workqueue.SalesPersonWorkRequest;
@@ -33,11 +34,12 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise1;
     //private Customer customer;
     
-    public SalesPersonWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesPersonOrganization salesPersonOrganization, EcoSystem system) {
+    public SalesPersonWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, SalesPersonOrganization salesPersonOrganization,Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.userAccount=account;
         this.business=system;
+        this.enterprise1=enterprise;
         this.salesPersonOrganization=salesPersonOrganization;
         populateTable();
     }
@@ -179,17 +181,18 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         
         SalesPersonWorkRequest request = (SalesPersonWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
-        /*for (Network network : business.getNetworkList()) {
+        for (Network network : business.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 if (enterprise.equals(request.getEnterpriseName())) {
                     enterprise1 = enterprise;
                     break;
                 }
             }
-        }*/
+        }
+        System.out.println(enterprise1);
         request.setStatus("Processing");
         request.setCustomer(request.getCustomer());
-        SalesPersonProcessWorkRequestJPanel processWorkRequestJPanel = new SalesPersonProcessWorkRequestJPanel(userProcessContainer, request);
+        SalesPersonProcessWorkRequestJPanel processWorkRequestJPanel = new SalesPersonProcessWorkRequestJPanel(userProcessContainer,enterprise1, request);
         userProcessContainer.add("SalesPersonProcessWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
