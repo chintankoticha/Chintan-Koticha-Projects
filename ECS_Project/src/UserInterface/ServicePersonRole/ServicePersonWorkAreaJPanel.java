@@ -347,7 +347,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
                 System.out.println(count);
                 product.getServiceInventory().setCount(count);
 
-                ServicePersonProcessWorkRequestJPanel processWorkRequestJPanel = new ServicePersonProcessWorkRequestJPanel(userProcessContainer, request);
+                ServicePersonProcessWorkRequestJPanel processWorkRequestJPanel = new ServicePersonProcessWorkRequestJPanel(userProcessContainer,enterprise, request);
                 userProcessContainer.add("ServicePersonProcessWorkRequestJPanel", processWorkRequestJPanel);
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
