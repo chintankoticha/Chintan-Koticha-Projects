@@ -3,28 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ControlManagerRole/ControlManagerWorkAreaJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/InventoryManagerRole/ProcessWorkRequestJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/SalesPersonRole/SalesPersonProcessWorkRequestJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/market/Product.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/consumer/CustomerDirectory.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/consumer/ApplianceDirectory.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/CustomerRole/CustomerServiceSchedulingJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServicePersonRole/ServicePersonWorkAreaJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/consumer/ServiceDirectory.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/role/CustomerRole.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/consumer/Appliance.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/useraccount/UserAccount.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServicePersonRole/ServicePersonProcessWorkRequestJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/DB4OUtil/DB4OUtil.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/CustomerRole/CustomerOrderSchedulingJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/consumer/Service.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServicePersonRole/RequestProductJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/CustomerRole/CustomerWorkAreaJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/consumer/CustomerSchedule.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/CustomerRole/CustomerSignUpJPanel.java</file>
-            <file>file:/E:/Fall%202016/AED/Project/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/consumer/Customer.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServiceReceptionistRole/ServiceReceptionistWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/MainJFrame1.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/organization/InventoryManagerOrganization.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/organization/Organization.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/InventoryManagerRole/InventoryManagerWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/DB4OUtil/DB4OUtil.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/role/Role.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServicePersonRole/RequestProductJPanel.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServicePersonRole/ServicePersonProcessWorkRequestJPanel.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServiceReceptionistRole/ServiceReceptionistWorkRequestJPanel.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/business/organization/OrganizationDirectory.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServicePersonRole/ServicePersonWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/admin/emission_aedproject/aed_fall_2016_project_siddhantchandiwal_001286480/ECS_Project/src/UserInterface/ServicePersonRole/ServicePersonProductDetailsCheck.java</file>
         </group>
     </open-files>
 </project-private>

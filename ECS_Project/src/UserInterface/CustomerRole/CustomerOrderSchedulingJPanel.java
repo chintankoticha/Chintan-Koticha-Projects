@@ -112,7 +112,7 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
         jTree = new javax.swing.JTree();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        timeCmbBox = new javax.swing.JComboBox<>();
+        timeCmbBox = new javax.swing.JComboBox<String>();
         scheduleAppointmentBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -132,7 +132,7 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Schedule Time:");
 
-        timeCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "10:00AM", "10:30AM", "11:00AM", "11:30AM", "12:00AM", "12:30AM", "1:00PM", "1:30PM", "2:00PM", "2:30PM", "3:00PM", "3:30PM", "4:00PM", "4:30PM", "5:00PM", "5:30PM", "6:00PM", "6:30PM", "7:00PM" }));
+        timeCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---", "10:00AM", "10:30AM", "11:00AM", "11:30AM", "12:00AM", "12:30AM", "1:00PM", "1:30PM", "2:00PM", "2:30PM", "3:00PM", "3:30PM", "4:00PM", "4:30PM", "5:00PM", "5:30PM", "6:00PM", "6:30PM", "7:00PM" }));
 
         scheduleAppointmentBtn.setText("Schedule Appointment");
         scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -142,11 +142,6 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
         });
 
         backBtn.setText("<< BACK");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Enterprise Selected:");
@@ -290,10 +285,6 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
             selectedEnterpriseJLabel.setText(selectedNode.toString());
         }
     }//GEN-LAST:event_jTreeValueChanged
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
