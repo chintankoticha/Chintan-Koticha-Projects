@@ -5,9 +5,20 @@
  */
 package UserInterface.ServicePersonRole;
 
+import business.consumer.Automobile;
+import business.consumer.Service;
+import business.enterprise.Enterprise;
+import business.market.Product;
 import business.workqueue.ServicePersonWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import static java.lang.String.format;
+import static java.lang.String.format;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,11 +32,17 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     ServicePersonWorkRequest request;
+    Enterprise enterprise;
     
-    public ServicePersonProcessWorkRequestJPanel(JPanel userProcessContainer, ServicePersonWorkRequest request) {
+    public ServicePersonProcessWorkRequestJPanel(JPanel userProcessContainer,Enterprise enterprise, ServicePersonWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        productToBeSentCmbBox.addItem("---");
+        
+        for(Product product : enterprise.getProductCatalog().getProductList()){
+            productToBeSentCmbBox.addItem(product);
+        }
     }
 
     /**
@@ -41,6 +58,7 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
         submitJButton = new javax.swing.JButton();
+        productToBeSentCmbBox = new javax.swing.JComboBox();
 
         jLabel1.setText("Result");
 
@@ -58,6 +76,8 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        productToBeSentCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,7 +92,9 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(resultJTextField)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(productToBeSentCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(resultJTextField))))
                 .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,7 +104,9 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGap(18, 18, 18)
+                .addComponent(productToBeSentCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitJButton)
                     .addComponent(backJButton))
@@ -104,7 +128,38 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
-        //request.getCustomer().getAutomobileDirectory().add(automobile);
+       // Product product=new Product();
+       String broughtProduct=  (String) productToBeSentCmbBox.getSelectedItem().toString();
+        
+        if (request.getEnterpriseName().equalsIgnoreCase("polo")
+                || request.getEnterpriseName().equalsIgnoreCase("polo")
+                || request.getEnterpriseName().equalsIgnoreCase("polo")
+                || request.getEnterpriseName().equalsIgnoreCase("polo")) {
+            if (productToBeSentCmbBox.getSelectedItem().toString().equals("---")) {
+                JOptionPane.showMessageDialog(this, "Customer did not purchased any item!!");
+            } else {
+                 try{
+                Service service = new Service();
+                service.getProduct().setProductName(broughtProduct);
+               
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                //Date date = new Date();
+                Date today=Calendar.getInstance().getTime();
+                String reportDate=dateFormat.format(today);
+                
+                Date date=dateFormat.parse(reportDate);
+                service.setDate(date);
+                request.getCustomer().getServiceDirectory().addService(service);
+                }catch(Exception e)
+                {
+                    
+                }
+                
+                
+   
+            }
+        }
+        
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 //private void populateComboBox(){
@@ -119,6 +174,7 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox productToBeSentCmbBox;
     private javax.swing.JTextField resultJTextField;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables

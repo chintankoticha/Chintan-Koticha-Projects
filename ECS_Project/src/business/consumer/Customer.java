@@ -5,6 +5,8 @@
  */
 package business.consumer;
 
+import business.market.ProductCategory;
+
 /**
  *
  * @author Chintan
@@ -18,11 +20,15 @@ public class Customer{
     private ApplianceDirectory applianceDirectory;
     private AutomobileDirectory automobileDirectory;
     private SensorDirectory sensorDirectory;
+    private ServiceDirectory serviceDirectory;
+    
     
     public Customer(){
         applianceDirectory = new ApplianceDirectory();
         automobileDirectory = new AutomobileDirectory();
         sensorDirectory = new SensorDirectory();
+        serviceDirectory=new ServiceDirectory();
+        
     }
 
     public String getCustomerId() {
@@ -87,5 +93,15 @@ public class Customer{
 
     public void setAutomobileDirectory(AutomobileDirectory automobileDirectory) {
         this.automobileDirectory = automobileDirectory;
-    }    
+    }   
+
+    public ServiceDirectory getServiceDirectory() {
+        return serviceDirectory;
+    }
+
+    public void setServiceDirectory(ServiceDirectory serviceDirectory) {
+        this.serviceDirectory = serviceDirectory;
+    }
+    
+    
 }
