@@ -32,7 +32,7 @@
                               <Component id="stopAutomationThreadJBtn" linkSize="8" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                      <EmptySpace min="93" pref="731" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -53,20 +53,29 @@
                               <Component id="btnBookAppointmentForServicing" linkSize="5" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="timeToChargeLbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="currentBatteryLevel" pref="182" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane4" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Component id="timeToChargeLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Component id="currentBatteryLevel" pref="182" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="servicingHistoryBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jScrollPane4" alignment="0" pref="973" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -79,6 +88,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnBookAppointmentWithRetailer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBookAppointmentForServicing" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="servicingHistoryBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -93,9 +103,9 @@
                   <Component id="timeToChargeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="currentBatteryLevel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="121" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="startAutomationThreadJBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stopAutomationThreadJBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -169,18 +179,30 @@
         <Component class="javax.swing.JTable" name="sensorJTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
+              <Table columnCount="9" rowCount="0">
                 <Column editable="false" title="Name" type="java.lang.Object"/>
                 <Column editable="false" title="Speed" type="java.lang.Object"/>
                 <Column editable="false" title="Distance" type="java.lang.Object"/>
                 <Column editable="false" title="Time" type="java.lang.Object"/>
-                <Column editable="true" title="Current Battery%" type="java.lang.Object"/>
-                <Column editable="false" title="Normal Emission g/km" type="java.lang.Object"/>
-                <Column editable="false" title="Current Emission" type="java.lang.Object"/>
+                <Column editable="false" title="Current Battery%" type="java.lang.Object"/>
+                <Column editable="false" title="CO2 Normal Emission g/km" type="java.lang.Object"/>
+                <Column editable="false" title="CO2 Current Emission" type="java.lang.Object"/>
+                <Column editable="false" title="NOx Normal Emission g/km" type="java.lang.Object"/>
+                <Column editable="false" title="NOx Current Emission" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -373,6 +395,14 @@
     <Component class="javax.swing.JTextField" name="currentBatteryLevel">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="currentBatteryLevelActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="servicingHistoryBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CHECK SERVICING HISTORY"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="servicingHistoryBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
