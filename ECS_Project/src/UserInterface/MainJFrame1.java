@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Administrator
+ * @author Siddhant
  */
 public class MainJFrame1 extends javax.swing.JFrame {
 
@@ -25,7 +25,6 @@ public class MainJFrame1 extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private EcoSystem system;
-    
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     public MainJFrame1() {
@@ -51,7 +50,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         loginJLabel = new javax.swing.JLabel();
         logoutJButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        signUpJBtn = new javax.swing.JButton();
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,10 +74,10 @@ public class MainJFrame1 extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Sign-up new Customer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        signUpJBtn.setText("Sign-up new Customer");
+        signUpJBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                signUpJBtnActionPerformed(evt);
             }
         });
 
@@ -89,7 +88,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(signUpJBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -97,11 +96,10 @@ public class MainJFrame1 extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(logoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(loginJLabel)))
-                            .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(loginJLabel))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(logoutJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(loginJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -112,18 +110,18 @@ public class MainJFrame1 extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(loginJButton)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(logoutJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(23, 23, 23)
                 .addComponent(loginJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addComponent(signUpJBtn)
                 .addContainerGap())
         );
 
@@ -143,9 +141,8 @@ public class MainJFrame1 extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
-
+        //Step1: Check in the system user account directory if you have the user
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
-
         Enterprise inEnterprise = null;
         Organization inOrganization = null;
 
@@ -176,7 +173,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
             }
         }
         if (userAccount == null) {
-            JOptionPane.showMessageDialog(this, "Invalid credentials");
+            JOptionPane.showMessageDialog(this, "Invalid Credentials!!!","Warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
             CardLayout layout = (CardLayout) container.getLayout();
@@ -207,7 +204,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void signUpJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpJBtnActionPerformed
         // TODO add your handling code here:
         int flag = 0;
         CustomerSignUpJPanel customerSignUpJPanel = new CustomerSignUpJPanel(container, system);
@@ -223,7 +220,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
                                 flag=1;
                                 break;
                             } else {
-                                JOptionPane.showMessageDialog(this, "Customer Organization is not added yet!!");
+                                JOptionPane.showMessageDialog(this, "Customer Organization is not added yet!!!","Warning", JOptionPane.WARNING_MESSAGE);
                                 container.add("CustomerSignUpJPanel", customerSignUpJPanel);
                                 CardLayout layout = (CardLayout) container.getLayout();
                                 layout.next(container);
@@ -231,16 +228,16 @@ public class MainJFrame1 extends javax.swing.JFrame {
                             }
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "No enterprises are added as of now,ensure they are added first!!");
+                        JOptionPane.showMessageDialog(this, "No enterprises are added as of now,ensure they are added first!!!","Warning", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No networks(cities) are added as of now!!");
+            JOptionPane.showMessageDialog(this, "No networks(cities) are added as of now!!!","Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_signUpJBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,7 +276,6 @@ public class MainJFrame1 extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -288,6 +284,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
     private javax.swing.JLabel loginJLabel;
     private javax.swing.JButton logoutJButton;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton signUpJBtn;
     private javax.swing.JTextField userNameJTextField;
     // End of variables declaration//GEN-END:variables
 }
