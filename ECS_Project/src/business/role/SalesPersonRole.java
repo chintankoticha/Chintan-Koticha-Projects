@@ -22,7 +22,7 @@ public class SalesPersonRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new SalesPersonWorkAreaJPanel(userProcessContainer, account, (SalesPersonOrganization)organization, business);
+        return new SalesPersonWorkAreaJPanel(userProcessContainer, account, (SalesPersonOrganization)organization,enterprise, business);
     }
     
 }

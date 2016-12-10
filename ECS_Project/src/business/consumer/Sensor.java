@@ -14,6 +14,7 @@ import java.util.Date;
 public class Sensor {
     private Date date;
     private int currentEmissionCO2;
+    private int currentEmissionNOx;
 
     public Date getDate() {
         return date;
@@ -29,5 +30,14 @@ public class Sensor {
 
     public void setCurrentEmissionCO2(int currentEmissionCO2) {
         this.currentEmissionCO2 = currentEmissionCO2;
-    }    
+    }  
+
+    public int getCurrentEmissionNOx() {
+        return currentEmissionNOx;
+    }
+
+    public void setCurrentEmissionNOx(int currentEmissionNOx) {
+        this.currentEmissionNOx = currentEmissionNOx;
+    }
+    
 }

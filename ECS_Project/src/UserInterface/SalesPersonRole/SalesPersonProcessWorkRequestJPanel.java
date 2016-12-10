@@ -7,6 +7,7 @@ package UserInterface.SalesPersonRole;
 
 import business.consumer.Appliance;
 import business.consumer.Automobile;
+import business.enterprise.Enterprise;
 import business.workqueue.SalesPersonWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -24,11 +25,13 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     SalesPersonWorkRequest request;
+    private Enterprise enterprise;
 
-    public SalesPersonProcessWorkRequestJPanel(JPanel userProcessContainer, SalesPersonWorkRequest request) {
+    public SalesPersonProcessWorkRequestJPanel(JPanel userProcessContainer,Enterprise enterprise, SalesPersonWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        this.enterprise=enterprise;
         selectedModelCmbBox.setVisible(false);
         selectedACCmbBox.setVisible(false);
         selectedACLbl.setVisible(false);
@@ -146,13 +149,15 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
+        
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
+        System.out.println(request.getEnterpriseName());
 
-        if (request.getEnterpriseName().equalsIgnoreCase("r")
-                || request.getEnterpriseName().equalsIgnoreCase("r")
-                || request.getEnterpriseName().equalsIgnoreCase("r")
-                || request.getEnterpriseName().equalsIgnoreCase("r")) {
+        if (request.getEnterpriseName().equalsIgnoreCase("dse")
+                || request.getEnterpriseName().equalsIgnoreCase("dse")
+                || request.getEnterpriseName().equalsIgnoreCase("dse")
+                || request.getEnterpriseName().equalsIgnoreCase("dse")) {
             if (selectedModelCmbBox.getSelectedItem().toString().equals("---")) {
                 JOptionPane.showMessageDialog(this, "Customer did not buy anything!!");
             } else {
@@ -184,7 +189,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void populateComboBox() {
-        if (request.getEnterpriseName().equalsIgnoreCase("r")) {
+        if (request.getEnterpriseName().equalsIgnoreCase("dse")) {
             selectedModelLbl.setVisible(true);
             selectedModelCmbBox.setVisible(true);
             selectedModelCmbBox.addItem("---");
