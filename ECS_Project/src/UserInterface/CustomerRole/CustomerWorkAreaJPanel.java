@@ -9,9 +9,7 @@ import business.EcoSystem;
 import business.consumer.Appliance;
 import business.consumer.Automobile;
 import business.consumer.Sensor;
-import business.consumer.Service;
 import business.enterprise.Enterprise;
-import business.market.Product;
 import business.organization.CustomerOrganization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
@@ -81,7 +79,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         populateAutomobilesOwnedTable();
         populateApplianceOwnedTable();
-        populateProductTable();
     }
 
     /**
@@ -109,14 +106,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         applianceSensorJTable = new javax.swing.JTable();
         startApplianceThreadBtn = new javax.swing.JButton();
         stopApplianceThreadBtn = new javax.swing.JButton();
-<<<<<<< HEAD
         jButton1 = new javax.swing.JButton();
         timeToChargeLbl = new javax.swing.JLabel();
         currentBatteryLevel = new javax.swing.JTextField();
-=======
-        jScrollPane5 = new javax.swing.JScrollPane();
-        ProductJTable = new javax.swing.JTable();
->>>>>>> 42e21edd1708c0ca2803d55d75ecf7044c7d8371
 
         btnBookAppointmentWithRetailer.setText("Book Appointment with Retailer");
         btnBookAppointmentWithRetailer.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +238,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-<<<<<<< HEAD
         jButton1.setText("CHARGE MY BATTERY");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,25 +252,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 currentBatteryLevelActionPerformed(evt);
             }
         });
-=======
-        ProductJTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Product Name", "Date"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(ProductJTable);
->>>>>>> 42e21edd1708c0ca2803d55d75ecf7044c7d8371
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -295,27 +267,12 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(stopApplianceThreadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
                                 .addComponent(startAutomationThreadJBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(stopAutomationThreadJBtn)))
                         .addGap(93, 93, 93))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-=======
-                                .addComponent(btnBookAppointmentWithRetailer)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBookAppointmentForServicing)))
-                        .addGap(162, 162, 162))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4)
-                            .addComponent(jScrollPane2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(startAutomationThreadJBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(stopAutomationThreadJBtn))
->>>>>>> 42e21edd1708c0ca2803d55d75ecf7044c7d8371
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(autoRemoveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -323,7 +280,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(removeDeviceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-<<<<<<< HEAD
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBookAppointmentWithRetailer)
@@ -341,12 +297,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane4)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(30, 30, 30))))
-=======
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))))
->>>>>>> 42e21edd1708c0ca2803d55d75ecf7044c7d8371
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {autoRemoveBtn, btnBookAppointmentForServicing, btnBookAppointmentWithRetailer, removeDeviceBtn});
@@ -361,10 +311,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnBookAppointmentWithRetailer)
                     .addComponent(btnBookAppointmentForServicing))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(autoRemoveBtn)
@@ -399,18 +348,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = appliance;
             dtm.addRow(row);
         }
-    }
-    
-    public void populateProductTable(){
-        DefaultTableModel dtm = (DefaultTableModel) ProductJTable.getModel();
-        dtm.setRowCount(0);
-        for(Service service: userAccount.getCustomer().getServiceDirectory().getServiceDirectory()){
-            Object[] row=new Object[4];
-            row[0]=service.getProduct().getProductName();
-            row[1]= service.getDate();
-            dtm.addRow(row);
-        }
-
     }
 
     public void populateAutomobilesOwnedTable() {
@@ -926,39 +863,39 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             for (int i = 95; i < 111; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equalsIgnoreCase("HONDA JAZZ")) {
+        } else if (autoName.equalsIgnoreCase("HONDA Captur")) {
             for (int i = 95; i < 111; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("RENAULT CAPTUR")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT CAPTUR")) {
             for (int i = 90; i < 101; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("RENAULT CLIO")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT CLIO")) {
             for (int i = 70; i < 86; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("RENAULT MEGANE")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT MEGANE")) {
             for (int i = 85; i < 101; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("RENAULT GRAND SCENIC")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT GRAND SCENIC")) {
             for (int i = 84; i < 96; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA PRIUS")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA PRIUS")) {
             for (int i = 65; i < 76; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA LAND CRUISER")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA LAND CRUISER")) {
             for (int i = 180; i < 196; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA VERSO")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA VERSO")) {
             for (int i = 110; i < 126; i++) {
                 co2Emmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA CAMRY")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA CAMRY")) {
             for (int i = 70; i < 85; i++) {
                 co2Emmision.add(i);
             }
@@ -968,68 +905,68 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
     public ArrayList<Integer> selectedNOxValue(String autoName) {
         ArrayList<Integer> NOxEmmision = new ArrayList();
-        if (autoName.equals("BMW i3")) {
+        if (autoName.equalsIgnoreCase("BMW i3")) {
             for (int i = 0; i < 2; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("BMW X1")) {
+        } else if (autoName.equalsIgnoreCase("BMW X1")) {
             for (int i = 25; i < 40; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("BMW M4 COUPE")) {
+        } else if (autoName.equalsIgnoreCase("BMW M4 COUPE")) {
             for (int i = 25; i < 40; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("BMW M2 COUPE")) {
+        } else if (autoName.equalsIgnoreCase("BMW M2 COUPE")) {
 
             for (int i = 7; i < 18; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("HONDA CIVIC")) {
+        } else if (autoName.equalsIgnoreCase("HONDA CIVIC")) {
             for (int i = 42; i < 53; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("HONDA CRV")) {
+        } else if (autoName.equalsIgnoreCase("HONDA CRV")) {
             for (int i = 57; i < 68; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("HONDA HRV")) {
+        } else if (autoName.equalsIgnoreCase("HONDA HRV")) {
             for (int i = 62; i < 72; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("HONDA JAZZ")) {
+        } else if (autoName.equalsIgnoreCase("HONDA Captur")) {
             for (int i = 1; i < 4; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("RENAULT CAPTUR")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT CAPTUR")) {
             for (int i = 25; i < 35; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("RENAULT CLIO")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT CLIO")) {
             for (int i = 25; i < 35; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("RENAULT MEGANE")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT MEGANE")) {
             for (int i = 25; i < 38; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("RENAULT GRAND SCENIC")) {
+        } else if (autoName.equalsIgnoreCase("RENAULT GRAND SCENIC")) {
             for (int i = 45; i < 55; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA PRIUS")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA PRIUS")) {
             for (int i = 10; i < 20; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA LAND CRUISER")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA LAND CRUISER")) {
             for (int i = 32; i < 45; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA VERSO")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA VERSO")) {
             for (int i = 16; i < 28; i++) {
                 NOxEmmision.add(i);
             }
-        } else if (autoName.equals("TOYOTA CAMRY")) {
+        } else if (autoName.equalsIgnoreCase("TOYOTA CAMRY")) {
             for (int i = 1; i < 8; i++) {
                 NOxEmmision.add(i);
             }
@@ -1038,7 +975,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ProductJTable;
     private javax.swing.JTable appJTable;
     private javax.swing.JTable applianceSensorJTable;
     private javax.swing.JTable autoJTable;
@@ -1051,7 +987,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton removeDeviceBtn;
     private javax.swing.JTable sensorJTable;
     private javax.swing.JButton startApplianceThreadBtn;
