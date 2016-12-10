@@ -68,6 +68,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     double applthreadStopAverageTemp;
     int applthreadStopNormalEmission;
     int applthreadStopCurrentEmission;
+    double threadStopNormalEmissionNOx;
+    double threadStopCurrentEmissionNOx;
 
     double globalBatteryLevel;
     /**
@@ -112,7 +114,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         timeToChargeLbl = new javax.swing.JLabel();
         currentBatteryLevel = new javax.swing.JTextField();
+<<<<<<< HEAD
         stopChargingBattery = new javax.swing.JButton();
+=======
+        servicingHistoryBtn = new javax.swing.JButton();
+>>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
 
         btnBookAppointmentWithRetailer.setText("Book Appointment with Retailer");
         btnBookAppointmentWithRetailer.addActionListener(new java.awt.event.ActionListener() {
@@ -151,11 +157,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Speed", "Distance", "Time", "Current Battery%", "Normal Emission g/km", "Current Emission"
+                "Name", "Speed", "Distance", "Time", "Current Battery%", "CO2 Normal Emission g/km", "CO2 Current Emission", "NOx Normal Emission g/km", "NOx Current Emission"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -257,10 +263,17 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         stopChargingBattery.setText("STOP CHARGING");
         stopChargingBattery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopChargingBatteryActionPerformed(evt);
+=======
+        servicingHistoryBtn.setText("CHECK SERVICING HISTORY");
+        servicingHistoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                servicingHistoryBtnActionPerformed(evt);
+>>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
             }
         });
 
@@ -285,7 +298,14 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(startAutomationThreadJBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                                 .addComponent(stopAutomationThreadJBtn))
+=======
+                                .addComponent(stopAutomationThreadJBtn)))
+                        .addGap(93, 731, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+>>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -305,10 +325,32 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(stopChargingBattery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(timeToChargeLbl))))
                         .addContainerGap(241, Short.MAX_VALUE))))
+=======
+                                .addComponent(btnBookAppointmentForServicing)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(timeToChargeLbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(currentBatteryLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                                .addGap(93, 93, 93))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(servicingHistoryBtn)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+>>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {autoRemoveBtn, btnBookAppointmentForServicing, btnBookAppointmentWithRetailer, removeDeviceBtn});
@@ -321,7 +363,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBookAppointmentWithRetailer)
-                    .addComponent(btnBookAppointmentForServicing))
+                    .addComponent(btnBookAppointmentForServicing)
+                    .addComponent(servicingHistoryBtn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,9 +379,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(removeDeviceBtn)
                     .addComponent(jButton1)
                     .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startAutomationThreadJBtn)
                     .addComponent(stopAutomationThreadJBtn))
@@ -436,7 +479,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             
             public void run() {
                 globalBatteryLevel = batteryLevel;
-                Object[] row = new Object[7];
+                Object[] row = new Object[9];
                 model.addRow(row);
                 while (currentStatus) {
 
@@ -510,15 +553,32 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 threadStopDistance = threadStopAverageSpeed * threadStopTime;
                 threadStopNormalEmission = auto.co2Emission(auto.getAutomobileName());
                 threadStopNormalEmission = (threadStopNormalEmission * threadStopDistance) / 1000;
+                threadStopNormalEmission = Math.round(threadStopNormalEmission * 1000) / 1000;
+                
+                // Calculation for NOx emission
+                threadStopNormalEmissionNOx = auto.noxEmission(auto.getAutomobileName());
+                threadStopNormalEmissionNOx = (threadStopNormalEmissionNOx * threadStopDistance) / 1000;
+                threadStopNormalEmissionNOx = Math.round(threadStopNormalEmissionNOx * 1000) / 1000;
                 stillInUse = 0;
 
                 //LOGIC FOR CURRENT EMISSION TO BE IMPLEMENTED HERE
                 ArrayList<Integer> currentEmission = new ArrayList<>();
+                ArrayList<Integer> currentEmissionNOx = new ArrayList<>();
                 currentEmission = selectedCO2Value(threadStopName);
+                currentEmissionNOx = selectedNOxValue(threadStopName);
                 int randomIndexPostion = new Random().nextInt(currentEmission.size());
                 threadStopCurrentEmission = currentEmission.get(randomIndexPostion);
                 threadStopCurrentEmission = (threadStopCurrentEmission * threadStopDistance) / 1000;
+<<<<<<< HEAD
                 
+=======
+                threadStopCurrentEmission = Math.round(threadStopCurrentEmission * 1000) / 1000;
+                //Calculation for NOx emission
+                int randomIndexPostionNOx = new Random().nextInt(currentEmissionNOx.size());
+                threadStopCurrentEmissionNOx = currentEmissionNOx.get(randomIndexPostionNOx);
+                threadStopCurrentEmissionNOx = (threadStopCurrentEmissionNOx * threadStopDistance) / 1000;
+                threadStopCurrentEmissionNOx = Math.round(threadStopCurrentEmissionNOx * 1000) / 1000;
+>>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
                 //FINAL DATA TO BE SHOWN HERE
                 model.setRowCount(0);
                 row[0] = threadStopName;
@@ -528,6 +588,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 row[4] = Math.round(batteryLevel*1000)/1000;
                 row[5] = threadStopNormalEmission;
                 row[6] = threadStopCurrentEmission;
+                row[7] = threadStopNormalEmissionNOx;
+                row[8] = threadStopCurrentEmissionNOx;
                 
                 auto.setBattery((int) Math.round(batteryLevel));
                 //Adding data to customer's sensor directory
@@ -844,6 +906,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_currentBatteryLevelActionPerformed
 
+<<<<<<< HEAD
     private void stopChargingBatteryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopChargingBatteryActionPerformed
         // TODO add your handling code here:
         chargeBattery.interrupt();
@@ -854,6 +917,16 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
     }//GEN-LAST:event_stopChargingBatteryActionPerformed
+=======
+    private void servicingHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicingHistoryBtnActionPerformed
+        // TODO add your handling code here:
+        CustomerServicingHistoryJPanel customerServicingHistoryJPanel = new CustomerServicingHistoryJPanel(userProcessContainer, userAccount, enterprise, system, userAccount.getCustomer());
+        userProcessContainer.add("customerServicingHistoryJPanel", customerServicingHistoryJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_servicingHistoryBtnActionPerformed
+>>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
 
     public void stopThread() {
         currentStatus = false;
@@ -1021,6 +1094,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton removeDeviceBtn;
     private javax.swing.JTable sensorJTable;
+    private javax.swing.JButton servicingHistoryBtn;
     private javax.swing.JButton startApplianceThreadBtn;
     private javax.swing.JButton startAutomationThreadJBtn;
     private javax.swing.JButton stopApplianceThreadBtn;

@@ -4,7 +4,7 @@
  */
 package UserInterface;
 
-import Business.DB4OUtil.DB4OUtil;
+import business.DB4OUtil.DB4OUtil;
 import UserInterface.CustomerRole.CustomerSignUpJPanel;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
