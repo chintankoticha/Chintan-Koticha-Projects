@@ -118,7 +118,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         stopChargingBattery = new javax.swing.JButton();
 =======
         servicingHistoryBtn = new javax.swing.JButton();
+<<<<<<< HEAD
 >>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
+=======
+        stopChargingBtn = new javax.swing.JButton();
+>>>>>>> 540f1a3bd3ef8677882c88121e715066ab22e59e
 
         btnBookAppointmentWithRetailer.setText("Book Appointment with Retailer");
         btnBookAppointmentWithRetailer.addActionListener(new java.awt.event.ActionListener() {
@@ -277,6 +281,13 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        stopChargingBtn.setText("STOP CHARGING");
+        stopChargingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopChargingBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -303,7 +314,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 =======
                                 .addComponent(stopAutomationThreadJBtn)))
                         .addGap(93, 731, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 >>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
                             .addGroup(layout.createSequentialGroup()
@@ -334,11 +345,18 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(btnBookAppointmentForServicing)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(servicingHistoryBtn)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(stopChargingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(81, 81, 81)
                                 .addComponent(timeToChargeLbl)
                                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                                 .addComponent(currentBatteryLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                                 .addGap(93, 93, 93))
                             .addGroup(layout.createSequentialGroup()
@@ -351,6 +369,13 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(0, 0, Short.MAX_VALUE))))
 >>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
+=======
+                                .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))))
+>>>>>>> 540f1a3bd3ef8677882c88121e715066ab22e59e
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {autoRemoveBtn, btnBookAppointmentForServicing, btnBookAppointmentWithRetailer, removeDeviceBtn});
@@ -366,6 +391,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnBookAppointmentForServicing)
                     .addComponent(servicingHistoryBtn))
                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,6 +405,24 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(removeDeviceBtn)
                     .addComponent(jButton1)
                     .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeToChargeLbl))
+                        .addGap(26, 26, 26)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(autoRemoveBtn)
+                    .addComponent(removeDeviceBtn)
+                    .addComponent(stopChargingBtn))
+>>>>>>> 540f1a3bd3ef8677882c88121e715066ab22e59e
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -532,10 +576,10 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                         model.setValueAt(auto.getAutomobileName(), 0, 0);
                         averageSpeed = averageSpeed + speedStatus[randomIndexArray];
                         countForAverage++;
-                        //batteryLevel = batteryLevel*0.94;
+                        batteryLevel = batteryLevel*0.94;
                         model.setValueAt(speedStatus[randomIndexArray], 0, 1);
                         model.setValueAt(timeElapsed, 0, 3);
-                        //model.setValueAt(batteryLevel, 0, 4);
+                        model.setValueAt(Math.round(batteryLevel*1000)/1000, 0, 4);
                     }
                     try {
                         Thread.sleep(1000);
@@ -819,6 +863,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int rowSelected = autoJTable.getSelectedRow();
+<<<<<<< HEAD
         
         if(rowSelected<0){
             JOptionPane.showMessageDialog(this, "Please an automobile first!!");
@@ -900,6 +945,88 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         };
         chargeBattery.start();
         //auto1.setBattery((int) globalBatteryLevel);
+=======
+       
+       if(rowSelected<0){
+           JOptionPane.showMessageDialog(this, "Please an automobile first!!");
+           return;
+       }
+       
+       final Automobile auto1 = (Automobile)autoJTable.getValueAt(rowSelected, 0);
+       
+       globalBatteryLevel = auto1.getBattery();
+       
+       DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+       Date date = new Date();
+       try {
+           date = dateFormat.parse(dateFormat.format(date));
+           hourOfDay = date.getHours();
+           System.out.println(hourOfDay);
+       } catch (Exception e) {
+           System.out.println("Parsing Error of date!!!");
+       }
+
+       chargeBattery = new Thread() {
+           public void run() {
+//                while (!Thread.currentThread().isInterrupted()) {
+               if (hourOfDay <= 6 && hourOfDay >= 1) {
+                   JOptionPane.showMessageDialog(null, "No sunlight at this point of time,cannot charge battery!!");
+               }
+
+               while ((hourOfDay > 6 && hourOfDay <= 12) && (globalBatteryLevel < 100.0)
+                       && (!Thread.currentThread().isInterrupted())) {
+                   globalBatteryLevel = globalBatteryLevel + 0.50;
+                   if (globalBatteryLevel > 100) {
+                       globalBatteryLevel = 100;
+                   }
+                   currentBatteryLevel.setText(String.valueOf(globalBatteryLevel));
+                   int temp1Time=0;
+                   temp1Time = (int)((100 - (globalBatteryLevel))/0.50);
+                   timeToChargeLbl.setText(String.valueOf(temp1Time)+"seconds to full charge");
+                   try {
+                       Thread.sleep(1000);
+                   } catch (Exception e) {
+
+                   }
+               }
+
+               while ((hourOfDay > 13 && hourOfDay <= 16) && globalBatteryLevel < 100.0
+                       && (!Thread.currentThread().isInterrupted())) {
+                   globalBatteryLevel = globalBatteryLevel + 0.75;
+                   if (globalBatteryLevel > 100) {
+                       globalBatteryLevel = 100;
+                   }
+                   currentBatteryLevel.setText(String.valueOf(globalBatteryLevel));
+                   try {
+                       Thread.sleep(1000);
+                   } catch (Exception e) {
+
+                   }
+               }
+
+               while ((hourOfDay > 17 && hourOfDay <= 18) && globalBatteryLevel < 100.0
+                       && (!Thread.currentThread().isInterrupted())) {
+                   globalBatteryLevel = globalBatteryLevel + 0.25;
+                   currentBatteryLevel.setText(String.valueOf(globalBatteryLevel));
+                   try {
+                       Thread.sleep(1000);
+                   } catch (InterruptedException e) {
+                       System.out.println("STOP BUTTON PRESSED");
+                   }
+               }
+
+               if (hourOfDay > 18) {
+                   JOptionPane.showMessageDialog(null, "No sunlight at this point of time,cannot charge battery!!");
+               }
+               //    }
+               if(currentBatteryLevel.getText()=="100"){
+                  timeToChargeLbl.setText("Fully charged!!!");
+               }
+               auto1.setBattery((int) globalBatteryLevel);
+           }
+       };
+       chargeBattery.start();
+>>>>>>> 540f1a3bd3ef8677882c88121e715066ab22e59e
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void currentBatteryLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentBatteryLevelActionPerformed
@@ -926,6 +1053,17 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_servicingHistoryBtnActionPerformed
 >>>>>>> 9096b18a058f6372a13f3d87b402f0fe0f6cc962
+
+    private void stopChargingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopChargingBtnActionPerformed
+        // TODO add your handling code here:
+        chargeBattery.interrupt();
+       stopChargingBtn.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               chargeBattery.interrupt();
+           }
+       });
+    }//GEN-LAST:event_stopChargingBtnActionPerformed
 
     public void stopThread() {
         currentStatus = false;
@@ -1098,7 +1236,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton startAutomationThreadJBtn;
     private javax.swing.JButton stopApplianceThreadBtn;
     private javax.swing.JButton stopAutomationThreadJBtn;
+<<<<<<< HEAD
     private javax.swing.JButton stopChargingBattery;
+=======
+    private javax.swing.JButton stopChargingBtn;
+>>>>>>> 540f1a3bd3ef8677882c88121e715066ab22e59e
     private javax.swing.JLabel timeToChargeLbl;
     // End of variables declaration//GEN-END:variables
 }
