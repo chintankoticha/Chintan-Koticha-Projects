@@ -906,7 +906,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_currentBatteryLevelActionPerformed
 
-<<<<<<< HEAD
     private void stopChargingBatteryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopChargingBatteryActionPerformed
         // TODO add your handling code here:
         chargeBattery.interrupt();
@@ -917,7 +916,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
     }//GEN-LAST:event_stopChargingBatteryActionPerformed
-=======
+
     private void servicingHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicingHistoryBtnActionPerformed
         // TODO add your handling code here:
         CustomerServicingHistoryJPanel customerServicingHistoryJPanel = new CustomerServicingHistoryJPanel(userProcessContainer, userAccount, enterprise, system, userAccount.getCustomer());
