@@ -149,10 +149,11 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
 
-        if (request.getEnterpriseName().equalsIgnoreCase("r")
-                || request.getEnterpriseName().equalsIgnoreCase("r")
-                || request.getEnterpriseName().equalsIgnoreCase("r")
-                || request.getEnterpriseName().equalsIgnoreCase("r")) {
+        if (request.getEnterpriseName().equalsIgnoreCase("retailer")
+                || request.getEnterpriseName().equalsIgnoreCase("toyota")
+                || request.getEnterpriseName().equalsIgnoreCase("BMW")
+                || request.getEnterpriseName().equalsIgnoreCase("Honda")
+                || request.getEnterpriseName().equalsIgnoreCase("renault")) {
             if (selectedModelCmbBox.getSelectedItem().toString().equals("---")) {
                 JOptionPane.showMessageDialog(this, "Customer did not buy anything!!");
             } else {
@@ -184,7 +185,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void populateComboBox() {
-        if (request.getEnterpriseName().equalsIgnoreCase("r")) {
+        if (request.getEnterpriseName().equalsIgnoreCase("retailer")) {
             selectedModelLbl.setVisible(true);
             selectedModelCmbBox.setVisible(true);
             selectedModelCmbBox.addItem("---");
@@ -193,7 +194,18 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             selectedModelCmbBox.addItem("Honda CRV");
             selectedModelCmbBox.addItem("Honda HRV");
         }
-
+        
+        if (request.getEnterpriseName().equalsIgnoreCase("toyota")) {
+            selectedModelLbl.setVisible(true);
+            selectedModelCmbBox.setVisible(true);
+            selectedModelCmbBox.addItem("---");
+            selectedModelCmbBox.addItem("Toyota Prius");
+            selectedModelCmbBox.addItem("Toyota Land Cruiser");
+            selectedModelCmbBox.addItem("Toyota Verso");
+            selectedModelCmbBox.addItem("Toyota Camry");
+        }
+        
+        
         if (request.getEnterpriseName().equalsIgnoreCase("LG")) {
             selectedACCmbBox.setVisible(true);
             selectedACLbl.setVisible(true);

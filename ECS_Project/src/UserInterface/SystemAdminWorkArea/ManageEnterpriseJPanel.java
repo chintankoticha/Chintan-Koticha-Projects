@@ -186,15 +186,18 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         Network network = (Network) networkJComboBox.getSelectedItem();
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
-
+        //int retailerOrNot=0;
         if (network == null || type == null) {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
         }
+        
+        String name = nameJTextField.getText();
+        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
         if (enterpriseTypeJComboBox.getSelectedItem().toString().equalsIgnoreCase("Retailer")) {
-            String name = nameJTextField.getText();
-            Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-           
+            //String name = nameJTextField.getText();
+            //Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+            //retailerOrNot=1;
             //Product product = new Product();
             Product product = enterprise.getProductCatalog().addProduct();
             product.setProductName("air filter");
@@ -225,20 +228,14 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             product6.getServiceInventory().setCount(0);
             
             populateTable();
-        }
+        }            
         
-
-        String name = nameJTextField.getText();
-
-        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-
         populateTable();
-
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
-         Component[] componentArray = userProcessContainer.getComponents();
+        Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
         sysAdminwjp.populateTree();

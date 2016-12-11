@@ -16,6 +16,8 @@ import java.util.Calendar;
 import java.util.Date;
 import business.consumer.Customer;
 import business.organization.ServiceReceptionistOrganization;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -27,24 +29,26 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
+    JPanel upc;
     EcoSystem system;
     private Customer customer;
     private UserAccount userAccount;
     private Enterprise enterprise;
     int seletedFlag = 0;
+    WorkRequest workRequest;
 
     /**
      * Creates new form CustomerOrderSchedulingJPanel
      */
-    public CustomerServiceSchedulingJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, EcoSystem system,Customer customer) {
+    public CustomerServiceSchedulingJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, EcoSystem system, Customer customer, WorkRequest wr) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.upc = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system = system;
         this.customer = customer;
-        seletedFlag=0;
+        seletedFlag = 0;
+        this.workRequest = wr;
         populateTree();
 
         Calendar calendar = scheduleDate.getMonthView().getCalendar();
@@ -141,6 +145,11 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
         });
 
         backBtn.setText("<< BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Enterprise Selected:");
@@ -164,7 +173,7 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(selectedEnterpriseJLabel)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(scheduleDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, Short.MAX_VALUE)
+                        .addComponent(scheduleDate, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                         .addComponent(timeCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(scheduleAppointmentBtn))
                 .addGap(119, 119, 119))
@@ -208,18 +217,18 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
         if (seletedFlag == 0) {
             JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
             return;
-        } else if (selectedEnterpriseJLabel.getText().toString().equals("JTree")) {
+        } else if (selectedEnterpriseJLabel.getText().equals("JTree")) {
             JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
             return;
         } else {
             for (Network network : system.getNetworkList()) {
-                if (network.getName().equals(selectedEnterpriseJLabel.getText().toString()) || selectedEnterpriseJLabel.getText().toString().equals("Networks")) {
+                if (network.getName().equals(selectedEnterpriseJLabel.getText()) || selectedEnterpriseJLabel.getText().equals("Networks")) {
                     JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
                     return;
                 }
                 for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    if(enterprise.getName().toString().equals(selectedEnterpriseJLabel.getText())){
-                    if (enterprise.getEnterpriseType().getValue().equals("Retailer")) {
+                    if (enterprise.getName().equals(selectedEnterpriseJLabel.getText())) {
+                        if (enterprise.getEnterpriseType().getValue().equals("Retailer")) {
                             String date;
                             try {
                                 date = scheduleDate.getDate().toString();
@@ -232,6 +241,15 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
                                 JOptionPane.showMessageDialog(this, "Select a time slot before scheduling!!!");
                             }
 
+                            Component[] componentArray = upc.getComponents();
+                            Component component = componentArray[componentArray.length - 1];
+                            
+                            if(component.getClass().getName().equals("CustomerMessageJPanel")){
+                           // if (component instanceof CustomerMessageJPanel) {
+                                CustomerMessageJPanel customerMessageJPanel = (CustomerMessageJPanel) component;
+                                customerMessageJPanel.removeRow(workRequest);
+                            }
+                            
                             WorkRequest request = new WorkRequest();
                             //request.setMessage(message);
                             request.setScheduleDate(date);
@@ -258,12 +276,11 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
                                 org.getWorkQueue().getWorkRequestList().add(request);
                                 userAccount.getWorkQueue().getWorkRequestList().add(request);
                             }
-                        }else{
-                        JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
-                        return;                        
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
+                            return;
                         }
-                    }
-                     else {
+                    } else {
                         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                             if (organization.getName().equals(selectedEnterpriseJLabel.getText().toString())) {
                                 JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
@@ -284,6 +301,13 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
             selectedEnterpriseJLabel.setText(selectedNode.toString());
         }
     }//GEN-LAST:event_jTreeValueChanged
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        upc.remove(this);
+        CardLayout layout = (CardLayout) upc.getLayout();
+        layout.previous(upc);
+    }//GEN-LAST:event_backBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;

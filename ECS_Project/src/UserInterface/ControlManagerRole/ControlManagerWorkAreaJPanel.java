@@ -8,32 +8,38 @@ package UserInterface.ControlManagerRole;
 import business.EcoSystem;
 import business.consumer.Customer;
 import business.consumer.Sensor;
+import business.consumer.TaxAndBilling;
 import business.enterprise.Enterprise;
 import business.network.Network;
 import business.organization.ControlManagerOrganization;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
+import java.util.Date;
 import javax.swing.JPanel;
+import org.joda.time.DateTime;
+import static org.joda.time.format.ISODateTimeFormat.date;
 
 /**
  *
  * @author Siddhant
  */
 public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
+
     JPanel userProcessContainer;
     UserAccount account;
     Organization organization;
     Enterprise enterprise;
     EcoSystem system;
+
     /**
      * Creates new form ControlManagerWorkAreaJPanel
      */
-    public ControlManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, ControlManagerOrganization controlManagerOrganization, Enterprise enterprise,EcoSystem business) {
+    public ControlManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, ControlManagerOrganization controlManagerOrganization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.organization = (ControlManagerOrganization)controlManagerOrganization;
-        this.enterprise=enterprise;
+        this.organization = (ControlManagerOrganization) controlManagerOrganization;
+        this.enterprise = enterprise;
         this.system = business;
     }
 
@@ -82,12 +88,46 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void taxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taxButtonActionPerformed
         // TODO add your handling code here:
+        int averageNumber = 0;
+        double emissionAverageCO2 = 0;
+        double normalCO2 = 0;
+        double emissionAverageNOx = 0;
+        double normalNOx = 0;
+
         for (Network network : system.getNetworkList()) {
             for (Customer customer : network.getCustomerDirectory().getCustomerDirectory()) {
-                if (customer.getFirstName().equalsIgnoreCase("Ayushi")) {
-                    for (Sensor sensor : customer.getSensorDirectory().getSensorDirectory()) {
-                        if (sensor.getCurrentEmissionCO2() > 25) {
-                            System.out.println(sensor.getCurrentEmissionCO2());
+            //do for all customers
+                if (customer.getFirstName().equalsIgnoreCase("Payal")) {
+                    if (customer.getPrevDateCount() < customer.getRecentCount()) {
+                        averageNumber = 0;
+                        for (Sensor sensor : customer.getSensorDirectory().getSensorDirectory()) {
+                            Date date = new Date();
+                            averageNumber++;
+                            if (sensor.getDate() == date) {
+                                emissionAverageCO2 = emissionAverageCO2 + sensor.getCurrentEmissionCO2();
+                                normalCO2 = normalCO2 + sensor.getNormalCO2();
+                            }
+                        }
+                        emissionAverageCO2 = emissionAverageCO2 / averageNumber;
+                        normalCO2 = normalCO2 / averageNumber;
+                        if (emissionAverageCO2 > normalCO2) {
+                            int Tax = 0;
+                            Tax = customer.getTax();
+                            Tax = Tax + 100;
+                            customer.setTax(Tax);
+                            DateTime dtOrg = new DateTime();
+                            System.out.println(dtOrg);
+                            dtOrg = dtOrg.plusDays(1);
+                            customer.setDueDate(dtOrg.toDate());
+                        } else {
+                            int Tax = 0;
+                            Tax = customer.getTax();
+                            Tax = Tax + 10;
+                            customer.setTax(Tax);
+                            DateTime dtOrg = new DateTime();
+                            System.out.println(dtOrg);
+                            dtOrg = dtOrg.plusDays(1);
+                            customer.setDueDate(dtOrg.toDate());
                         }
                     }
                 }

@@ -46,28 +46,41 @@
                                   <Component id="jButton1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="timeToChargeLbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="currentBatteryLevel" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="timeToChargeLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="currentBatteryLevel" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="servicingHistoryBtn" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="messageLogJBtn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="servicingHistoryBtn" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="startApplianceThreadBtn" min="-2" pref="115" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="stopApplianceThreadBtn" min="-2" pref="115" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="startAutomationThreadJBtn" linkSize="8" min="-2" pref="115" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="stopAutomationThreadJBtn" linkSize="8" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jScrollPane4" alignment="0" pref="973" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="startAutomationThreadJBtn" linkSize="9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Component id="stopAutomationThreadJBtn" linkSize="9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="startApplianceThreadBtn" linkSize="10" min="-2" pref="127" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="stopApplianceThreadBtn" linkSize="10" min="-2" pref="128" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
@@ -85,41 +98,41 @@
                   <Component id="servicingHistoryBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jScrollPane1" linkSize="4" min="-2" pref="108" max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" linkSize="4" min="-2" pref="87" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" linkSize="4" min="-2" pref="108" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" linkSize="4" min="-2" pref="87" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="messageLogJBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="currentBatteryLevel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="timeToChargeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="autoRemoveBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="removeDeviceBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stopChargingBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="timeToChargeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="startAutomationThreadJBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="stopAutomationThreadJBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="startAutomationThreadJBtn" linkSize="12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stopAutomationThreadJBtn" linkSize="12" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane4" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="startApplianceThreadBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="stopApplianceThreadBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="startApplianceThreadBtn" linkSize="11" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stopApplianceThreadBtn" linkSize="11" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
           </Group>
@@ -146,7 +159,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="1" rowCount="0">
-                <Column editable="false" title="Name" type="java.lang.Object"/>
+                <Column editable="false" title="Name of Automobile" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -190,9 +203,9 @@
                 <Column editable="false" title="Time" type="java.lang.Object"/>
                 <Column editable="false" title="Current Battery%" type="java.lang.Object"/>
                 <Column editable="false" title="CO2 Normal Emission g/km" type="java.lang.Object"/>
-                <Column editable="false" title="CO2 Current Emission" type="java.lang.Object"/>
-                <Column editable="false" title="NOx Normal Emission g/km" type="java.lang.Object"/>
-                <Column editable="false" title="NOx Current Emission" type="java.lang.Object"/>
+                <Column editable="false" title="CO2 Current Emission" type="java.lang.Double"/>
+                <Column editable="false" title="NOx Normal Emission g/km" type="java.lang.Double"/>
+                <Column editable="false" title="NOx Current Emission" type="java.lang.Double"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -253,7 +266,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="startAutomationThreadJBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Start Automobile"/>
+        <Property name="text" type="java.lang.String" value="START AUTOMOBILE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startAutomationThreadJBtnActionPerformed"/>
@@ -261,7 +274,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="stopAutomationThreadJBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Stop Automobile"/>
+        <Property name="text" type="java.lang.String" value="STOP AUTOMOBILE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopAutomationThreadJBtnActionPerformed"/>
@@ -278,7 +291,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="1" rowCount="0">
-                <Column editable="false" title="Name" type="java.lang.Object"/>
+                <Column editable="false" title="Name of Appliance" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -307,7 +320,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="removeDeviceBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="REMOVE DEVICE FROM LIST"/>
+        <Property name="text" type="java.lang.String" value="REMOVE APPLIANCE FROM LIST"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeDeviceBtnActionPerformed"/>
@@ -369,7 +382,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="startApplianceThreadBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Start Appliance"/>
+        <Property name="text" type="java.lang.String" value="START APPLIANCE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startApplianceThreadBtnActionPerformed"/>
@@ -377,7 +390,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="stopApplianceThreadBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Stop Appliance"/>
+        <Property name="text" type="java.lang.String" value="STOP APPLIANCE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopApplianceThreadBtnActionPerformed"/>
@@ -415,6 +428,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopChargingBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="messageLogJBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Message Log"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="messageLogJBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Get Tax Details"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

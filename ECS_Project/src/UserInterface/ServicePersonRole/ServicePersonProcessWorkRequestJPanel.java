@@ -130,13 +130,13 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         request.setStatus("Completed");
        // Product product=new Product();
        String broughtProduct=  (String) productToBeSentCmbBox.getSelectedItem().toString();
-        
-        if (request.getEnterpriseName().equalsIgnoreCase("polo")
-                || request.getEnterpriseName().equalsIgnoreCase("polo")
-                || request.getEnterpriseName().equalsIgnoreCase("polo")
-                || request.getEnterpriseName().equalsIgnoreCase("polo")) {
+        System.out.println(request.getEnterpriseName());
+        if (request.getEnterpriseName().equalsIgnoreCase("retailer")
+                || request.getEnterpriseName().equalsIgnoreCase("honda")
+                || request.getEnterpriseName().equalsIgnoreCase("BMW")
+                || request.getEnterpriseName().equalsIgnoreCase("toyota")) {
             if (productToBeSentCmbBox.getSelectedItem().toString().equals("---")) {
-                JOptionPane.showMessageDialog(this, "Customer did not purchased any item!!");
+                JOptionPane.showMessageDialog(this, "Customer did not use any item!!");
             } else {
                  try{
                 Service service = new Service();
@@ -154,9 +154,6 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 {
                     
                 }
-                
-                
-   
             }
         }
         

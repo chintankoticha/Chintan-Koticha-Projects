@@ -5,13 +5,15 @@
  */
 package business.consumer;
 
-import business.market.ProductCategory;
+import business.workqueue.WorkQueue;
+import java.util.Date;
 
 /**
  *
  * @author Chintan
  */
-public class Customer{
+public class Customer {
+
     private String firstName;
     private String lastName;
     private String customerId;
@@ -21,14 +23,59 @@ public class Customer{
     private AutomobileDirectory automobileDirectory;
     private SensorDirectory sensorDirectory;
     private ServiceDirectory serviceDirectory;
-    
-    
-    public Customer(){
+    private WorkQueue workQueue;
+    private int tax;
+    private Date DueDate;
+    private Date PaidOn;
+    private int prevDateCount=0;
+    private int recentCount=0;
+
+    public Customer() {
         applianceDirectory = new ApplianceDirectory();
         automobileDirectory = new AutomobileDirectory();
         sensorDirectory = new SensorDirectory();
-        serviceDirectory=new ServiceDirectory();
-        
+        serviceDirectory = new ServiceDirectory();
+        workQueue = new WorkQueue();
+    }
+
+    public int getPrevDateCount() {
+        return prevDateCount;
+    }
+
+    public void setPrevDateCount(int prevDateCount) {
+        this.prevDateCount = prevDateCount;
+    }
+
+    public int getRecentCount() {
+        return recentCount;
+    }
+
+    public void setRecentCount(int recentCount) {
+        this.recentCount = recentCount;
+    }
+
+    public int getTax() {
+        return tax;
+    }
+
+    public void setTax(int tax) {
+        this.tax = tax;
+    }
+
+    public Date getDueDate() {
+        return DueDate;
+    }
+
+    public void setDueDate(Date DueDate) {
+        this.DueDate = DueDate;
+    }
+
+    public Date getPaidOn() {
+        return PaidOn;
+    }
+
+    public void setPaidOn(Date PaidOn) {
+        this.PaidOn = PaidOn;
     }
 
     public String getCustomerId() {
@@ -93,7 +140,7 @@ public class Customer{
 
     public void setAutomobileDirectory(AutomobileDirectory automobileDirectory) {
         this.automobileDirectory = automobileDirectory;
-    }   
+    }
 
     public ServiceDirectory getServiceDirectory() {
         return serviceDirectory;
@@ -102,6 +149,12 @@ public class Customer{
     public void setServiceDirectory(ServiceDirectory serviceDirectory) {
         this.serviceDirectory = serviceDirectory;
     }
-    
-    
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
 }
