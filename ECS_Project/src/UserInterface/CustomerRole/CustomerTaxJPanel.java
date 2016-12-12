@@ -11,8 +11,22 @@ import business.consumer.Sensor;
 import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -23,15 +37,14 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerTaxJPanel
      */
-    
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
-   
+    List<Object> list;
 
     public CustomerTaxJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system, Customer customer) {
-        initComponents();      
+        initComponents();
         this.system = system;
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -55,6 +68,9 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        todaysGraphJBtn = new javax.swing.JButton();
 
         taxTextField.setEditable(false);
 
@@ -99,6 +115,19 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel1.setText("Comparison Chart");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel2.setText("Tax Details");
+
+        todaysGraphJBtn.setText("VIEW TODAY'S GRAPHS");
+        todaysGraphJBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                todaysGraphJBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,21 +135,30 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(totalTaxBtn)
-                    .addComponent(dueDateBtn)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(taxTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(dueDateTextField))
-                .addGap(129, 129, 129))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(todaysGraphJBtn))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(dueDateBtn)
+                            .addGap(18, 18, 18)
+                            .addComponent(dueDateTextField))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(totalTaxBtn)
+                            .addGap(18, 18, 18)
+                            .addComponent(taxTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(taxTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(totalTaxBtn))
@@ -129,13 +167,18 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
                     .addComponent(dueDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dueDateBtn))
                 .addGap(26, 26, 26)
-                .addComponent(backBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(todaysGraphJBtn))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {dueDateBtn, jLabel1});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void totalTaxBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTaxBtnActionPerformed
@@ -148,10 +191,10 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
         dueDateTextField.setText(String.valueOf(userAccount.getCustomer().getDueDate()));
     }//GEN-LAST:event_dueDateBtnActionPerformed
 
-    public void populateTable(){
-        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+    public void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
-        for(Sensor sensor : userAccount.getCustomer().getSensorDirectory().getSensorDirectory()){
+        for (Sensor sensor : userAccount.getCustomer().getSensorDirectory().getSensorDirectory()) {
             Object[] row = new Object[9];
             row[0] = sensor;
             row[1] = sensor.getCurrentEmissionCO2();
@@ -162,11 +205,11 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
             row[6] = sensor.getSolarNormalCO2();
             row[7] = sensor.getSolarCurrentEmissionNOx();
             row[8] = sensor.getSolarNormalNOx();
-            
+
             dtm.addRow(row);
         }
     }
-    
+
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
@@ -174,14 +217,183 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void todaysGraphJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todaysGraphJBtnActionPerformed
+        // TODO add your handling code here:
+        Date date = new Date();
+        displayChart(date);
+    }//GEN-LAST:event_todaysGraphJBtnActionPerformed
+
+    public void displayChart(Date date1) {
+        int total = 0;
+        int k;
+        int count = 0;
+        int avg = 0;
+
+        Sensor s = (Sensor) jTable1.getValueAt(0, 0);
+        Date b = s.getDate();
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+        Date date= new Date();
+        try{
+         date = formatter.parse("12/11/16");
+        }
+        catch(Exception e){
+            
+        }
+        //date = 
+        System.out.println(jTable1.getValueAt(0, 5));
+        System.out.println(jTable1.getValueAt(0, 4));
+        list = new ArrayList<>();
+
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getCurrentEmissionCO2();
+                count++;
+            }
+        }
+        avg = total / count;
+        list.add(avg);
+
+        int avg1 = 0;
+
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getCurrentEmissionCO2();
+                count++;
+            }
+        }
+
+        avg = total / count;
+        list.add(avg);
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getNormalCO2();
+                count++;
+            }
+        }
+        avg1 = total / count;
+        int avg3 = 0;
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getCurrentEmissionNOx();
+                count++;
+            }
+        }
+        avg3 = total / count;
+
+        int avg4 = 0;
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getNormalNOx();
+                count++;
+            }
+        }
+        avg4 = total / count;
+
+        int avg5 = 0;
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getSolarCurrentEmissionCO2();
+                count++;
+            }
+        }
+        avg5 = total / count;
+        int avg6 = 0;
+
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getSolarNormalCO2();
+                count++;
+            }
+        }
+
+        avg6 = total / count;
+        int avg7 = 0;
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getSolarCurrentEmissionNOx();
+                count++;
+            }
+        }
+        avg7 = total / count;
+        int avg8 = 0;
+        for (int l = 0; l < jTable1.getRowCount(); l++) {
+            if (date.getDate() == b.getDate()) {
+                Sensor s1 = (Sensor) jTable1.getValueAt(l, 0);
+                total = total + s1.getSolarNormalNOx();
+                count++;
+            }
+        }
+        avg8 = total / count;
+
+        int combo = avg + avg3;
+        int combo1 = avg5 + avg7;
+
+        DefaultPieDataset dataset22 = new DefaultPieDataset();
+        dataset22.setValue("Fuel Emission", new Integer(combo));
+        dataset22.setValue("Solar Emission ", new Integer(combo1));
+
+        JFreeChart chart22 = ChartFactory.createPieChart3D(
+                "Comparison Chart ", // chart title                   
+                dataset22, // data 
+                true, // include legend                   
+                true,
+                false);
+
+        final PiePlot3D plot = (PiePlot3D) chart22.getPlot();
+        plot.setStartAngle(270);
+        plot.setForegroundAlpha(0.60f);
+        plot.setInteriorGap(0.02);
+
+        ChartFrame frame33 = new ChartFrame("3D Pie Chart for EMission Comparison from different sources", chart22);
+        frame33.setVisible(true);
+        frame33.setSize(500, 400);
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(avg, b, "curr CO2");
+        dataset.setValue(avg1, b, "normal CO2");
+        dataset.setValue(avg3, b, "current NOx");
+        dataset.setValue(avg4, b, "normal NOx");
+        //dataset.setValue(a1,b1,"current");
+        JFreeChart chart = ChartFactory.createBarChart("Normal Fuel Emission Chart", "CO2 Emission", "in (g/KM)", dataset, PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.BLACK);
+        ChartFrame frame = new ChartFrame("Bar Chart for Customer", chart);
+        frame.setVisible(true);
+        frame.setSize(500, 400);
+
+        DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
+        dataset1.setValue(avg5, b, "curr CO2");
+        dataset1.setValue(avg6, b, "normal CO2");
+        dataset1.setValue(avg7, b, "current NOx");
+        dataset1.setValue(avg8, b, "normal NOx");
+        //dataset.setValue(a1,b1,"current");
+        JFreeChart chart2 = ChartFactory.createBarChart("Solar Emission Chart", "CO2 Emission", "in (g/KM)", dataset1, PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot p1 = chart.getCategoryPlot();
+        p1.setRangeGridlinePaint(Color.BLACK);
+        ChartFrame frame1 = new ChartFrame("Bar Chart for Customer", chart2);
+        frame1.setVisible(true);
+        frame1.setSize(500, 400);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton dueDateBtn;
     private javax.swing.JTextField dueDateTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField taxTextField;
+    private javax.swing.JButton todaysGraphJBtn;
     private javax.swing.JButton totalTaxBtn;
     // End of variables declaration//GEN-END:variables
 }

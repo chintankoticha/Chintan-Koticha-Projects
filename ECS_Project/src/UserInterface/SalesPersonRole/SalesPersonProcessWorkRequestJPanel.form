@@ -19,28 +19,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" linkSize="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectedModelLbl" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectedACLbl" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectedRefLbl" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="selectedRefrigeratorCmbBox" pref="362" max="32767" attributes="0"/>
-                          <Component id="selectedACCmbBox" max="32767" attributes="0"/>
-                          <Component id="selectedModelCmbBox" max="32767" attributes="0"/>
-                          <Component id="resultJTextField" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="backJButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="submitJButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel1" linkSize="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectedModelLbl" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectedACLbl" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectedRefLbl" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="backJButton" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="selectedACCmbBox" alignment="0" pref="137" max="32767" attributes="0"/>
+                  <Component id="selectedModelCmbBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="submitJButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="resultJTextField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="selectedRefrigeratorCmbBox" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="222" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,44 +42,55 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="resultJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="resultJTextField" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="selectedModelCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="selectedModelLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectedModelLbl" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="selectedACLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectedACLbl" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <Component id="selectedACCmbBox" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="selectedRefLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectedRefLbl" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="selectedRefrigeratorCmbBox" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="backJButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="submitJButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="submitJButton" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="231" max="32767" attributes="0"/>
+              <EmptySpace pref="164" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="resultJTextField">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Result"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="backJButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
@@ -95,6 +99,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="submitJButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Submit Result"/>
       </Properties>
       <Events>
@@ -103,6 +110,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="selectedModelCmbBox">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
@@ -113,16 +123,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="selectedModelLbl">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Selected Model:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="selectedACLbl">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Selected AC:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="selectedACCmbBox">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
@@ -133,11 +152,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="selectedRefLbl">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Selected Refrigerator:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="selectedRefrigeratorCmbBox">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>

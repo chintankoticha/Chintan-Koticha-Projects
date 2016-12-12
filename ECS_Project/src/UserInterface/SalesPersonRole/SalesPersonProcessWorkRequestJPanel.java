@@ -58,8 +58,12 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         selectedRefLbl = new javax.swing.JLabel();
         selectedRefrigeratorCmbBox = new javax.swing.JComboBox<>();
 
+        resultJTextField.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("Result");
 
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         backJButton.setText("Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +71,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        submitJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         submitJButton.setText("Submit Result");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,11 +79,20 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        selectedModelCmbBox.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        selectedModelLbl.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         selectedModelLbl.setText("Selected Model:");
 
+        selectedACLbl.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         selectedACLbl.setText("Selected AC:");
 
+        selectedACCmbBox.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        selectedRefLbl.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         selectedRefLbl.setText("Selected Refrigerator:");
+
+        selectedRefrigeratorCmbBox.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,23 +101,19 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(selectedModelLbl)
-                            .addComponent(selectedACLbl)
-                            .addComponent(selectedRefLbl))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectedRefrigeratorCmbBox, 0, 362, Short.MAX_VALUE)
-                            .addComponent(selectedACCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedModelCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(resultJTextField)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backJButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(submitJButton)))
-                .addGap(228, 228, 228))
+                    .addComponent(jLabel1)
+                    .addComponent(selectedModelLbl)
+                    .addComponent(selectedACLbl)
+                    .addComponent(selectedRefLbl)
+                    .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(selectedACCmbBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 137, Short.MAX_VALUE)
+                    .addComponent(selectedModelCmbBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(submitJButton, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(resultJTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectedRefrigeratorCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, selectedACLbl, selectedModelLbl, selectedRefLbl});
@@ -131,8 +141,11 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backJButton)
                     .addComponent(submitJButton))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, resultJTextField, selectedACLbl, selectedModelLbl, selectedRefLbl});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

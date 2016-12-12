@@ -121,14 +121,21 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         autoGenWorkReqJTable = new javax.swing.JTable();
         autoGenWorkReqBtn = new javax.swing.JButton();
         alertCustomerBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        productJLabel = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        refreshJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshJButtonActionPerformed(evt);
             }
         });
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 72, -1, -1));
 
+        workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -154,27 +161,36 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 115, 375, 96));
+
+        assignJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignJButtonActionPerformed(evt);
             }
         });
+        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 229, -1, -1));
 
+        processJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processJButtonActionPerformed(evt);
             }
         });
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 229, -1, -1));
 
+        productsComboBox.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         productsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---products---" }));
         productsComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productsComboBoxActionPerformed(evt);
             }
         });
+        add(productsComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 273, 133, -1));
 
+        workRequestJTable2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         workRequestJTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -200,13 +216,18 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(workRequestJTable2);
 
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 315, 382, 97));
+
+        requestTestJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         requestTestJButton.setText("Request Test");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
             }
         });
+        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 430, 119, -1));
 
+        autoGenWorkReqJTable.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         autoGenWorkReqJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -225,69 +246,33 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(autoGenWorkReqJTable);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 115, -1, 96));
+
+        autoGenWorkReqBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         autoGenWorkReqBtn.setText("Auto Generated Requests");
         autoGenWorkReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoGenWorkReqBtnActionPerformed(evt);
             }
         });
+        add(autoGenWorkReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 72, -1, -1));
 
+        alertCustomerBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         alertCustomerBtn.setText("Send Alert to Customer");
         alertCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alertCustomerBtnActionPerformed(evt);
             }
         });
+        add(alertCustomerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 229, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(requestTestJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(refreshJButton)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(assignJButton)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(productsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(processJButton)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(autoGenWorkReqBtn)
-                    .addComponent(alertCustomerBtn))
-                .addGap(25, 25, 25))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshJButton)
-                    .addComponent(autoGenWorkReqBtn))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignJButton)
-                    .addComponent(processJButton)
-                    .addComponent(alertCustomerBtn))
-                .addGap(18, 18, 18)
-                .addComponent(productsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(requestTestJButton)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setText("Service Person Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 25, -1, -1));
+
+        productJLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        productJLabel.setText("Select Product");
+        add(productJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 272, 107, 25));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
@@ -391,11 +376,12 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         //for(Product p:enterprise.getProductCatalog().getProductList())
 
         if (product.getServiceInventory().getCount() > 0) {
-            JOptionPane.showMessageDialog(this, "lets code");
-            System.out.println(product.getServiceInventory().getCount());
-            System.out.println(product.getProductName());
+           // JOptionPane.showMessageDialog(this, "lets code");
+           // System.out.println(product.getServiceInventory().getCount());
+           // System.out.println(product.getProductName());
             count--;
-            System.out.println(count);
+           // System.out.println(count);
+            JOptionPane.showMessageDialog(this, "Count of product reduced!!!");
 
         } else {
 
@@ -439,10 +425,12 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton assignJButton;
     private javax.swing.JButton autoGenWorkReqBtn;
     private javax.swing.JTable autoGenWorkReqJTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton processJButton;
+    private javax.swing.JLabel productJLabel;
     private javax.swing.JComboBox<Object> productsComboBox;
     private javax.swing.JButton refreshJButton;
     private javax.swing.JButton requestTestJButton;

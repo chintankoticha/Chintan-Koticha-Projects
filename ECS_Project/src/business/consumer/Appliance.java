@@ -55,7 +55,7 @@ public class Appliance {
         {
             hfcEmission=20;
         }
-        else if(appliName.substring(0, 6).equalsIgnoreCase("SAMSUNG"))
+        else if(appliName.substring(0, 7).equalsIgnoreCase("SAMSUNG"))
         {
             hfcEmission=15;
         }

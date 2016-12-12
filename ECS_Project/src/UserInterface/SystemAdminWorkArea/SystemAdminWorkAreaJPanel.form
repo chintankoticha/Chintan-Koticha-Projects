@@ -89,17 +89,15 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="manageEnterpriseJButton" alignment="0" pref="183" max="32767" attributes="0"/>
-                                      <Component id="manageNetworkJButton" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="ManageEnterpriseAdminJButton" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="manageEnterpriseJButton" alignment="0" pref="183" max="32767" attributes="0"/>
+                                  <Component id="manageNetworkJButton" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ManageEnterpriseAdminJButton" max="32767" attributes="0"/>
+                                  <Component id="jButton1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="319" max="32767" attributes="0"/>
+                      <EmptySpace pref="301" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -117,9 +115,9 @@
                       <Component id="manageEnterpriseJButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ManageEnterpriseAdminJButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="190" max="32767" attributes="0"/>
+                      <EmptySpace pref="188" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -127,16 +125,25 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="13" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Selected Node: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="selectedNodeJLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="13" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&lt;view_selected_node&gt;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="manageNetworkJButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="13" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Manage Network"/>
               </Properties>
               <Events>
@@ -145,6 +152,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="manageEnterpriseJButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="13" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Manage Enterprise"/>
               </Properties>
               <Events>
@@ -153,6 +163,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="ManageEnterpriseAdminJButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="13" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Manage Enterprise Admin"/>
               </Properties>
               <Events>
@@ -161,6 +174,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="13" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Sign-Up Customer"/>
               </Properties>
               <Events>

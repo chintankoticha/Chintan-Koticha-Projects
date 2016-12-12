@@ -152,68 +152,41 @@ public class MarketAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
- 
+
 public void populateData() {
        for (Network network : system.getNetworkList()) {
-           if (network.getName().equalsIgnoreCase("new york")) {
+           if (network.getName().equalsIgnoreCase("boston")) {
                for (Customer customer : network.getCustomerDirectory().getCustomerDirectory()) {
-                   if (customer.getFirstName().equalsIgnoreCase("mamta")) {
+                 if (customer.getFirstName().equalsIgnoreCase("apurva")) {
                        customer.getSensorDirectory().getSensorDirectory().clear();
                        
+                       Sensor sensor = new Sensor();
                        Date date = new Date();
                                                //Date date = new Date();
-                      
-                       Sensor sensor1 = new Sensor();
-                       //Date date = new Date();
-                       sensor1.setDate(date);
-                       sensor1.setCurrentEmissionCO2(0);
-                       sensor1.setNormalCO2(0);
-                       sensor1.setNormalNOx(0);
-                       sensor1.setCurrentEmissionNOx(0);
-                       sensor1.setSolarCurrentEmissionCO2(4);
-                       sensor1.setSolarCurrentEmissionNOx(5);
-                       sensor1.setSolarNormalCO2(5);
-                       sensor1.setSolarNormalNOx(1);
-                       customer.getSensorDirectory().addSensor(sensor1);
+                       sensor.setDate(date);
+                       sensor.setCurrentEmissionCO2(0);
+                       sensor.setNormalCO2(0);
+                       sensor.setNormalNOx(0);
+                       sensor.setCurrentEmissionNOx(0);
+                       sensor.setSolarCurrentEmissionCO2(3);
+                       sensor.setSolarCurrentEmissionNOx(3);
+                       sensor.setSolarNormalCO2(2);
+                       sensor.setSolarNormalNOx(3);
+                       customer.getSensorDirectory().addSensor(sensor);
+                 
                        
                        Sensor sensor2 = new Sensor();
                        sensor2.setDate(date);
-                       sensor2.setCurrentEmissionCO2(0);
-                       sensor2.setNormalCO2(0);
-                       sensor2.setNormalNOx(0);
-                       sensor2.setCurrentEmissionNOx(0);
-                       sensor2.setSolarCurrentEmissionCO2(2);
-                       sensor2.setSolarCurrentEmissionNOx(2);
-                       sensor2.setSolarNormalCO2(5);
-                       sensor2.setSolarNormalNOx(1);
+                       sensor2.setCurrentEmissionCO2(65);
+                       sensor2.setNormalCO2(54);
+                       sensor2.setNormalNOx(24);
+                       sensor2.setCurrentEmissionNOx(26);
+                       sensor2.setSolarCurrentEmissionCO2(0);
+                       sensor2.setSolarCurrentEmissionNOx(0);
+                       sensor2.setSolarNormalCO2(0);
+                       sensor2.setSolarNormalNOx(0);
                        customer.getSensorDirectory().addSensor(sensor2);
                        
-                       Sensor sensor3 = new Sensor();
-                       
-                       sensor3.setDate(date);
-                       sensor3.setCurrentEmissionCO2(122);
-                       sensor3.setNormalCO2(120);
-                       sensor3.setNormalNOx(9);
-                       sensor3.setCurrentEmissionNOx(10);
-                       sensor3.setSolarCurrentEmissionCO2(0);
-                       sensor3.setSolarCurrentEmissionNOx(0);
-                       sensor3.setSolarNormalCO2(0);
-                       sensor3.setSolarNormalNOx(0);
-customer.getSensorDirectory().addSensor(sensor3);
-                       //Date date = new Date();
-                       
-                        Sensor sensor4 = new Sensor();
-                       sensor4.setDate(date);
-                       sensor4.setCurrentEmissionCO2(123);
-                       sensor4.setNormalCO2(120);
-                       sensor4.setNormalNOx(9);
-                       sensor4.setCurrentEmissionNOx(7);
-                       sensor4.setSolarCurrentEmissionCO2(0);
-                       sensor4.setSolarCurrentEmissionNOx(0);
-                       sensor4.setSolarNormalCO2(0);
-                       sensor4.setSolarNormalNOx(0);
-customer.getSensorDirectory().addSensor(sensor4);
-                       //Date date = new Date();
                        
                        
                    }
@@ -231,5 +204,4 @@ customer.getSensorDirectory().addSensor(sensor4);
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
-
 }

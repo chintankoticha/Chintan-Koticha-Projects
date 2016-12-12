@@ -17,6 +17,11 @@ import business.useraccount.UserAccount;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
 import org.joda.time.DateTime;
 
 /**
@@ -63,6 +68,7 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         areaNameLbl = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -85,6 +91,14 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         areaNameLbl.setText("jLabel3");
         add(areaNameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+
+        jButton1.setText("COMPARISON OF EMISSION BETWEEN NETWORKS");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void taxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taxButtonActionPerformed
@@ -145,9 +159,72 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_taxButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int co2Level = 0;
+        int noxLevel = 0;
+        int comboBoston = 0;
+
+        int co2Level1 = 0;
+        int noxLevel1 = 0;
+        int comboNewYork = 0;
+
+        for (Network network : system.getNetworkList()) {
+            if (network.getName().equalsIgnoreCase("boston")) {
+
+                for (Customer customer : network.getCustomerDirectory().getCustomerDirectory()) {
+                    for (Sensor sensor : customer.getSensorDirectory().getSensorDirectory()) {
+                        co2Level += sensor.getCurrentEmissionCO2();
+                        noxLevel += sensor.getCurrentEmissionNOx();
+                    }
+                }
+
+            }
+
+        }
+        comboBoston = co2Level + noxLevel;
+
+        for (Network network : system.getNetworkList()) {
+            if (network.getName().equalsIgnoreCase("New York")) {
+
+                for (Customer customer : network.getCustomerDirectory().getCustomerDirectory()) {
+                    for (Sensor sensor : customer.getSensorDirectory().getSensorDirectory()) {
+                        co2Level1 += sensor.getCurrentEmissionCO2();
+                        noxLevel1 += sensor.getCurrentEmissionNOx();
+                    }
+
+                }
+
+            }
+        }
+            comboNewYork = co2Level1 + noxLevel1;
+
+            DefaultPieDataset dataset22 = new DefaultPieDataset();
+            dataset22.setValue("Fuel Emission by Boston", new Integer(comboBoston));
+            dataset22.setValue("Fuel Emission by New York ", new Integer(comboNewYork));
+
+            JFreeChart chart22 = ChartFactory.createPieChart3D(
+                    "Comparison Chart ", // chart title                   
+                    dataset22, // data 
+                    true, // include legend                   
+                    true,
+                    false);
+
+            final PiePlot3D plot = (PiePlot3D) chart22.getPlot();
+            plot.setStartAngle(270);
+            plot.setForegroundAlpha(0.60f);
+            plot.setInteriorGap(0.02);
+
+            ChartFrame frame33 = new ChartFrame("3D Pie Chart for EMission Comparisonbetween two networks", chart22);
+            frame33.setVisible(true);
+            frame33.setSize(500, 400);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel areaNameLbl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton taxButton;

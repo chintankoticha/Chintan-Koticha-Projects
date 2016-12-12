@@ -52,12 +52,20 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
         seletedFlag = 0;
         this.workRequest = wr;
         populateTree();
+        populateComboBox();
 
         Calendar calendar = scheduleDate.getMonthView().getCalendar();
         calendar.setTime(new Date());
         scheduleDate.getMonthView().setLowerBound(calendar.getTime());
     }
 
+    public void populateComboBox() {
+        selectNetworkName.removeAllItems();
+        for (Network network : system.getNetworkList()) {
+            selectNetworkName1.addItem(network.getName());
+        }
+    }
+    
     public void populateTree() {
         DefaultTreeModel model = (DefaultTreeModel) jTree.getModel();
         ArrayList<Network> networkList = system.getNetworkList();
@@ -113,6 +121,7 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        selectNetworkName = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree = new javax.swing.JTree();
         scheduleDate = new org.jdesktop.swingx.JXDatePicker();
@@ -124,8 +133,11 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         selectedEnterpriseJLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        selectNetworkName1 = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jTree1);
+
+        selectNetworkName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -136,7 +148,7 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTree);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 85, 235, 275));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 235, 275));
         add(scheduleDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 123, 139, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -177,15 +189,17 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Customer Servicing Schedule");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 47, -1, -1));
+
+        selectNetworkName1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(selectNetworkName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    
 
     private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
         // TODO add your handling code here:
         int hourOfDay;
         boolean flag = true;
-         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date1 = new Date();
         try {
             date1 = dateFormat.parse(dateFormat.format(date1));
@@ -229,13 +243,13 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
 
                             Component[] componentArray = upc.getComponents();
                             Component component = componentArray[componentArray.length - 1];
-                            
-                            if(component.getClass().getName().equals("CustomerMessageJPanel")){
-                           // if (component instanceof CustomerMessageJPanel) {
+
+                            if (component.getClass().getName().equals("CustomerMessageJPanel")) {
+                                // if (component instanceof CustomerMessageJPanel) {
                                 CustomerMessageJPanel customerMessageJPanel = (CustomerMessageJPanel) component;
                                 customerMessageJPanel.removeRow(workRequest);
                             }
-                            
+
                             WorkRequest request = new WorkRequest();
                             //request.setMessage(message);
                             request.setScheduleDate(date);
@@ -246,21 +260,23 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
 
                             Organization org = null;
                             for (Network network1 : system.getNetworkList()) {
-                                for (Enterprise enterprise1 : network1.getEnterpriseDirectory().getEnterpriseList()) {
-                                    if (enterprise1.getName().equals(selectedEnterpriseJLabel.getText())) {
-                                        for (Organization organization1 : enterprise1.getOrganizationDirectory().getOrganizationList()) {
-                                            if (organization1 instanceof ServiceReceptionistOrganization) {
-                                                org = organization1;
-                                                break;
+                                if (network1.getName().equals(selectNetworkName1.getSelectedItem().toString())) {
+                                    for (Enterprise enterprise1 : network1.getEnterpriseDirectory().getEnterpriseList()) {
+                                        if (enterprise1.getName().equals(selectedEnterpriseJLabel.getText())) {
+                                            for (Organization organization1 : enterprise1.getOrganizationDirectory().getOrganizationList()) {
+                                                if (organization1 instanceof ServiceReceptionistOrganization) {
+                                                    org = organization1;
+                                                    break;
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
 
-                            if (org != null) {
-                                org.getWorkQueue().getWorkRequestList().add(request);
-                                userAccount.getWorkQueue().getWorkRequestList().add(request);
+                                if (org != null) {
+                                    org.getWorkQueue().getWorkRequestList().add(request);
+                                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                                }
                             }
                         } else {
                             JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
@@ -279,8 +295,9 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        if(flag)
-        JOptionPane.showMessageDialog(this,"Appointment is successfully scheduled !!!");
+        if (flag) {
+            JOptionPane.showMessageDialog(this, "Appointment is successfully scheduled !!!");
+        }
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
     private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
@@ -311,6 +328,8 @@ public class CustomerServiceSchedulingJPanel extends javax.swing.JPanel {
     private javax.swing.JTree jTree1;
     private javax.swing.JButton scheduleAppointmentBtn;
     private org.jdesktop.swingx.JXDatePicker scheduleDate;
+    private javax.swing.JComboBox<String> selectNetworkName;
+    private javax.swing.JComboBox<String> selectNetworkName1;
     private javax.swing.JLabel selectedEnterpriseJLabel;
     private javax.swing.JComboBox<String> timeCmbBox;
     // End of variables declaration//GEN-END:variables

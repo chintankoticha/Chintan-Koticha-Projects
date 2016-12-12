@@ -52,6 +52,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
         logoutJButton = new javax.swing.JButton();
         signUpJBtn = new javax.swing.JButton();
         container = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,7 +128,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
                 .addComponent(logoutJButton)
                 .addGap(23, 23, 23)
                 .addComponent(loginJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 655, Short.MAX_VALUE)
                 .addComponent(signUpJBtn)
                 .addContainerGap())
         );
@@ -135,6 +136,11 @@ public class MainJFrame1 extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanel1);
 
         container.setLayout(new java.awt.CardLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/oboczny-samochodu-emisja-co2-8600923.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        container.add(jLabel3, "card2");
+
         jSplitPane1.setRightComponent(container);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -290,6 +296,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton loginJButton;
