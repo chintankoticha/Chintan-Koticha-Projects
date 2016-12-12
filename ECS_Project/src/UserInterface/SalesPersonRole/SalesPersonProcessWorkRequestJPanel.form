@@ -28,7 +28,7 @@
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="selectedRefrigeratorCmbBox" pref="137" max="32767" attributes="0"/>
+                          <Component id="selectedRefrigeratorCmbBox" pref="362" max="32767" attributes="0"/>
                           <Component id="selectedACCmbBox" max="32767" attributes="0"/>
                           <Component id="selectedModelCmbBox" max="32767" attributes="0"/>
                           <Component id="resultJTextField" alignment="0" max="32767" attributes="0"/>
@@ -72,7 +72,7 @@
                   <Component id="backJButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="submitJButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="248" max="32767" attributes="0"/>
+              <EmptySpace pref="231" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

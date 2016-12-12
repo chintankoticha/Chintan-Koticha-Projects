@@ -143,7 +143,7 @@ public class ServiceReceptionistWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(refreshTestJButton))
                             .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(requestTestJButton))
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +160,7 @@ public class ServiceReceptionistWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(requestTestJButton)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -170,7 +170,7 @@ public class ServiceReceptionistWorkAreaJPanel extends javax.swing.JPanel {
        int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(this,"Select a row first!!");
+            JOptionPane.showMessageDialog(this,"Please select a row first!!");
             return;
         }
         String customerName;

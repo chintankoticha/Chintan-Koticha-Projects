@@ -8,10 +8,13 @@ import business.EcoSystem;
 import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.network.Network;
-import business.role.AdminRole;
+import business.role.GovernmentAdminRole;
+import business.role.MarketAdminRole;
+import business.role.RetailerAdminRole;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -100,10 +103,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Enterprise Name", "Network", "Username"
@@ -231,15 +231,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                             .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lastNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(2, 2, 2)))
-                        .addComponent(submitJButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(35, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lastNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backJButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(backJButton)
+                            .addComponent(submitJButton))
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -254,17 +256,47 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         
-        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+        try {
+           Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+
+           String username = usernameJTextField.getText();
+           String password = String.valueOf(passwordJPasswordField.getPassword());
+           String fname = nameJTextField.getText();
+           String lname = lastNameTxtField.getText();
+           
+           if ((username.isEmpty()) || (username.startsWith(" ")) || (password.isEmpty()) || (password.startsWith(" "))  || (fname.isEmpty()) || (fname.startsWith(" ")) || (lname.isEmpty()) || (lname.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "All fields are Mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
+
+           Employee employee = enterprise.getEmployeeDirectory().createEmployee(fname,lname);
+           if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Government) {
+               if (system.checkIfUsernameIsUnique(username)) {
+                   UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new GovernmentAdminRole());
+               } else {
+                   JOptionPane.showMessageDialog(null, "User name already exist");
+               }
+           } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Market) {
+               if (system.checkIfUsernameIsUnique(username)) {
+                   UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new MarketAdminRole());
+               } else {
+                   JOptionPane.showMessageDialog(null, "User name already exist");
+               }
+           }
+           else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Retailer) {
+               if (system.checkIfUsernameIsUnique(username)) {
+                   UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new RetailerAdminRole());
+               } else {
+                   JOptionPane.showMessageDialog(null, "User name already exist");
+               }
+           }
+           
+           populateTable();
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Something is wrong! You dont have an enterprise it seems");
+       }
         
-        String username = usernameJTextField.getText();
-        String password = String.valueOf(passwordJPasswordField.getPassword());
-        String fname = nameJTextField.getText();
-        String lname = lastNameTxtField.getText();
         
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(fname,lname);
-        
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
-        populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 

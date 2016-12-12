@@ -5,15 +5,13 @@
  */
 package UserInterface.ServicePersonRole;
 
-import business.consumer.Automobile;
+
 import business.consumer.Service;
 import business.enterprise.Enterprise;
 import business.market.Product;
 import business.workqueue.ServicePersonWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
-import static java.lang.String.format;
-import static java.lang.String.format;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -95,7 +93,7 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(productToBeSentCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(resultJTextField))))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(545, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +108,7 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitJButton)
                     .addComponent(backJButton))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,8 +124,18 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
+        String result = resultJTextField.getText();
+        if ((result.isEmpty()) || (result.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "All fields are Mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
+        
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
+        JOptionPane.showMessageDialog(this, "Request Sent Successfully !!!");
+        
+        
+        
        // Product product=new Product();
        String broughtProduct=  (String) productToBeSentCmbBox.getSelectedItem().toString();
         System.out.println(request.getEnterpriseName());
@@ -159,14 +167,6 @@ public class ServicePersonProcessWorkRequestJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 
-//private void populateComboBox(){
-//    if(request.getEnterpriseName().equals("r")){
-//        carSelectedCmbBox.addItem("Honda Civic");
-//        carSelectedCmbBox.addItem("Honda Captur");
-//        carSelectedCmbBox.addItem("Honda CRV");
-//        carSelectedCmbBox.addItem("Honda HRV");
-//    }
-//}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;

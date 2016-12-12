@@ -6,6 +6,7 @@
 package business.network;
 
 import business.consumer.CustomerDirectory;
+import business.enterprise.Enterprise;
 import business.enterprise.EnterpriseDirectory;
 
 /**
@@ -43,4 +44,13 @@ public class Network {
     public String toString(){
         return name;
     }
+    
+    public boolean sameEnterprise(String name) {
+       for (Enterprise e : enterpriseDirectory.getEnterpriseList()) {
+           if (e.getName().equals(name)) {
+               return true;
+           }
+       }
+       return false;
+   }
 }

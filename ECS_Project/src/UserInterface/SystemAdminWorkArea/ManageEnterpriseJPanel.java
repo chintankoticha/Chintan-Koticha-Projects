@@ -86,17 +86,14 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Enterprise Name", "Network", "Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -192,13 +189,16 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             return;
         }
         
+        if(nameJTextField.getText().equals("")||nameJTextField.getText().startsWith(" ")){
+            JOptionPane.showMessageDialog(null, "Enterprise name cannot be blank!");
+            return;
+        }
+        
         String name = nameJTextField.getText();
-        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-        if (enterpriseTypeJComboBox.getSelectedItem().toString().equalsIgnoreCase("Retailer")) {
-            //String name = nameJTextField.getText();
-            //Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-            //retailerOrNot=1;
-            //Product product = new Product();
+        if (!network.sameEnterprise(name)) {
+           Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+           if (enterpriseTypeJComboBox.getSelectedItem().toString().equalsIgnoreCase("Retailer")) {
+          
             Product product = enterprise.getProductCatalog().addProduct();
             product.setProductName("air filter");
             product.getServiceInventory().setCount(0);
@@ -228,7 +228,14 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             product6.getServiceInventory().setCount(0);
             
             populateTable();
-        }            
+        }
+           //populateTable();
+       } else {
+           JOptionPane.showMessageDialog(null, "Same enterprises exists");
+       }
+        
+        //Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+                    
         
         populateTable();
     }//GEN-LAST:event_submitJButtonActionPerformed

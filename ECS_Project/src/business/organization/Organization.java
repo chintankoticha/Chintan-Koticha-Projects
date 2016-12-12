@@ -31,13 +31,11 @@ public abstract class Organization {
     public enum Type{
         Admin("Admin"),
         MarketAdmin("Market Admin"),
-        Accountant("Accountant"),
         ControlManager("Control Manager"),
         SalesPerson("Sales Person"),
         Customer("Customer"),
         ServicePerson("service Person"),
         InventoryManager("Inventory Manager"),
-        InsuranceManager("Insurance Manager"),
         SalesReceptionist("Sales Receptionist"),
         ServiceReceptionist("Service Receptionist");
         
@@ -110,5 +108,5 @@ public abstract class Organization {
     @Override
     public String toString() {
         return name;
-    }
+    }  
 }

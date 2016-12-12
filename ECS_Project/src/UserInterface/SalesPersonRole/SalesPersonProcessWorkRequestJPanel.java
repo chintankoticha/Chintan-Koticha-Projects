@@ -95,7 +95,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                             .addComponent(selectedRefLbl))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectedRefrigeratorCmbBox, 0, 137, Short.MAX_VALUE)
+                            .addComponent(selectedRefrigeratorCmbBox, 0, 362, Short.MAX_VALUE)
                             .addComponent(selectedACCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(selectedModelCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(resultJTextField)))
@@ -131,7 +131,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backJButton)
                     .addComponent(submitJButton))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,8 +146,15 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
+       
+        String result = resultJTextField.getText();
+       if(result.isEmpty() || result.startsWith(" ")){
+           JOptionPane.showMessageDialog(this, "Please enter Result !!!");
+           return;
+       }
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
+        JOptionPane.showMessageDialog(this,"Result submitted successfully !!!");
 
         if (request.getEnterpriseName().equalsIgnoreCase("retailer")
                 || request.getEnterpriseName().equalsIgnoreCase("toyota")
@@ -161,6 +168,7 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 automobile.setAutomobileName(selectedModelCmbBox.getSelectedItem().toString());
                 automobile.setBattery(100);
                 request.getCustomer().getAutomobileDirectory().add(automobile);
+               // JOptionPane.showMessageDialog(this, "Request Sent Successfully !!!");
             }
         }
         
@@ -182,10 +190,11 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
                 //return;
             }
         }
+       // JOptionPane.showMessageDialog(this, "Request Sent Successfully !!!");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void populateComboBox() {
-        if (request.getEnterpriseName().equalsIgnoreCase("retailer")) {
+        if (request.getEnterpriseName().equalsIgnoreCase("Honda")) {
             selectedModelLbl.setVisible(true);
             selectedModelCmbBox.setVisible(true);
             selectedModelCmbBox.addItem("---");
@@ -203,6 +212,26 @@ public class SalesPersonProcessWorkRequestJPanel extends javax.swing.JPanel {
             selectedModelCmbBox.addItem("Toyota Land Cruiser");
             selectedModelCmbBox.addItem("Toyota Verso");
             selectedModelCmbBox.addItem("Toyota Camry");
+        }
+        
+        if (request.getEnterpriseName().equalsIgnoreCase("BMW")) {
+            selectedModelLbl.setVisible(true);
+            selectedModelCmbBox.setVisible(true);
+            selectedModelCmbBox.addItem("---");
+            selectedModelCmbBox.addItem("BMW i3");
+            selectedModelCmbBox.addItem("BMW x1");
+            selectedModelCmbBox.addItem("BMW M4 Coupe");
+            selectedModelCmbBox.addItem("BMW M2 Coupe");
+        }
+        
+        if (request.getEnterpriseName().equalsIgnoreCase("Renault")) {
+            selectedModelLbl.setVisible(true);
+            selectedModelCmbBox.setVisible(true);
+            selectedModelCmbBox.addItem("---");
+            selectedModelCmbBox.addItem("Renault Captur");
+            selectedModelCmbBox.addItem("Renault Clio");
+            selectedModelCmbBox.addItem("Renault Megane");
+            selectedModelCmbBox.addItem("Renault Grand Scenic");
         }
         
         

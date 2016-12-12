@@ -19,11 +19,9 @@ public abstract class Role {
      
     public enum RoleType{
         Admin("Admin"),
-        Accountant("Accountant"),
         SalesPerson("Sales Person"),
         ControlManager("Control Manager"),
         Customer("Customer"),
-        InsuranceManager("Insurance Manager"),
         InvenoryManager("Inventory Manager"),
         ServicePerson("Service Person"),
         SalesReceptionist("Sales Receptionist"),

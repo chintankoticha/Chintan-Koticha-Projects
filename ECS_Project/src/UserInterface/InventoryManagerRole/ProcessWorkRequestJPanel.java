@@ -10,6 +10,7 @@ import business.market.Product;
 import business.workqueue.ServicePersonProductRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -69,8 +70,6 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        productToBeSentCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,7 +81,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
                         .addComponent(submitJButton)
                         .addGap(63, 63, 63))
                     .addGroup(layout.createSequentialGroup()
@@ -105,7 +104,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(backJButton))
                 .addGap(18, 18, 18)
                 .addComponent(productToBeSentCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,8 +120,14 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
+       String result = resultJTextField.getText();
+       if(result.isEmpty() || result.startsWith(" ")){
+           JOptionPane.showMessageDialog(this, "Please enter Result !!!");
+           return;
+       }
         request.setRequestResult(resultJTextField.getText());
         request.setStatus("Completed");
+        JOptionPane.showMessageDialog(this, "Request Sent Successfully !!!");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

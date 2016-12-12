@@ -8,16 +8,16 @@ package UserInterface.ControlManagerRole;
 import business.EcoSystem;
 import business.consumer.Customer;
 import business.consumer.Sensor;
-import business.consumer.TaxAndBilling;
+
 import business.enterprise.Enterprise;
 import business.network.Network;
 import business.organization.ControlManagerOrganization;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.joda.time.DateTime;
-import static org.joda.time.format.ISODateTimeFormat.date;
 
 /**
  *
@@ -41,6 +41,13 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = (ControlManagerOrganization) controlManagerOrganization;
         this.enterprise = enterprise;
         this.system = business;
+
+        if (account.getEmployee().getFirstName().equalsIgnoreCase("bcm")) {
+            areaNameLbl.setText("Boston");
+        }
+        if (account.getEmployee().getFirstName().equalsIgnoreCase("ncm")) {
+            areaNameLbl.setText("New York");
+        }
     }
 
     /**
@@ -54,36 +61,30 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         taxButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        areaNameLbl = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        taxButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         taxButton.setText("TAX INCUR TO CUSTOMERS");
         taxButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 taxButtonActionPerformed(evt);
             }
         });
+        add(taxButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 75, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("Check customer data");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 75, -1, 25));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(taxButton)
-                .addContainerGap(227, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(taxButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(353, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel2.setText("My Work Area - Customer Manager");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        areaNameLbl.setText("jLabel3");
+        add(areaNameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void taxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taxButtonActionPerformed
@@ -95,22 +96,30 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
         double normalNOx = 0;
 
         for (Network network : system.getNetworkList()) {
-            for (Customer customer : network.getCustomerDirectory().getCustomerDirectory()) {
-            //do for all customers
-                if (customer.getFirstName().equalsIgnoreCase("Payal")) {
+            if (network.getName().equalsIgnoreCase(areaNameLbl.getText())) {
+                for (Customer customer : network.getCustomerDirectory().getCustomerDirectory()) {
+                    //do for all customers
+                    averageNumber = 0;
+                    //  if (customer.getFirstName().equalsIgnoreCase("Payal")) {
                     if (customer.getPrevDateCount() < customer.getRecentCount()) {
-                        averageNumber = 0;
+                        //   averageNumber = 0;
                         for (Sensor sensor : customer.getSensorDirectory().getSensorDirectory()) {
                             Date date = new Date();
                             averageNumber++;
-                            if (sensor.getDate() == date) {
+                            if (sensor.getDate().getDate() == date.getDate()) {
                                 emissionAverageCO2 = emissionAverageCO2 + sensor.getCurrentEmissionCO2();
                                 normalCO2 = normalCO2 + sensor.getNormalCO2();
+
+                                emissionAverageNOx = emissionAverageNOx + sensor.getCurrentEmissionNOx();
+                                normalNOx = normalNOx + sensor.getNormalNOx();
                             }
                         }
                         emissionAverageCO2 = emissionAverageCO2 / averageNumber;
                         normalCO2 = normalCO2 / averageNumber;
-                        if (emissionAverageCO2 > normalCO2) {
+
+                        emissionAverageNOx = emissionAverageNOx / averageNumber;
+                        normalNOx = normalNOx / averageNumber;
+                        if (emissionAverageCO2 > normalCO2 || emissionAverageNOx > normalNOx) {
                             int Tax = 0;
                             Tax = customer.getTax();
                             Tax = Tax + 100;
@@ -132,12 +141,15 @@ public class ControlManagerWorkAreaJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+            JOptionPane.showMessageDialog(this, "Tax Incurred to Customer!!!");
         }
     }//GEN-LAST:event_taxButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel areaNameLbl;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton taxButton;
     // End of variables declaration//GEN-END:variables
 }

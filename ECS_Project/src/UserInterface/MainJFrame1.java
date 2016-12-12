@@ -55,6 +55,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        loginJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,10 +63,17 @@ public class MainJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        userNameJTextField.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        passwordField.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("User Name");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel2.setText("Password");
 
+        logoutJButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         logoutJButton.setText("Logout");
         logoutJButton.setEnabled(false);
         logoutJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +82,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        signUpJBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         signUpJBtn.setText("Sign-up new Customer");
         signUpJBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,16 +99,14 @@ public class MainJFrame1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(signUpJBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(loginJLabel))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(logoutJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(loginJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(userNameJTextField)
+                            .addComponent(loginJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(logoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loginJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -120,7 +127,7 @@ public class MainJFrame1 extends javax.swing.JFrame {
                 .addComponent(logoutJButton)
                 .addGap(23, 23, 23)
                 .addComponent(loginJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addComponent(signUpJBtn)
                 .addContainerGap())
         );
@@ -141,6 +148,11 @@ public class MainJFrame1 extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
+        
+        if ((userName.isEmpty()) || (userName.startsWith(" ")) || (password.isEmpty()) || (password.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "All fields are Mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
         //Step1: Check in the system user account directory if you have the user
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
         Enterprise inEnterprise = null;

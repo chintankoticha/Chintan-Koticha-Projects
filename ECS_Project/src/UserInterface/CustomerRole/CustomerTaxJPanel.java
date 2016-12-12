@@ -7,9 +7,12 @@ package UserInterface.CustomerRole;
 
 import business.EcoSystem;
 import business.consumer.Customer;
+import business.consumer.Sensor;
 import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,6 +36,7 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
+        populateTable();
     }
 
     /**
@@ -48,6 +52,9 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
         dueDateTextField = new javax.swing.JTextField();
         totalTaxBtn = new javax.swing.JButton();
         dueDateBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         taxTextField.setEditable(false);
 
@@ -67,6 +74,31 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
             }
         });
 
+        backBtn.setText("< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "CO2 current", "CO2 Normal", "NOX current", "NOx normal", "solar CO2 current", "solar CO2 normal", "solar NOx current", "solar NOx normal"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,10 +107,13 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(totalTaxBtn)
-                    .addComponent(dueDateBtn))
-                .addGap(35, 35, 35)
+                    .addComponent(dueDateBtn)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(taxTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(taxTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(dueDateTextField))
                 .addGap(129, 129, 129))
         );
@@ -93,7 +128,13 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dueDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dueDateBtn))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(backBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -105,13 +146,41 @@ public class CustomerTaxJPanel extends javax.swing.JPanel {
     private void dueDateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dueDateBtnActionPerformed
         // TODO add your handling code here:
         dueDateTextField.setText(String.valueOf(userAccount.getCustomer().getDueDate()));
-        
     }//GEN-LAST:event_dueDateBtnActionPerformed
+
+    public void populateTable(){
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        dtm.setRowCount(0);
+        for(Sensor sensor : userAccount.getCustomer().getSensorDirectory().getSensorDirectory()){
+            Object[] row = new Object[9];
+            row[0] = sensor;
+            row[1] = sensor.getCurrentEmissionCO2();
+            row[2] = sensor.getNormalCO2();
+            row[3] = sensor.getCurrentEmissionNOx();
+            row[4] = sensor.getNormalNOx();
+            row[5] = sensor.getSolarCurrentEmissionCO2();
+            row[6] = sensor.getSolarNormalCO2();
+            row[7] = sensor.getSolarCurrentEmissionNOx();
+            row[8] = sensor.getSolarNormalNOx();
+            
+            dtm.addRow(row);
+        }
+    }
+    
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton dueDateBtn;
     private javax.swing.JTextField dueDateTextField;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField taxTextField;
     private javax.swing.JButton totalTaxBtn;
     // End of variables declaration//GEN-END:variables

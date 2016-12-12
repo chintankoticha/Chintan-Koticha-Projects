@@ -13,6 +13,7 @@ import business.organization.Organization;
 import business.role.CustomerRole;
 import business.role.Role;
 import java.awt.CardLayout;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -73,9 +74,9 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         userNameTxtField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        passwordTxtField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Customer Self Sign-Up");
 
         jLabel2.setText("First Name:");
@@ -86,6 +87,7 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("City:");
 
+        backBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         backBtn.setText("<< BACK");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +95,8 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
             }
         });
 
-        signUpButton.setText("Sign Up");
+        signUpButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        signUpButton.setText("SIGN UP");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpButtonActionPerformed(evt);
@@ -102,6 +105,7 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Current Area Code:");
 
+        accountCreateBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         accountCreateBtn.setText("CREATE ACCOUNT");
         accountCreateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,11 +113,13 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel10.setText("Credentials");
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel11.setText("UserName:");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel12.setText("Password:");
 
         javax.swing.GroupLayout subPanelLayout = new javax.swing.GroupLayout(subPanel);
@@ -126,13 +132,13 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addGroup(subPanelLayout.createSequentialGroup()
                         .addGroup(subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addGap(46, 46, 46)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(accountCreateBtn)
-                            .addComponent(passwordTxtField)
-                            .addComponent(userNameTxtField))))
+                            .addComponent(passwordField)
+                            .addComponent(userNameTxtField)
+                            .addComponent(accountCreateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         subPanelLayout.setVerticalGroup(
@@ -140,15 +146,15 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
             .addGroup(subPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(userNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(accountCreateBtn)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -158,44 +164,35 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(subPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(cityCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(currentAddresTxtField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(currentAreaCodeTxtField)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(firstNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lastNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 141, Short.MAX_VALUE)))
-                        .addGap(311, 311, 311))))
+                    .addComponent(backBtn)
+                    .addComponent(subPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(signUpButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(currentAreaCodeTxtField)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(18, 18, 18)
+                            .addComponent(cityCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(currentAddresTxtField))
+                        .addComponent(jLabel1)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(firstNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(lastNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(446, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5, jLabel6});
@@ -231,8 +228,13 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
                 .addComponent(subPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(backBtn)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {firstNameTxtField, jLabel2});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel3, jLabel4, jLabel5, jLabel6, lastNameTxtField});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -248,6 +250,24 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
         String lastName = lastNameTxtField.getText();
         String networkName = cityCmbBox.getSelectedItem().toString();
         String currentAddress = currentAddresTxtField.getText();
+        String currentAreaCode = currentAreaCodeTxtField.getText();
+       
+       if ((firstName.isEmpty()) || (firstName.startsWith(" ")) || (lastName.isEmpty()) || (lastName.startsWith(" ")) || (currentAddress.isEmpty()) || (currentAddress.startsWith(" "))
+               || (currentAreaCode.isEmpty()) || (currentAreaCode.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "All fields are Mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
+       
+       // Validating First Name, Last Name
+       if (!(Pattern.matches("^[a-zA-Z]+$", firstNameTxtField.getText().trim())) || (!(Pattern.matches("^[a-zA-Z]+$", lastNameTxtField.getText().trim())))) {
+           JOptionPane.showMessageDialog(this, "Please enter only alphabets", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
+       
+       if (!(Pattern.matches("^[0-9]+$", currentAreaCodeTxtField.getText().trim()))) {
+           JOptionPane.showMessageDialog(this, "Please enter only numbers in Area Code Field", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
         Customer customer1 = new Customer();
         customer1.setFirstName(firstName);
         customer1.setLastName(lastName);
@@ -265,26 +285,36 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
     private void accountCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountCreateBtnActionPerformed
         // TODO add your handling code here:
         int flag=0;
-        String userName = userNameTxtField.getText();
-        String password = passwordTxtField.getText();
-        for (Network network : system.getNetworkList()) {
-            if (network.getName().equals(cityCmbBox.getSelectedItem())) {
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization.getName().equals("Customer")) {
-                            for (Role role : organization.getSupportedRole()){
-                                // if (role.toString().equals(Role.RoleType.Customer.getValue())) {
-                                    organization.getUserAccountDirectory().createCustomerUserAccount(userName, password, customer, new CustomerRole());
-                                    flag=1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if(flag==1){
-                JOptionPane.showMessageDialog(this, "Account creds saved!!");
-            }   //Role role = (Role) roleJComboBox.getSelectedItem();
+       String userName = userNameTxtField.getText();
+       
+        char[] passwordCharArray = passwordField.getPassword();
+       String password = String.valueOf(passwordCharArray);
+       
+              
+       if ((userName.isEmpty()) || (userName.startsWith(" ")) || (password.isEmpty()) || (password.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "All fields are Mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
+       for (Network network : system.getNetworkList()) {
+           if (network.getName().equals(cityCmbBox.getSelectedItem())) {
+               for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                   for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                       if (organization.getName().equals("Customer")) {
+                           for (Role role : organization.getSupportedRole()){
+                               // if (role.toString().equals(Role.RoleType.Customer.getValue())) {
+                                   organization.getUserAccountDirectory().createCustomerUserAccount(userName, password, customer, new CustomerRole());
+                                   flag=1;
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+           if(flag==1){
+               JOptionPane.showMessageDialog(this, "Account Credentials Saved!!!","Success",JOptionPane.INFORMATION_MESSAGE);
+           }
+
+
 
     }//GEN-LAST:event_accountCreateBtnActionPerformed
 
@@ -306,7 +336,7 @@ public class CustomerSignUpJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField lastNameTxtField;
-    private javax.swing.JTextField passwordTxtField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton signUpButton;
     private javax.swing.JPanel subPanel;
     private javax.swing.JTextField userNameTxtField;

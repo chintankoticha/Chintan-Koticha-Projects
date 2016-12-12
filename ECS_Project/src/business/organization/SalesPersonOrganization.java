@@ -5,7 +5,7 @@
  */
 package business.organization;
 
-import business.role.AccountantRole;
+
 import business.role.Role;
 import business.role.SalesPersonRole;
 import java.util.ArrayList;

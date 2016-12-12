@@ -5,10 +5,13 @@
  */
 package business;
 
+import business.consumer.Customer;
+import business.enterprise.Enterprise;
 import business.network.Network;
 import business.organization.Organization;
 import business.role.Role;
 import business.role.SystemAdminRole;
+import business.useraccount.UserAccount;
 import java.util.ArrayList;
 
 /**
@@ -16,11 +19,11 @@ import java.util.ArrayList;
  * @author Chintan
  */
 public class EcoSystem extends Organization {
-    
+
     private static EcoSystem business;
     private ArrayList<Network> networkList;
-    
-    private EcoSystem(){
+
+    private EcoSystem() {
         super(null);
         networkList = new ArrayList();
     }
@@ -32,7 +35,7 @@ public class EcoSystem extends Organization {
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
-    
+
     public static EcoSystem getInstance() {
         if (business == null) {
             business = new EcoSystem();
@@ -40,26 +43,49 @@ public class EcoSystem extends Organization {
         return business;
     }
 
-    public Network createAndAddNetwork(){
+    public Network createAndAddNetwork() {
         Network network = new Network();
         networkList.add(network);
         return network;
     }
-    
-    public boolean checkIfUserNameIsUnique(String userName){
-        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
-            return false;
-        }
-        for(Network network : networkList){
-            
-        }
-        return true;
-    }
-    
+        
     @Override
     public ArrayList<Role> getSupportedRole() {
-       ArrayList<Role> roleList = new ArrayList();
-       roleList.add(new SystemAdminRole());
-       return roleList;
+        ArrayList<Role> roleList = new ArrayList();
+        roleList.add(new SystemAdminRole());
+        return roleList;
     }
+
+    public boolean checkIfUsernameIsUnique(String username) {
+
+        for (UserAccount ua : this.getUserAccountDirectory().getUserAccountList()) {
+            // System.out.println("EcoSystem" + ua.getUsername());
+            if (ua.getUsername().equals(username)) {
+                return false;
+            }
+            for (Network n : this.getNetworkList()) {
+                for (Enterprise ent : n.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (UserAccount ucc : ent.getUserAccountDirectory().getUserAccountList()) {
+                        //           System.out.println("Enterprise-->" + ucc.getUsername());
+                        if (ucc.getUsername().equals(username)) {
+                            return false;
+                        }
+                        for (Organization org : ent.getOrganizationDirectory().getOrganizationList()) {
+                            for (UserAccount accOrg : org.getUserAccountDirectory().getUserAccountList()) {
+                                //                 System.out.println("Organization-->" + accOrg.getUsername());
+                                if (accOrg.getUsername().equals(username)) {
+                                    return false;
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+        } 
+        return true;
+    }
+
 }

@@ -6,7 +6,6 @@
 package UserInterface.SalesPersonRole;
 
 import business.EcoSystem;
-import business.consumer.Customer;
 import business.enterprise.Enterprise;
 import business.organization.SalesPersonOrganization;
 import business.useraccount.UserAccount;
@@ -40,6 +39,7 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         this.business=system;
         this.salesPersonOrganization=salesPersonOrganization;
         populateTable();
+        processJButton.setEnabled(false);
     }
 
     /**
@@ -166,6 +166,7 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         request.setStatus("Pending");
         request.setCustomer(request.getCustomer());
         populateTable();
+        processJButton.setEnabled(true);
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -173,7 +174,7 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(this,"Select a row first!!");
+            JOptionPane.showMessageDialog(this,"Please select a row first!!");
             return;
         }
         

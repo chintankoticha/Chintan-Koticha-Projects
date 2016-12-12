@@ -50,6 +50,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
         populateComboBox();
         populateRequestTable();
+        processJButton.setEnabled(false);
     }
 
     public void populateComboBox() {
@@ -285,7 +286,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(requestTestJButton)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -298,6 +299,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row first");
             return;
         }
 
@@ -306,6 +308,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
         request.setStatus("Pending");
         request.setCustomer(request.getCustomer());
         populateTable();
+        processJButton.setEnabled(true);
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -331,14 +334,7 @@ public class ServicePersonWorkAreaJPanel extends javax.swing.JPanel {
             if (product.getServiceInventory().getCount() > 45) {
                 ServicePersonWorkRequest request = (ServicePersonWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
-                /*for (Network network : business.getNetworkList()) {
-                 for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                 if (enterprise.equals(request.getEnterpriseName())) {
-                 enterprise1 = enterprise;
-                 break;
-                 }
-                 }
-                 }*/
+               
                 request.setStatus("Processing");
                 request.setCustomer(request.getCustomer());
                 count--;

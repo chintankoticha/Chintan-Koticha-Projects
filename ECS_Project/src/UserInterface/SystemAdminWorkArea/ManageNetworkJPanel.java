@@ -10,7 +10,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,10 +63,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Name"
@@ -88,9 +85,6 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(networkJTable);
-        if (networkJTable.getColumnModel().getColumnCount() > 0) {
-            networkJTable.getColumnModel().getColumn(0).setResizable(false);
-        }
 
         jLabel1.setText("Name");
 
@@ -123,7 +117,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                         .addComponent(submitJButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backJButton))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +131,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(backJButton)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,9 +139,22 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         String name = nameJTextField.getText();
 
+       if ((name.isEmpty()) || (name.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "Network Name is blank", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
+       for (Network network1 : system.getNetworkList()) {
+
+           if (network1.getName().equalsIgnoreCase(name)) {
+               JOptionPane.showMessageDialog(this, "Network Name already exists !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+               return;
+           }
+
+       }
+       
         Network network = system.createAndAddNetwork();
         network.setName(name);
-
+        JOptionPane.showMessageDialog(this, "Network Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
         populateNetworkTable();
     }//GEN-LAST:event_submitJButtonActionPerformed
 

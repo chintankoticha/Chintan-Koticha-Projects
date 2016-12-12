@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package business.organization;
-import business.role.AdminRole;
+import business.role.GovernmentAdminRole;
 
 import business.role.Role;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class AdminOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new AdminRole());
+        roles.add(new GovernmentAdminRole());
         return roles;
     }
     

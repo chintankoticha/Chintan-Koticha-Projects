@@ -68,6 +68,7 @@ public class CustomerServicingHistoryJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
 
+        ProductJTable.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         ProductJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -86,7 +87,8 @@ public class CustomerServicingHistoryJPanel extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(ProductJTable);
 
-        jLabel1.setText("SERVICING HISTORY");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setText("Customer Servicing History");
 
         backBtn.setText("< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -100,23 +102,23 @@ public class CustomerServicingHistoryJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backBtn))
-                .addContainerGap(378, Short.MAX_VALUE))
+                .addContainerGap(384, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(51, 51, 51)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(backBtn)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -64,7 +64,12 @@ public class CustomerMessageJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         messageBoardJTable = new javax.swing.JTable();
         btnBookAppointmentForServicing = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        messageBoardJTable.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         messageBoardJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -83,33 +88,29 @@ public class CustomerMessageJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(messageBoardJTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 79, 487, 168));
+
+        btnBookAppointmentForServicing.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnBookAppointmentForServicing.setText("Book Appointment for Servicing");
         btnBookAppointmentForServicing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBookAppointmentForServicingActionPerformed(evt);
             }
         });
+        add(btnBookAppointmentForServicing, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 265, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBookAppointmentForServicing)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(210, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBookAppointmentForServicing)
-                .addContainerGap(313, Short.MAX_VALUE))
-        );
+        backBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        backBtn.setText("< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 265, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setText("Customer Message");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 41, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBookAppointmentForServicingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAppointmentForServicingActionPerformed
@@ -129,13 +130,17 @@ public class CustomerMessageJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBookAppointmentForServicingActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
     public void removeRow(WorkRequest wr) {
         DefaultTableModel dtm = (DefaultTableModel)messageBoardJTable.getModel();
         
-        /*for(Iterator<WorkRequest> it = dtm.i)
-        prodcat.getPl.iterator();it.hasnext();){
-        pr pr = it.next();
-        it.remove();*/
+        
         
         for(int i=0;i<=dtm.getRowCount();i++){
             WorkRequest wr1 = (WorkRequest)dtm.getValueAt(i, 0);
@@ -148,7 +153,9 @@ public class CustomerMessageJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton btnBookAppointmentForServicing;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable messageBoardJTable;
     // End of variables declaration//GEN-END:variables

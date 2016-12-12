@@ -17,6 +17,10 @@ public class Sensor {
     private int currentEmissionNOx;
     private int normalCO2;
     private int normalNOx;
+    private int solarCurrentEmissionCO2;
+    private int solarCurrentEmissionNOx;
+    private int solarNormalCO2;
+    private int solarNormalNOx;
     
     public Date getDate() {
         return date;
@@ -56,5 +60,42 @@ public class Sensor {
 
     public void setCurrentEmissionCO2(int currentEmissionCO2) {
         this.currentEmissionCO2 = currentEmissionCO2;
-    }    
+    }   
+
+    public int getSolarCurrentEmissionCO2() {
+        return solarCurrentEmissionCO2;
+    }
+
+    public void setSolarCurrentEmissionCO2(int solarCurrentEmissionCO2) {
+        this.solarCurrentEmissionCO2 = solarCurrentEmissionCO2;
+    }
+
+    public int getSolarCurrentEmissionNOx() {
+        return solarCurrentEmissionNOx;
+    }
+
+    public void setSolarCurrentEmissionNOx(int solarCurrentEmissionNOx) {
+        this.solarCurrentEmissionNOx = solarCurrentEmissionNOx;
+    }
+
+    public int getSolarNormalCO2() {
+        return solarNormalCO2;
+    }
+
+    public void setSolarNormalCO2(int solarNormalCO2) {
+        this.solarNormalCO2 = solarNormalCO2;
+    }
+
+    public int getSolarNormalNOx() {
+        return solarNormalNOx;
+    }
+
+    public void setSolarNormalNOx(int solarNormalNOx) {
+        this.solarNormalNOx = solarNormalNOx;
+    }
+    
+    @Override
+    public String toString(){
+        return date.toString();
+    }
 }

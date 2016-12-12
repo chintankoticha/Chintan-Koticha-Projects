@@ -19,27 +19,18 @@ import business.useraccount.UserAccount;
 import business.workqueue.SalesPersonWorkRequest;
 import business.workqueue.ServicePersonWorkRequest;
 import business.workqueue.WorkRequest;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -69,7 +60,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     String threadStopName;
     public int stillInUse = 0;
     int threadStopAverageSpeed;
-    private boolean stillOnSolar=true;
+    private boolean stillOnSolar = true;
     int threadStopTime;
     int threadStopDistance;
     int threadStopNormalEmission;
@@ -81,10 +72,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     public int applstillInUse = 0;
     int applthreadStopTime;
     int solarThreadStopNormalEmission;
-   int solarThreadStopCurrentEmission;
-   int solarThreadStopNormalEmissionNOx;
-   int solarThreadStopCurrentEmissionNOx;
-
+    int solarThreadStopCurrentEmission;
+    int solarThreadStopNormalEmissionNOx;
+    int solarThreadStopCurrentEmissionNOx;
 
     double applthreadStopAverageTemp;
     int applthreadStopNormalEmission;
@@ -106,6 +96,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         populateAutomobilesOwnedTable();
         populateApplianceOwnedTable();
+        timeToChargeLbl.setVisible(false);
     }
 
     /**
@@ -120,7 +111,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         btnBookAppointmentWithRetailer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         autoJTable = new javax.swing.JTable();
-        btnBookAppointmentForServicing = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         sensorJTable = new javax.swing.JTable();
         startAutomationThreadJBtn = new javax.swing.JButton();
@@ -133,15 +123,16 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         applianceSensorJTable = new javax.swing.JTable();
         startApplianceThreadBtn = new javax.swing.JButton();
         stopApplianceThreadBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        chargeBatteryBtn = new javax.swing.JButton();
         timeToChargeLbl = new javax.swing.JLabel();
         currentBatteryLevel = new javax.swing.JTextField();
         servicingHistoryBtn = new javax.swing.JButton();
         stopChargingBtn = new javax.swing.JButton();
         messageLogJBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        btnBookAppointmentWithRetailer.setText("Book Appointment with Retailer");
+        btnBookAppointmentWithRetailer.setText("BOOK APPOINTMENT WITH RETAILER");
         btnBookAppointmentWithRetailer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBookAppointmentWithRetailerActionPerformed(evt);
@@ -165,13 +156,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(autoJTable);
-
-        btnBookAppointmentForServicing.setText("Book Appointment for Servicing");
-        btnBookAppointmentForServicing.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBookAppointmentForServicingActionPerformed(evt);
-            }
-        });
 
         sensorJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -230,14 +214,14 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(appJTable);
 
-        autoRemoveBtn.setText("REMOVE AUTOMOBILE FROM LIST");
+        autoRemoveBtn.setText("REMOVE AUTOMOBILE");
         autoRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoRemoveBtnActionPerformed(evt);
             }
         });
 
-        removeDeviceBtn.setText("REMOVE APPLIANCE FROM LIST");
+        removeDeviceBtn.setText("REMOVE APPLIANCE");
         removeDeviceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeDeviceBtnActionPerformed(evt);
@@ -276,15 +260,16 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("CHARGE MY BATTERY");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        chargeBatteryBtn.setText("CHARGE MY BATTERY");
+        chargeBatteryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                chargeBatteryBtnActionPerformed(evt);
             }
         });
 
         timeToChargeLbl.setText("jLabel1");
 
+        currentBatteryLevel.setEditable(false);
         currentBatteryLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 currentBatteryLevelActionPerformed(evt);
@@ -305,19 +290,22 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        messageLogJBtn.setText("Message Log");
+        messageLogJBtn.setText("MESSAGE LOG");
         messageLogJBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 messageLogJBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Get Tax Details");
+        jButton2.setText("TAX DETAILS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Customer Work Area");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -326,100 +314,97 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(autoRemoveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(removeDeviceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBookAppointmentWithRetailer)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBookAppointmentForServicing)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(startApplianceThreadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(stopChargingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(timeToChargeLbl)
-                                    .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(messageLogJBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(servicingHistoryBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(stopApplianceThreadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(676, 676, 676))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4)
                             .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(startAutomationThreadJBtn)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(stopAutomationThreadJBtn))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(startApplianceThreadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(stopApplianceThreadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(removeDeviceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(131, 131, 131))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(startAutomationThreadJBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(stopAutomationThreadJBtn))
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(autoRemoveBtn)
+                                            .addComponent(chargeBatteryBtn, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(stopChargingBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(timeToChargeLbl))))
+                                .addGap(133, 133, 133)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(servicingHistoryBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBookAppointmentWithRetailer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(messageLogJBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(113, 113, 113))))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {autoRemoveBtn, btnBookAppointmentForServicing, btnBookAppointmentWithRetailer, removeDeviceBtn});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBookAppointmentWithRetailer, jButton2, messageLogJBtn, servicingHistoryBtn});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startAutomationThreadJBtn, stopAutomationThreadJBtn});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startApplianceThreadBtn, stopApplianceThreadBtn});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {autoRemoveBtn, chargeBatteryBtn, stopChargingBtn});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBookAppointmentWithRetailer)
-                    .addComponent(btnBookAppointmentForServicing)
-                    .addComponent(servicingHistoryBtn))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(messageLogJBtn)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBookAppointmentWithRetailer))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(messageLogJBtn)
+                            .addComponent(autoRemoveBtn))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(chargeBatteryBtn)
+                            .addComponent(currentBatteryLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(servicingHistoryBtn)
+                            .addComponent(timeToChargeLbl)
+                            .addComponent(stopChargingBtn))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(autoRemoveBtn)
-                    .addComponent(removeDeviceBtn)
-                    .addComponent(stopChargingBtn)
-                    .addComponent(timeToChargeLbl))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startAutomationThreadJBtn)
                     .addComponent(stopAutomationThreadJBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startApplianceThreadBtn)
-                    .addComponent(stopApplianceThreadBtn))
-                .addGap(62, 62, 62))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(startApplianceThreadBtn)
+                            .addComponent(stopApplianceThreadBtn)))
+                    .addComponent(removeDeviceBtn))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane3});
@@ -427,6 +412,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {startApplianceThreadBtn, stopApplianceThreadBtn});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {startAutomationThreadJBtn, stopAutomationThreadJBtn});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {chargeBatteryBtn, currentBatteryLevel, servicingHistoryBtn});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -457,14 +444,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBookAppointmentWithRetailerActionPerformed
-
-    private void btnBookAppointmentForServicingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAppointmentForServicingActionPerformed
-        // TODO add your handling code here:
-       /* CustomerServiceSchedulingJPanel customerServiceSchedulingJPanel = new CustomerServiceSchedulingJPanel(userProcessContainer, userAccount, enterprise, system, userAccount.getCustomer(),new WorkRequest());
-        userProcessContainer.add("customerServiceSchedulingJPanel", customerServiceSchedulingJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);*/
-    }//GEN-LAST:event_btnBookAppointmentForServicingActionPerformed
 
     public void startThread() {
         DefaultTableModel dtm = (DefaultTableModel) autoJTable.getModel();
@@ -519,7 +498,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     //Code for battery starts here
                     while (auto.getBattery() > 20 && currentStatus != false) {
                         stillInUse = 1;
-                        stillOnSolar=true;
+                        stillOnSolar = true;
                         for (int i = 0; i < 20; i++) {
                             tempSpeed = i * 5;
                             speedStatus[i] = tempSpeed;
@@ -544,7 +523,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                         }
                     }
 
-                    if (flag == 0 && currentStatus && auto.getBattery()<20) {
+                    if (flag == 0 && currentStatus && auto.getBattery() <= 20) {
                         if (Math.round(batteryLevel * 1000) / 1000 < 21) {
                             stillOnSolar = false;
                             JOptionPane.showMessageDialog(null, "Low Battery,switched to using Fuel!!");
@@ -552,52 +531,51 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                             averageSpeed = 0;
                             timeElapsed = 0;
                         }
-                            model.setValueAt(Math.round(batteryLevel * 1000) / 1000, 0, 4);
-                            flag=1;
-                            
-                ArrayList<Integer> currentEmission1 = new ArrayList<>();
-                ArrayList<Integer> currentEmissionNOx1 = new ArrayList<>();
-                
-                currentEmission1 = selectedSolarCO2Value(threadStopName);
-                currentEmissionNOx1 = selectedSolarNOxValue(threadStopName);
-                int randomIndexPostion1 = new Random().nextInt(currentEmission1.size());
-                solarThreadStopCurrentEmission = currentEmission1.get(randomIndexPostion1);
-                solarThreadStopNormalEmission = auto.solarCO2Emission(threadStopName);
-                solarThreadStopNormalEmissionNOx = auto.solarNOxEmission(threadStopName);
-                solarThreadStopCurrentEmission = (solarThreadStopCurrentEmission * threadStopDistance) / 1000;
-                solarThreadStopCurrentEmission = Math.round(solarThreadStopCurrentEmission * 1000) / 1000;
-                //Calculation for NOx emission
-                int randomIndexPostionNOx1 = new Random().nextInt(currentEmissionNOx1.size());
-                solarThreadStopCurrentEmissionNOx = currentEmissionNOx1.get(randomIndexPostionNOx1);
-                solarThreadStopCurrentEmissionNOx = (solarThreadStopCurrentEmissionNOx * threadStopDistance) / 1000;
-                solarThreadStopCurrentEmissionNOx = Math.round(solarThreadStopCurrentEmissionNOx * 1000) / 1000;
-                model.setValueAt(solarThreadStopNormalEmission, 0, 5);
-                model.setValueAt(solarThreadStopCurrentEmission, 0, 6);
-                model.setValueAt(solarThreadStopNormalEmissionNOx, 0, 7);
-                model.setValueAt(solarThreadStopCurrentEmissionNOx, 0, 8);
-                
-                
-                    }
-                    
-                    if (currentStatus != false) {
-                                stillInUse = 1;
-                                globalBatteryLevel = batteryLevel;
-                                for (int i = 0; i < 20; i++) {
-                                    tempSpeed = i * 5;
-                                    speedStatus[i] = tempSpeed;
-                                }
-                                int randomIndexArray = new Random().nextInt(speedStatus.length);
+                        model.setValueAt(Math.round(batteryLevel * 1000) / 1000, 0, 4);
+                        flag = 1;
 
-                                model.setValueAt(auto.getAutomobileName(), 0, 0);
-                                averageSpeed = averageSpeed + speedStatus[randomIndexArray];
-                                countForAverage++;
-                                //batteryLevel = batteryLevel*0.94;
-                                model.setValueAt(speedStatus[randomIndexArray], 0, 1);
-                                model.setValueAt(timeElapsed1, 0, 3);
-                                model.setValueAt(Math.round(batteryLevel * 1000) / 1000, 0, 4);
-                                flag=1;
+                        ArrayList<Integer> currentEmission1 = new ArrayList<>();
+                        ArrayList<Integer> currentEmissionNOx1 = new ArrayList<>();
+                        threadStopName = auto.getAutomobileName();
+                        currentEmission1 = selectedSolarCO2Value(threadStopName);
+                        currentEmissionNOx1 = selectedSolarNOxValue(threadStopName);
+                        int randomIndexPostion1 = new Random().nextInt(currentEmission1.size());
+                        solarThreadStopCurrentEmission = currentEmission1.get(randomIndexPostion1);
+                        solarThreadStopNormalEmission = auto.solarCO2Emission(threadStopName);
+                        solarThreadStopNormalEmissionNOx = auto.solarNOxEmission(threadStopName);
+                        solarThreadStopCurrentEmission = (solarThreadStopCurrentEmission * threadStopDistance) / 1000;
+                        solarThreadStopCurrentEmission = Math.round(solarThreadStopCurrentEmission * 1000) / 1000;
+                        //Calculation for NOx emission
+                        int randomIndexPostionNOx1 = new Random().nextInt(currentEmissionNOx1.size());
+                        solarThreadStopCurrentEmissionNOx = currentEmissionNOx1.get(randomIndexPostionNOx1);
+                        solarThreadStopCurrentEmissionNOx = (solarThreadStopCurrentEmissionNOx * threadStopDistance) / 1000;
+                        solarThreadStopCurrentEmissionNOx = Math.round(solarThreadStopCurrentEmissionNOx * 1000) / 1000;
+                        model.setValueAt(solarThreadStopNormalEmission, 0, 5);
+                        model.setValueAt(solarThreadStopCurrentEmission, 0, 6);
+                        model.setValueAt(solarThreadStopNormalEmissionNOx, 0, 7);
+                        model.setValueAt(solarThreadStopCurrentEmissionNOx, 0, 8);
+
                     }
-                                       
+
+                    if (currentStatus != false) {
+                        stillInUse = 1;
+                        globalBatteryLevel = batteryLevel;
+                        for (int i = 0; i < 20; i++) {
+                            tempSpeed = i * 5;
+                            speedStatus[i] = tempSpeed;
+                        }
+                        int randomIndexArray = new Random().nextInt(speedStatus.length);
+
+                        model.setValueAt(auto.getAutomobileName(), 0, 0);
+                        averageSpeed = averageSpeed + speedStatus[randomIndexArray];
+                        countForAverage++;
+                        //batteryLevel = batteryLevel*0.94;
+                        model.setValueAt(speedStatus[randomIndexArray], 0, 1);
+                        model.setValueAt(timeElapsed1, 0, 3);
+                        model.setValueAt(Math.round(batteryLevel * 1000) / 1000, 0, 4);
+                        flag = 1;
+                    }
+
                     try {
                         Thread.sleep(1000);
                         timeElapsed++;
@@ -610,67 +588,39 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 averageSpeed = averageSpeed / countForAverage;
                 threadStopName = auto.getAutomobileName();
                 threadStopAverageSpeed = averageSpeed;
-                if(timeElapsed1-timeElapsed==0){
-                threadStopTime = timeElapsed;
+                if (timeElapsed1 - timeElapsed == 0) {
+                    threadStopTime = timeElapsed;
+                } else {
+                    threadStopTime = timeElapsed1;
                 }
-                else{
-                  threadStopTime=timeElapsed1;
-                }
-                
-                  threadStopDistance = threadStopAverageSpeed * threadStopTime;
-//                solarThreadStopNormalEmission=auto.solarCO2Emission(auto.getAutomobileName());
-//                solarThreadStopNormalEmission = (solarThreadStopNormalEmission * threadStopDistance) / 1000;
-//                solarThreadStopNormalEmission = Math.round(solarThreadStopNormalEmission * 1000) / 1000;
-//                
-                threadStopNormalEmission = auto.co2Emission(auto.getAutomobileName());
-                threadStopNormalEmission = (threadStopNormalEmission * threadStopDistance) / 1000;
-                threadStopNormalEmission = Math.round(threadStopNormalEmission * 1000) / 1000;
 
-                // Calculation for NOx emission
-//                solarThreadStopNormalEmissionNOx=auto.solarNOxEmission(auto.getAutomobileName());
-//                solarThreadStopNormalEmissionNOx = (solarThreadStopNormalEmissionNOx * threadStopDistance) / 1000;
-//                solarThreadStopNormalEmissionNOx = Math.round(solarThreadStopNormalEmissionNOx * 1000) / 1000;
-//                
-                threadStopNormalEmissionNOx = auto.noxEmission(auto.getAutomobileName());
-                threadStopNormalEmissionNOx = (threadStopNormalEmissionNOx * threadStopDistance) / 1000;
-                threadStopNormalEmissionNOx = Math.round(threadStopNormalEmissionNOx * 1000) / 1000;
-                stillInUse = 0;
-
-                //LOGIC FOR CURRENT EMISSION TO BE IMPLEMENTED HERE
-                ArrayList<Integer> currentEmission = new ArrayList<>();
-                ArrayList<Integer> currentEmissionNOx = new ArrayList<>();
-                currentEmission = selectedCO2Value(threadStopName);
-                currentEmissionNOx = selectedNOxValue(threadStopName);
-                int randomIndexPostion = new Random().nextInt(currentEmission.size());
-                threadStopCurrentEmission = currentEmission.get(randomIndexPostion);
-                threadStopCurrentEmission = (threadStopCurrentEmission * threadStopDistance) / 1000;
-                threadStopCurrentEmission = Math.round(threadStopCurrentEmission * 1000) / 1000;
-                //Calculation for NOx emission
-                int randomIndexPostionNOx = new Random().nextInt(currentEmissionNOx.size());
-                threadStopCurrentEmissionNOx = currentEmissionNOx.get(randomIndexPostionNOx);
-                threadStopCurrentEmissionNOx = (threadStopCurrentEmissionNOx * threadStopDistance) / 1000;
-                threadStopCurrentEmissionNOx = Math.round(threadStopCurrentEmissionNOx * 1000) / 1000;
-                //FINAL DATA TO BE SHOWN HERE
-                
-//                ArrayList<Integer> currentEmission1 = new ArrayList<>();
-//                ArrayList<Integer> currentEmissionNOx1 = new ArrayList<>();
-//                
-                currentEmission = selectedSolarCO2Value(threadStopName);
-               currentEmissionNOx = selectedSolarNOxValue(threadStopName);
-               int randomIndexPostion1 = new Random().nextInt(currentEmission.size());
-               solarThreadStopCurrentEmission = currentEmission.get(randomIndexPostion1);
-               solarThreadStopNormalEmission = auto.solarCO2Emission(threadStopName);
-               solarThreadStopNormalEmissionNOx = auto.solarNOxEmission(threadStopName);
-               solarThreadStopCurrentEmission = (solarThreadStopCurrentEmission * threadStopDistance) / 1000;
-               solarThreadStopCurrentEmission = Math.round(solarThreadStopCurrentEmission * 1000) / 1000;
-               //Calculation for NOx emission
-               int randomIndexPostionNOx1 = new Random().nextInt(currentEmissionNOx.size());
-               solarThreadStopCurrentEmissionNOx = currentEmissionNOx.get(randomIndexPostionNOx1);
-               solarThreadStopCurrentEmissionNOx = (solarThreadStopCurrentEmissionNOx * threadStopDistance) / 1000;
-               solarThreadStopCurrentEmissionNOx = Math.round(solarThreadStopCurrentEmissionNOx * 1000) / 1000;
                 //FINAL DATA TO BE SHOWN HERE
                 model.setRowCount(0);
                 if (!stillOnSolar) {
+                    threadStopDistance = threadStopAverageSpeed * threadStopTime;
+                    threadStopNormalEmission = auto.co2Emission(auto.getAutomobileName());
+                    threadStopNormalEmission = (threadStopNormalEmission * threadStopDistance) / 1000;
+                    threadStopNormalEmission = Math.round(threadStopNormalEmission * 1000) / 1000;
+
+                    threadStopNormalEmissionNOx = auto.noxEmission(auto.getAutomobileName());
+                    threadStopNormalEmissionNOx = (threadStopNormalEmissionNOx * threadStopDistance) / 1000;
+                    threadStopNormalEmissionNOx = Math.round(threadStopNormalEmissionNOx * 1000) / 1000;
+                    stillInUse = 0;
+                    //LOGIC FOR CURRENT EMISSION TO BE IMPLEMENTED HERE
+                    ArrayList<Integer> currentEmission = new ArrayList<>();
+                    ArrayList<Integer> currentEmissionNOx = new ArrayList<>();
+                    currentEmission = selectedCO2Value(threadStopName);
+                    currentEmissionNOx = selectedNOxValue(threadStopName);
+                    int randomIndexPostion = new Random().nextInt(currentEmission.size());
+                    threadStopCurrentEmission = currentEmission.get(randomIndexPostion);
+                    threadStopCurrentEmission = (threadStopCurrentEmission * threadStopDistance) / 1000;
+                    threadStopCurrentEmission = Math.round(threadStopCurrentEmission * 1000) / 1000;
+                    //Calculation for NOx emission
+                    int randomIndexPostionNOx = new Random().nextInt(currentEmissionNOx.size());
+                    threadStopCurrentEmissionNOx = currentEmissionNOx.get(randomIndexPostionNOx);
+                    threadStopCurrentEmissionNOx = (threadStopCurrentEmissionNOx * threadStopDistance) / 1000;
+                    threadStopCurrentEmissionNOx = Math.round(threadStopCurrentEmissionNOx * 1000) / 1000;
+
                     row[0] = threadStopName;
                     row[1] = threadStopAverageSpeed;
                     row[2] = threadStopDistance;
@@ -680,7 +630,28 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     row[6] = threadStopCurrentEmission;
                     row[7] = threadStopNormalEmissionNOx;
                     row[8] = threadStopCurrentEmissionNOx;
+                    
+                    solarThreadStopCurrentEmission=0;
+                    solarThreadStopCurrentEmissionNOx=0;
+                    solarThreadStopNormalEmission=0;
+                    solarThreadStopNormalEmissionNOx=0;
                 } else {
+                    ArrayList<Integer> currentEmission = new ArrayList<>();
+                    ArrayList<Integer> currentEmissionNOx = new ArrayList<>();
+
+                    currentEmission = selectedSolarCO2Value(threadStopName);
+                    currentEmissionNOx = selectedSolarNOxValue(threadStopName);
+                    int randomIndexPostion1 = new Random().nextInt(currentEmission.size());
+                    solarThreadStopCurrentEmission = currentEmission.get(randomIndexPostion1);
+                    solarThreadStopNormalEmission = auto.solarCO2Emission(threadStopName);
+                    solarThreadStopNormalEmissionNOx = auto.solarNOxEmission(threadStopName);
+                    solarThreadStopCurrentEmission = Math.round(solarThreadStopCurrentEmission * 1000) / 1000;
+                    //Calculation for NOx emission
+                    int randomIndexPostionNOx1 = new Random().nextInt(currentEmissionNOx.size());
+                    solarThreadStopCurrentEmissionNOx = currentEmissionNOx.get(randomIndexPostionNOx1);
+
+                    solarThreadStopCurrentEmissionNOx = Math.round(solarThreadStopCurrentEmissionNOx * 1000) / 1000;
+
                     row[0] = threadStopName;
                     row[1] = threadStopAverageSpeed;
                     row[2] = threadStopDistance;
@@ -692,7 +663,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     row[8] = solarThreadStopCurrentEmissionNOx;
 
                 }
-    
+
                 if ((threadStopCurrentEmission > threadStopNormalEmission)
                         || (threadStopCurrentEmissionNOx > threadStopNormalEmissionNOx)) {
                     String name = threadStopName;
@@ -703,7 +674,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     }
 
                     if (name.contains("Honda")) {
-                        enterpriseName = "Retailer";
+                        enterpriseName = "Honda";
                     }
 
                     if (name.contains("BMW")) {
@@ -787,6 +758,10 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     sensor.setCurrentEmissionNOx(threadStopNormalEmission);
                     sensor.setNormalCO2(threadStopNormalEmission);
                     sensor.setNormalNOx((int) threadStopNormalEmissionNOx);
+                    sensor.setSolarCurrentEmissionCO2(solarThreadStopCurrentEmission);
+                    sensor.setSolarCurrentEmissionNOx(solarThreadStopCurrentEmissionNOx);
+                    sensor.setSolarNormalCO2(solarThreadStopNormalEmission);
+                    sensor.setSolarNormalNOx(solarThreadStopNormalEmissionNOx);
                     userAccount.getCustomer().getSensorDirectory().addSensor(sensor);
                 } catch (Exception e) {
                     System.out.println("Parsing Error of date!!!");
@@ -961,7 +936,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                         applthreadStopTime = timeElapsed;
 
                         applthreadStopNormalEmission = appl.hfcEmission(appl.getApplianceName());
-                        applthreadStopNormalEmission = (int)(applthreadStopNormalEmission*applthreadStopTime*totalTemp);
+                        applthreadStopNormalEmission = (int) (applthreadStopNormalEmission * applthreadStopTime * totalTemp);
                         applstillInUse = 0;
 
                         model.setValueAt(applthreadStopName, tempSelectedValue, 0);
@@ -974,7 +949,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                         selectedHFCValue = selectedHFCValue(applthreadStopName);
                         int randomIndexPostion = new Random().nextInt(selectedHFCValue.size());
                         applthreadStopCurrentEmission = selectedHFCValue.get(randomIndexPostion);
-                        applthreadStopCurrentEmission = (int)(applthreadStopCurrentEmission*applthreadStopTime*totalTemp);
+                        applthreadStopCurrentEmission = (int) (applthreadStopCurrentEmission * applthreadStopTime * totalTemp);
                         model.setValueAt(applthreadStopCurrentEmission, tempSelectedValue, 4);
                     }
                 }
@@ -1053,15 +1028,21 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         int rc = userAccount.getCustomer().getRecentCount();
         rc++;
         userAccount.getCustomer().setRecentCount(rc);
+
         stopThread();
     }//GEN-LAST:event_stopAutomationThreadJBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void chargeBatteryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargeBatteryBtnActionPerformed
         // TODO add your handling code here:
         int rowSelected = autoJTable.getSelectedRow();
 
         if (rowSelected < 0) {
-            JOptionPane.showMessageDialog(this, "Please an automobile first!!");
+            JOptionPane.showMessageDialog(this, "Please select an automobile first!!");
+            return;
+        }
+
+        if (stillInUse == 1) {
+            JOptionPane.showMessageDialog(this, "Cannot charge when in use!!");
             return;
         }
 
@@ -1079,32 +1060,28 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             System.out.println("Parsing Error of date!!!");
         }
 
+        timeToChargeLbl.setVisible(true);
         chargeBattery = new Thread() {
             public void run() {
+
+                //while (stillInUse == 0) {
+                timeToChargeLbl.setVisible(true);
+                try {
+                    if (globalBatteryLevel == 100) {
+                        timeToChargeLbl.setText("Fully Charged!!!");
+                        currentBatteryLevel.setText("100");
+                    }
+                } catch (Exception e) {
+
+                }
+
                 //while (!Thread.currentThread().isInterrupted()) {
-                if (hourOfDay <= 6 && hourOfDay >= 0) {
+                if (hourOfDay < 6 && hourOfDay >= 0) {
                     JOptionPane.showMessageDialog(null, "No sunlight at this point of time,cannot charge battery!!");
                 }
 
-                while ((hourOfDay > 6 && hourOfDay <= 12) && (globalBatteryLevel < 100.0)
-                        && (!Thread.currentThread().isInterrupted())) {
-                    globalBatteryLevel = globalBatteryLevel + 0.50;
-                    if (globalBatteryLevel > 100) {
-                        globalBatteryLevel = 100;
-                    }
-                    currentBatteryLevel.setText(String.valueOf(globalBatteryLevel));
-                    int temp1Time = 0;
-                    temp1Time = (int) ((100 - (globalBatteryLevel)) / 0.50);
-                    timeToChargeLbl.setText(String.valueOf(temp1Time) + " seconds to full charge");
-                    try {
-                        Thread.sleep(1000);
-                    } catch (Exception e) {
-
-                    }
-                }
-
-                while ((hourOfDay >= 13 && hourOfDay <= 16) && globalBatteryLevel < 100.0
-                        && (!Thread.currentThread().isInterrupted())) {
+                while ((hourOfDay >= 6 && hourOfDay <= 12) && (globalBatteryLevel < 100.0)
+                        && (!Thread.currentThread().isInterrupted()) && stillInUse == 0) {
                     globalBatteryLevel = globalBatteryLevel + 0.75;
                     if (globalBatteryLevel > 100) {
                         globalBatteryLevel = 100;
@@ -1120,8 +1097,25 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     }
                 }
 
+                while ((hourOfDay >= 13 && hourOfDay <= 16) && globalBatteryLevel < 100.0
+                        && (!Thread.currentThread().isInterrupted()) && stillInUse == 0) {
+                    globalBatteryLevel = globalBatteryLevel + 1.00;
+                    if (globalBatteryLevel > 100) {
+                        globalBatteryLevel = 100;
+                    }
+                    currentBatteryLevel.setText(String.valueOf(globalBatteryLevel));
+                    int temp1Time = 0;
+                    temp1Time = (int) ((100 - (globalBatteryLevel)) / 1.00);
+                    timeToChargeLbl.setText(String.valueOf(temp1Time) + " seconds to full charge");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+
+                    }
+                }
+
                 while ((hourOfDay >= 17 && hourOfDay <= 18) && globalBatteryLevel < 100.0
-                        && (!Thread.currentThread().isInterrupted())) {
+                        && (!Thread.currentThread().isInterrupted()) && stillInUse == 0) {
                     globalBatteryLevel = globalBatteryLevel + 0.25;
                     currentBatteryLevel.setText(String.valueOf(globalBatteryLevel));
                     int temp1Time = 0;
@@ -1141,10 +1135,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     timeToChargeLbl.setText("Fully charged!!!");
                 }
                 auto1.setBattery((int) globalBatteryLevel);
+                // }
             }
         };
         chargeBattery.start();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_chargeBatteryBtnActionPerformed
 
     private void servicingHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicingHistoryBtnActionPerformed
         // TODO add your handling code here:
@@ -1157,6 +1152,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private void stopChargingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopChargingBtnActionPerformed
         // TODO add your handling code here:
         chargeBattery.interrupt();
+        currentBatteryLevel.setText("");
+        timeToChargeLbl.setVisible(false);
         stopChargingBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1179,7 +1176,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("customerTaxJPanel", customerTaxJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void currentBatteryLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentBatteryLevelActionPerformed
@@ -1196,10 +1193,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
     }
-    
-    
-    
-    
+
     public ArrayList<Integer> selectedSolarNOxValue(String autoName) {
         ArrayList<Integer> NOxEmmision = new ArrayList();
         if (autoName.equalsIgnoreCase("BMW i3")) {
@@ -1272,7 +1266,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public ArrayList<Integer> selectedSolarCO2Value(String autoName) {
-        ArrayList<Integer> co2Emmision = new ArrayList();
+        ArrayList<Integer> co2Emmision = new ArrayList<>();
         if (autoName.equalsIgnoreCase("BMW i3")) {
             for (int i = 0; i < 10; i++) {
                 co2Emmision.add(i);
@@ -1341,9 +1335,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         return co2Emmision;
     }
 
-
     public ArrayList<Integer> selectedCO2Value(String autoName) {
-        ArrayList<Integer> co2Emmision = new ArrayList();
+        ArrayList<Integer> co2Emmision = new ArrayList<>();
         if (autoName.equalsIgnoreCase("BMW i3")) {
             for (int i = 1; i < 16; i++) {
                 co2Emmision.add(i);
@@ -1502,11 +1495,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable applianceSensorJTable;
     private javax.swing.JTable autoJTable;
     private javax.swing.JButton autoRemoveBtn;
-    private javax.swing.JButton btnBookAppointmentForServicing;
     private javax.swing.JButton btnBookAppointmentWithRetailer;
+    private javax.swing.JButton chargeBatteryBtn;
     private javax.swing.JTextField currentBatteryLevel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

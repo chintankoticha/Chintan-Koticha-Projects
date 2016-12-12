@@ -5,7 +5,6 @@
  */
 package business.organization;
 
-import business.role.InsuranceManagerRole;
 import business.role.InventoryManagerRole;
 import business.role.Role;
 import java.util.ArrayList;

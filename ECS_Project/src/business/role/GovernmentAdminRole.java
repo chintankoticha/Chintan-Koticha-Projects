@@ -5,10 +5,9 @@
  */
 package business.role;
 
-import UserInterface.InsuranceManagerRole.InsuranceManagerWorkAreaJPanel;
+import UserInterface.AdminRole.MarketAdminWorkAreaJPanel;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
-import business.organization.InsuranceManagerOrganization;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -17,11 +16,11 @@ import javax.swing.JPanel;
  *
  * @author Siddhant
  */
-public class InsuranceManagerRole extends Role{
+public class GovernmentAdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new InsuranceManagerWorkAreaJPanel(userProcessContainer, account, (InsuranceManagerOrganization)organization, enterprise);
+        return new MarketAdminWorkAreaJPanel(userProcessContainer, enterprise,business);
     }
     
 }

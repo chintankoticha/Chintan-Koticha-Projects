@@ -13,6 +13,7 @@ import business.useraccount.UserAccount;
 import business.workqueue.ServicePersonProductRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -46,9 +47,9 @@ public class RequestProductJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        messageJTextField = new javax.swing.JTextField();
         requestTestJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        messageJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
@@ -65,7 +66,6 @@ public class RequestProductJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Message");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 89, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +73,7 @@ public class RequestProductJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
@@ -86,6 +86,11 @@ public class RequestProductJPanel extends javax.swing.JPanel {
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         
         String message = messageJTextField.getText();
+        
+        if ((message.isEmpty()) || (message.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "All fields are Mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
         
         ServicePersonProductRequest request = new ServicePersonProductRequest();
         request.setMessage(message);

@@ -5,7 +5,7 @@
  */
 package UserInterface.SystemAdminWorkArea;
 
-import UserInterface.CustomerRole.CustomerOrderSchedulingJPanel;
+
 import UserInterface.CustomerRole.CustomerSignUpJPanel;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
@@ -123,7 +123,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -179,7 +179,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(manageEnterpriseJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                                 .addComponent(manageNetworkJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ManageEnterpriseAdminJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +196,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(ManageEnterpriseAdminJButton)
                 .addGap(26, 26, 26)
                 .addComponent(jButton1)
-                .addContainerGap(417, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(jPanel2);

@@ -6,10 +6,8 @@
 package business.role;
 
 import UserInterface.InventoryManagerRole.InventoryManagerWorkAreaJPanel;
-import UserInterface.InsuranceManagerRole.InsuranceManagerWorkAreaJPanel;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
-import business.organization.InsuranceManagerOrganization;
 import business.organization.InventoryManagerOrganization;
 import business.organization.Organization;
 import business.useraccount.UserAccount;

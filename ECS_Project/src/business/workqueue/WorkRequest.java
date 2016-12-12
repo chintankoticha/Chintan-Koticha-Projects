@@ -21,7 +21,7 @@ public class WorkRequest {
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
-    private String scheduleDate;
+    private Date scheduleDate;
     private String ScheduleTime;
     private Date requestDate;
     private Date resolveDate;
@@ -31,7 +31,7 @@ public class WorkRequest {
         requestDate = new Date();
     }
 
-    public String getScheduleDate() {
+    public Date getScheduleDate() {
         return scheduleDate;
     }
 
@@ -59,7 +59,7 @@ public class WorkRequest {
         this.enterpriseName = enterpriseName;
     }
     
-    public void setScheduleDate(String scheduleDate) {
+    public void setScheduleDate(Date scheduleDate) {
         this.scheduleDate = scheduleDate;
     }
 

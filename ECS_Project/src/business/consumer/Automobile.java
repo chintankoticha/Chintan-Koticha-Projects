@@ -132,20 +132,20 @@ public class Automobile {
     
     public int solarNOxEmission(String autoName)
    {
-       if(autoName.equals("BMW i3"))
+       if(autoName.equalsIgnoreCase("BMW i3"))
        {
            noxEmission=1;
            
        }
-       else if(autoName.equals("BMW X1"))
+       else if(autoName.equalsIgnoreCase("BMW X1"))
        {
            noxEmission=3;
        }
-        else if(autoName.equals("BMW M4 COUPE"))
+        else if(autoName.equalsIgnoreCase("BMW M4 COUPE"))
        {
            noxEmission=3;
        }
-        else if(autoName.equals("BMW M2 COUPE"))
+        else if(autoName.equalsIgnoreCase("BMW M2 COUPE"))
        {
            noxEmission=1;
        }
@@ -161,61 +161,59 @@ public class Automobile {
        {
            noxEmission=3;
        }
-        else if(autoName.equals("HONDA JAZZ"))
+        else if(autoName.equalsIgnoreCase("HONDA JAZZ"))
        {
            noxEmission=3;
        }
-        else if(autoName.equals("RENAULT CAPTUR"))
+        else if(autoName.equalsIgnoreCase("RENAULT CAPTUR"))
        {
            noxEmission=3;
        }
-        else if(autoName.equals("RENAULT CLIO"))
+        else if(autoName.equalsIgnoreCase("RENAULT CLIO"))
        {
            noxEmission=3;
        }
-        else if(autoName.equals("RENAULT MEGANE"))
+        else if(autoName.equalsIgnoreCase("RENAULT MEGANE"))
        {
            noxEmission=5;
        }
-        else if(autoName.equals("RENAULT GRAND SCENIC"))
+        else if(autoName.equalsIgnoreCase("RENAULT GRAND SCENIC"))
        {
            noxEmission=5;
        }
-        else if(autoName.equals("TOYOTA PRIUS"))
+        else if(autoName.equalsIgnoreCase("TOYOTA PRIUS"))
        {
            noxEmission=5;
        }
-        else if(autoName.equals("TOYOTA LAND CRUISER"))
+        else if(autoName.equalsIgnoreCase("TOYOTA LAND CRUISER"))
        {
            noxEmission=7;
        }
-        else if(autoName.equals("TOYOTA VERSO"))
+        else if(autoName.equalsIgnoreCase("TOYOTA VERSO"))
        {
            noxEmission=4;
        }
-        else if(autoName.equals("TOYOTA CAMRY"))
+        else if(autoName.equalsIgnoreCase("TOYOTA CAMRY"))
        {
            noxEmission=3;
        }
-       
-       
        return noxEmission;
    }
    public int solarCO2Emission(String autoName)
    {
-       if(autoName.equals("BMW i3"))
+       if(autoName.equalsIgnoreCase("BMW i3"))
        {
            co2Emission=5;        
        }
-       else if(autoName.equals("BMW X1"))
+       else if(autoName.equalsIgnoreCase("BMW X1"))
        {
            co2Emission=4;
        }
-        else if(autoName.equals("BMW M4 COUPE"))
+        else if(autoName.equalsIgnoreCase("BMW M4 COUPE"))
        {
            co2Emission=3;
        }
-        else if(autoName.equals("BMW M2 COUPE"))
+        else if(autoName.equalsIgnoreCase("BMW M2 COUPE"))
        {
            co2Emission=5;
        }
@@ -235,45 +233,40 @@ public class Automobile {
        {
            co2Emission=3;
        }
-        else if(autoName.equals("RENAULT CAPTUR"))
+        else if(autoName.equalsIgnoreCase("RENAULT CAPTUR"))
        {
            co2Emission=4;
        }
-        else if(autoName.equals("RENAULT CLIO"))
+        else if(autoName.equalsIgnoreCase("RENAULT CLIO"))
        {
            co2Emission=2;
        }
-        else if(autoName.equals("RENAULT MEGANE"))
+        else if(autoName.equalsIgnoreCase("RENAULT MEGANE"))
        {
            co2Emission=5;
        }
-        else if(autoName.equals("RENAULT GRAND SCENIC"))
+        else if(autoName.equalsIgnoreCase("RENAULT GRAND SCENIC"))
        {
            co2Emission=4;
        }
-        else if(autoName.equals("TOYOTA PRIUS"))
+        else if(autoName.equalsIgnoreCase("TOYOTA PRIUS"))
        {
            co2Emission=3;
        }
-        else if(autoName.equals("TOYOTA LAND CRUISER"))
+        else if(autoName.equalsIgnoreCase("TOYOTA LAND CRUISER"))
        {
            co2Emission=4;
        }
-        else if(autoName.equals("TOYOTA VERSO"))
+        else if(autoName.equalsIgnoreCase("TOYOTA VERSO"))
        {
            co2Emission=5;
        }
-        else if(autoName.equals("TOYOTA CAMRY"))
+        else if(autoName.equalsIgnoreCase("TOYOTA CAMRY"))
        {
            co2Emission=3;
        }
-       
-       
        return co2Emission;
-       
-       
-   }
-    
+   }   
     
     public int noxEmission(String autoName)
             

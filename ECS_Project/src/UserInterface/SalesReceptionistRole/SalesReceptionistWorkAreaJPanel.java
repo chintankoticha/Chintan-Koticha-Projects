@@ -13,6 +13,7 @@ import business.organization.SalesReceptionistOrganization;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -47,8 +48,9 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
         
         model.setRowCount(0);
-        
         for(WorkRequest request : salesReceptionistorganization.getWorkQueue().getWorkRequestList()){
+            Date dt = new Date();
+            if(request.getScheduleDate().getDate()==dt.getDate()){
             Object[] row = new Object[7];
             row[0] = request.getSender().getCustomer().getFirstName();
             row[1] = request.getScheduleDate();
@@ -58,6 +60,7 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
             row[5] = request.getStatus();
             row[6] = "pending";
             model.addRow(row);
+            }
         }
     }
     /**
@@ -124,6 +127,17 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
 
         valueLabel.setText("<value>");
 
+        jXDatePicker1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXDatePicker1ActionPerformed(evt);
+            }
+        });
+        jXDatePicker1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jXDatePicker1PropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -131,7 +145,7 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -142,7 +156,7 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(refreshTestJButton))
                             .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(requestTestJButton))
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addGap(334, 334, 334))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +173,7 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(requestTestJButton)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -182,8 +196,6 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        //WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        //Sale request = (SalesPersonWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("SalesReceptionistWorkRequestJPanel", new SalesReceptionistWorkRequestJPanel(userProcessContainer, userAccount, enterprise,customer));
@@ -191,12 +203,41 @@ public class SalesReceptionistWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
-
         populateRequestTable();
-
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
+    private void jXDatePicker1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jXDatePicker1PropertyChange
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_jXDatePicker1PropertyChange
 
+    private void jXDatePicker1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDatePicker1ActionPerformed
+        // TODO add your handling code here:
+        Date dt = jXDatePicker1.getDate();
+        populateForThatDate(dt);  
+    }//GEN-LAST:event_jXDatePicker1ActionPerformed
+
+    public void populateForThatDate(Date dt){
+        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for(WorkRequest request : salesReceptionistorganization.getWorkQueue().getWorkRequestList()){
+            //Date dt = new Date();
+            if(request.getScheduleDate().getDate()==dt.getDate()){
+            Object[] row = new Object[7];
+            row[0] = request.getSender().getCustomer().getFirstName();
+            row[1] = request.getScheduleDate();
+            row[2] = request.getScheduleTime();
+            row[3] = request.getMessage();
+            row[4] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getFirstName();
+            row[5] = request.getStatus();
+            row[6] = "pending";
+            model.addRow(row);
+            }
+        } 
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JPanel jPanel1;

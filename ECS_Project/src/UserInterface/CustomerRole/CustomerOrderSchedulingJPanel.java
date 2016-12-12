@@ -16,10 +16,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import business.consumer.Customer;
+import java.awt.CardLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -37,19 +41,28 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerOrderSchedulingJPanel
      */
-    public CustomerOrderSchedulingJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, EcoSystem system,Customer customer) {
+    public CustomerOrderSchedulingJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, EcoSystem system, Customer customer) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system = system;
         this.customer = customer;
-        seletedFlag=0;
+        seletedFlag = 0;
+
+        populateComboBox();
         populateTree();
 
         Calendar calendar = scheduleDate.getMonthView().getCalendar();
         calendar.setTime(new Date());
         scheduleDate.getMonthView().setLowerBound(calendar.getTime());
+    }
+
+    public void populateComboBox() {
+        selectNetworkName.removeAllItems();
+        for (Network network : system.getNetworkList()) {
+            selectNetworkName.addItem(network.getName());
+        }
     }
 
     public void populateTree() {
@@ -112,14 +125,18 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
         jTree = new javax.swing.JTree();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        timeCmbBox = new javax.swing.JComboBox<String>();
+        timeCmbBox = new javax.swing.JComboBox<>();
         scheduleAppointmentBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         selectedEnterpriseJLabel = new javax.swing.JLabel();
         scheduleDate = new org.jdesktop.swingx.JXDatePicker();
+        jLabel4 = new javax.swing.JLabel();
+        selectNetworkName = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jTree1);
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
@@ -128,127 +145,131 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTree);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 272, 275));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("Schedule Visit Date:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 102, -1, 22));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel2.setText("Schedule Time:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 143, 115, 22));
 
-        timeCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---", "10:00AM", "10:30AM", "11:00AM", "11:30AM", "12:00AM", "12:30AM", "1:00PM", "1:30PM", "2:00PM", "2:30PM", "3:00PM", "3:30PM", "4:00PM", "4:30PM", "5:00PM", "5:30PM", "6:00PM", "6:30PM", "7:00PM" }));
+        timeCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "10:00AM", "10:30AM", "11:00AM", "11:30AM", "12:00AM", "12:30AM", "13:00PM", "13:30PM", "14:00PM", "14:30PM", "15:00PM", "15:30PM", "16:00PM", "16:30PM", "17:00PM", "17:30PM", "18:00PM", "18:30PM", "19:00PM" }));
+        add(timeCmbBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 143, 161, 22));
 
+        scheduleAppointmentBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         scheduleAppointmentBtn.setText("Schedule Appointment");
         scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scheduleAppointmentBtnActionPerformed(evt);
             }
         });
+        add(scheduleAppointmentBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 183, -1, -1));
 
+        backBtn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         backBtn.setText("<< BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 183, 115, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Enterprise Selected:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 62, -1, 22));
 
+        selectedEnterpriseJLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         selectedEnterpriseJLabel.setText("selected_enterprise");
+        add(selectedEnterpriseJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 62, 161, 22));
+        add(scheduleDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 103, 161, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(backBtn)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(timeCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scheduleAppointmentBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(scheduleDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selectedEnterpriseJLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(119, 119, 119))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(selectedEnterpriseJLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(scheduleDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(timeCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(scheduleAppointmentBtn)
-                            .addComponent(backBtn)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(146, Short.MAX_VALUE))
-        );
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setText("Customer Order Scheduling");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 24, -1, -1));
+
+        selectNetworkName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(selectNetworkName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    /*public void addToScheduleList(UserAccount userAccount,String date,String time){
-     ArrayList<CustomerSchedule> customerScheduled = new ArrayList<>();
-     
-     CustomerSchedule cs = new CustomerSchedule(customer);
-     customerScheduled.add(Customer);
-     
-    }*/
 
     private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
         // TODO add your handling code here:
+        int hourOfDay = 0;
+        boolean flag = true;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date1 = new Date();
+        try {
+            date1 = dateFormat.parse(dateFormat.format(date1));
+            hourOfDay = date1.getHours();
+            //System.out.println(hourOfDay);
+        } catch (Exception e) {
+            System.out.println("Parsing Error of date!!!");
+            flag = false;
+        }
         if (seletedFlag == 0) {
             JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
+            flag = false;
             return;
         } else if (selectedEnterpriseJLabel.getText().toString().equals("JTree")) {
             JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
+            flag = false;
             return;
         } else {
             for (Network network : system.getNetworkList()) {
                 if (network.getName().equals(selectedEnterpriseJLabel.getText().toString()) || selectedEnterpriseJLabel.getText().toString().equals("Networks")) {
                     JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
+                    flag = false;
                     return;
                 }
                 for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    if(enterprise.getName().toString().equals(selectedEnterpriseJLabel.getText())){
-                    if (enterprise.getEnterpriseType().getValue().equals("Retailer")) {
-                            String date;
+                    if (enterprise.getName().equals(selectedEnterpriseJLabel.getText())) {
+                        if (enterprise.getEnterpriseType().getValue().equals("Retailer")) {
+                            Date date;
                             try {
-                                date = scheduleDate.getDate().toString();
+                                date = scheduleDate.getDate();
                             } catch (Exception e) {
                                 JOptionPane.showMessageDialog(this, "Select a date before scheduling!!!");
+                                flag = false;
                                 return;
                             }
                             String time = timeCmbBox.getSelectedItem().toString();
                             if (time.equals("---")) {
                                 JOptionPane.showMessageDialog(this, "Select a time slot before scheduling!!!");
+                                flag = false;
+                                return;
+                            }
+                            Date dt = new Date();
+                            if (dt.getDate() == date.getDate()) {
+                                String time1 = timeCmbBox.getSelectedItem().toString();
+                                time1 = StringUtils.substringBefore(time1, ":");
+                                if (Integer.parseInt(time1) < hourOfDay) {
+                                    JOptionPane.showMessageDialog(this, "Time Slot selection from past is not allowed!!!");
+                                    flag = false;
+                                    return;
+                                }
                             }
 
                             WorkRequest request = new WorkRequest();
-                            //request.setMessage(message);
+                            request.setMessage("Buy a Car");
                             request.setScheduleDate(date);
                             request.setScheduleTime(time);
-                            request.setCustomer(customer);
+                            request.setCustomer(userAccount.getCustomer());
                             request.setSender(userAccount);
                             request.setStatus("Sent");
 
+                            //Network network2 = new Network();
                             Organization org = null;
                             for (Network network1 : system.getNetworkList()) {
-                                for (Enterprise enterprise1 : network1.getEnterpriseDirectory().getEnterpriseList()) {
-                                    if (enterprise1.getName().equals(selectedEnterpriseJLabel.getText())) {
-                                        for (Organization organization1 : enterprise1.getOrganizationDirectory().getOrganizationList()) {
-                                            if (organization1 instanceof SalesReceptionistOrganization) {
-                                                org = organization1;
-                                                break;
+                                if (network1.getName().equals(selectNetworkName.getSelectedItem().toString())) {
+                                    for (Enterprise enterprise1 : network1.getEnterpriseDirectory().getEnterpriseList()) {
+                                        if (enterprise1.getName().equalsIgnoreCase(selectedEnterpriseJLabel.getText())) {
+                                            for (Organization organization1 : enterprise1.getOrganizationDirectory().getOrganizationList()) {
+                                                if (organization1 instanceof SalesReceptionistOrganization) {
+                                                    org = organization1;
+                                                    //int gotOrganization = 1;
+                                                    break;
+                                                }
                                             }
                                         }
                                     }
@@ -259,21 +280,27 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
                                 org.getWorkQueue().getWorkRequestList().add(request);
                                 userAccount.getWorkQueue().getWorkRequestList().add(request);
                             }
-                        }else{
-                        JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
-                        return;                        
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
+                            flag = false;
+                            return;
                         }
-                    }
-                     else {
+
+                    } else {
                         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                             if (organization.getName().equals(selectedEnterpriseJLabel.getText().toString())) {
                                 JOptionPane.showMessageDialog(this, "Selection of Enterprise(Retailer Type) Node is a manadate!!");
+                                flag = false;
                                 return;
                             }
                         }
                     }
                 }
             }
+        }
+        if (flag) {
+            JOptionPane.showMessageDialog(this, "Appointment is successfully scheduled !!!");
         }
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
@@ -286,11 +313,19 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTreeValueChanged
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree;
@@ -298,6 +333,7 @@ public class CustomerOrderSchedulingJPanel extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JButton scheduleAppointmentBtn;
     private org.jdesktop.swingx.JXDatePicker scheduleDate;
+    private javax.swing.JComboBox<String> selectNetworkName;
     private javax.swing.JLabel selectedEnterpriseJLabel;
     private javax.swing.JComboBox<String> timeCmbBox;
     // End of variables declaration//GEN-END:variables

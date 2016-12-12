@@ -4,26 +4,23 @@
  * and open the template in the editor.
  */
 package UserInterface.InventoryManagerRole;
-
-import UserInterface.InsuranceManagerRole.*;
 import business.EcoSystem;
 import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.network.Network;
-import business.organization.ControlManagerOrganization;
-import business.organization.InsuranceManagerOrganization;
 import business.organization.InventoryManagerOrganization;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import business.workqueue.ServicePersonProductRequest;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chand
+ * @author Siddhant
  */
 public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
      private JPanel userProcessContainer;
@@ -45,6 +42,7 @@ public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         valueLabel.setText(enterprise.getName());
         populateTable();
+        processJButton.setVisible(false);
     }
 
     public void populateTable(){
@@ -81,10 +79,7 @@ public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Message", "Sender", "Receiver", "Status"
@@ -139,24 +134,20 @@ public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(364, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(298, 298, 298)
-                            .addComponent(refreshJButton))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
                             .addComponent(assignJButton)
-                            .addGap(222, 222, 222)
-                            .addComponent(processJButton)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGap(18, 18, 18)
+                            .addComponent(processJButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(refreshJButton))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,18 +158,14 @@ public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(valueLabel)))
-                .addContainerGap(412, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(refreshJButton)
-                    .addGap(9, 9, 9)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(61, 61, 61)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(assignJButton)
-                        .addComponent(processJButton))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignJButton)
+                    .addComponent(processJButton)
+                    .addComponent(refreshJButton))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,13 +178,15 @@ public class InventoryManagerWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a Row first !!!");
             return;
         }
-
+        
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
         request.setReceiver(userAccount);
         request.setStatus("Pending");
         populateTable();
+        processJButton.setVisible(true);
 
     }//GEN-LAST:event_assignJButtonActionPerformed
 

@@ -19,67 +19,52 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="autoRemoveBtn" linkSize="5" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="removeDeviceBtn" linkSize="5" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnBookAppointmentWithRetailer" linkSize="5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnBookAppointmentForServicing" linkSize="5" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="stopChargingBtn" max="32767" attributes="0"/>
-                                  <Component id="jButton1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="timeToChargeLbl" min="-2" max="-2" attributes="0"/>
-                                  <Component id="currentBatteryLevel" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="messageLogJBtn" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="servicingHistoryBtn" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="startApplianceThreadBtn" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Component id="stopApplianceThreadBtn" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="676" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" max="32767" attributes="0"/>
-                          <Component id="jScrollPane4" alignment="0" pref="973" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
+                          <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
+                                      <Component id="jScrollPane3" min="-2" pref="197" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                      <Component id="removeDeviceBtn" max="32767" attributes="0"/>
+                                      <EmptySpace min="131" pref="131" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
                                       <Component id="startAutomationThreadJBtn" linkSize="9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="stopAutomationThreadJBtn" linkSize="9" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="startApplianceThreadBtn" linkSize="10" min="-2" pref="127" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" min="-2" pref="197" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="stopApplianceThreadBtn" linkSize="10" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="autoRemoveBtn" linkSize="15" min="-2" max="-2" attributes="0"/>
+                                          <Component id="chargeBatteryBtn" linkSize="15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="stopChargingBtn" linkSize="15" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="currentBatteryLevel" min="-2" pref="115" max="-2" attributes="0"/>
+                                          <Component id="timeToChargeLbl" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="servicingHistoryBtn" linkSize="5" alignment="1" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="btnBookAppointmentWithRetailer" linkSize="5" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="messageLogJBtn" linkSize="5" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jButton2" linkSize="5" alignment="1" min="-2" pref="215" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
@@ -91,50 +76,58 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnBookAppointmentWithRetailer" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnBookAppointmentForServicing" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="servicingHistoryBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jScrollPane1" linkSize="4" min="-2" pref="108" max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" linkSize="4" min="-2" pref="87" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" linkSize="4" min="-2" pref="108" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="messageLogJBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="btnBookAppointmentWithRetailer" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="currentBatteryLevel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="messageLogJBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="autoRemoveBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="chargeBatteryBtn" linkSize="14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="currentBatteryLevel" linkSize="14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="servicingHistoryBtn" linkSize="14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="timeToChargeLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="stopChargingBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="autoRemoveBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="removeDeviceBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="stopChargingBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="timeToChargeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="121" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="startAutomationThreadJBtn" linkSize="12" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stopAutomationThreadJBtn" linkSize="12" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane4" min="-2" pref="121" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="startApplianceThreadBtn" linkSize="11" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="stopApplianceThreadBtn" linkSize="11" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane3" linkSize="4" min="-2" pref="87" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="startApplianceThreadBtn" linkSize="11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stopApplianceThreadBtn" linkSize="11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="removeDeviceBtn" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane4" min="-2" pref="121" max="-2" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,7 +135,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnBookAppointmentWithRetailer">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Book Appointment with Retailer"/>
+        <Property name="text" type="java.lang.String" value="BOOK APPOINTMENT WITH RETAILER"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBookAppointmentWithRetailerActionPerformed"/>
@@ -178,14 +171,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnBookAppointmentForServicing">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Book Appointment for Servicing"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBookAppointmentForServicingActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -312,7 +297,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="autoRemoveBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="REMOVE AUTOMOBILE FROM LIST"/>
+        <Property name="text" type="java.lang.String" value="REMOVE AUTOMOBILE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="autoRemoveBtnActionPerformed"/>
@@ -320,7 +305,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="removeDeviceBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="REMOVE APPLIANCE FROM LIST"/>
+        <Property name="text" type="java.lang.String" value="REMOVE APPLIANCE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeDeviceBtnActionPerformed"/>
@@ -396,12 +381,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopApplianceThreadBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="chargeBatteryBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="CHARGE MY BATTERY"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chargeBatteryBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="timeToChargeLbl">
@@ -410,6 +395,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="currentBatteryLevel">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="currentBatteryLevelActionPerformed"/>
       </Events>
@@ -432,7 +420,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="messageLogJBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Message Log"/>
+        <Property name="text" type="java.lang.String" value="MESSAGE LOG"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="messageLogJBtnActionPerformed"/>
@@ -440,11 +428,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Get Tax Details"/>
+        <Property name="text" type="java.lang.String" value="TAX DETAILS"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Customer Work Area"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

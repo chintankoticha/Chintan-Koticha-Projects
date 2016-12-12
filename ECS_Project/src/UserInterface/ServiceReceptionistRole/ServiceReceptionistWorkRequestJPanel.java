@@ -13,6 +13,7 @@ import business.useraccount.UserAccount;
 import business.workqueue.ServicePersonWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -94,7 +95,7 @@ public class ServiceReceptionistWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(requestTestJButton)
                     .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +118,7 @@ public class ServiceReceptionistWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backJButton)
                     .addComponent(requestTestJButton))
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -133,6 +134,11 @@ public class ServiceReceptionistWorkRequestJPanel extends javax.swing.JPanel {
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         String message = messageJTextField.getText();
+        
+        if ((message.isEmpty()) || (message.startsWith(" "))) {
+           JOptionPane.showMessageDialog(this, "All fields are Mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
 
         ServicePersonWorkRequest request = new ServicePersonWorkRequest();
         request.setMessage(message);
